@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Mina:wght@400;700&display=swap');
+
+:root {
+    --navbar-bg: green;
+    --main-bg: greenyellow;
+    --footer-bg: lightgreen;
+    --font-color: white;
+    --border-color: darkgreen;
+}
+
+*, *::after, *::before {
+    font-family: 'Mina', sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    position: relative;
+    /* min-height: 100vh; */
+    font-size: 14px;
+    /* margin-left: -8px; */
+}
+
+body {
+    max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+
+/* #region HEADER, NAVBAR */
+header {
+    background-color: var(--navbar-bg);
+}
+
+nav.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding: 10px;
+    background-color: var(--navbar-bg);
+    z-index: 500;
+}
+
+nav > .title {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.title > img {
+    width: 20%;
+}
+
+.title > h1 {
+    color: var(--font-color);
+    font-size: 3rem;
+    margin-left: 20px;
+}
+
+nav > .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 3em;
+}
+
+.links > a {
+    color: var(--font-color);
+    font-size: 1.75rem;
+    text-decoration: none;
+    position: relative;
+    padding: 2px 0px;
+}
+
+.links > a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    left: 0;
+    bottom: 0;
+    background-color: var(--border-color);
+    transform: scale(0, 1);
+    transition: transform 0.3s ease;
+}
+
+.links > a:hover::after {
+    transform: scale(1, 1);
+}
+/* #endregion */
+
+
+/* #region MAIN */
+main {
+    background-color: var(--main-bg);
+    padding: 10px 25px;
+    margin-top: 11.7rem;
+    /* height: 100px; */
+}
+
+main > button {
+    display: block;
+    background-color: orange;
+    border: 2px solid orange;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 30px auto;
+}
+
+main > button:hover {
+    transform: scale(1.1, 1.1);
+}
+
+main > h2 {
+    margin-top: 0;
+}
+
+main > hr {
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    height: 5px;
+    margin: 1.75rem 0;
+}
+/* #endregion */
+
+
+/* #region FOOTER */
+footer {
+    background-color: var(--footer-bg);
+    /* color: var(--font-color); */
+    text-align: center;
+    padding: 10px 0px;
+}
+
+footer > h3 {
+    margin: 0;
+}
+/* #endregion */

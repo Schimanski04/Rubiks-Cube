@@ -1,0 +1,478 @@
+:root {
+    --width-height: 40px;
+}
+
+.container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 20px 20px; 
+    grid-template-areas: 
+      "white-side red-side green-side"
+      "yellow-side blue-side orange-side"; 
+    align-content: start; 
+    width: 100%;
+    justify-items: center;
+}
+
+
+.white-side {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "white-1 white-2 white-3"
+        "white-4 white-5 white-6"
+        "white-7 white-8 white-9"; 
+    grid-area: white-side; 
+}
+
+.white-1 {
+    grid-area: white-1;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+.white-2 {
+    grid-area: white-2;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+.white-3 {
+    grid-area: white-3;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+.white-4 {
+    grid-area: white-4;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+.white-5 {
+    grid-area: white-5;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+.white-6 {
+    grid-area: white-6;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+.white-7 {
+    grid-area: white-7;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+.white-8 {
+    grid-area: white-8;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+.white-9 {
+    grid-area: white-9;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: white;
+    border: 2px solid black;
+}
+
+
+.red-side {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "red-1 red-2 red-3"
+        "red-4 red-5 red-6"
+        "red-7 red-8 red-9"; 
+    grid-area: red-side; 
+}
+
+.red-1 {
+    grid-area: red-1;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+.red-2 {
+    grid-area: red-2;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+.red-3 {
+    grid-area: red-3;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+.red-4 {
+    grid-area: red-4;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+.red-5 {
+    grid-area: red-5;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+.red-6 {
+    grid-area: red-6;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+.red-7 {
+    grid-area: red-7;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+.red-8 {
+    grid-area: red-8;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+.red-9 {
+    grid-area: red-9;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: red;
+    border: 2px solid black;
+}
+
+
+.green-side {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "green-1 green-2 green-3"
+        "green-4 green-5 green-6"
+        "green-7 green-8 green-9"; 
+    grid-area: green-side; 
+}
+
+.green-1 {
+    grid-area: green-1;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+.green-2 {
+    grid-area: green-2;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+.green-3 {
+    grid-area: green-3;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+.green-4 {
+    grid-area: green-4;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+.green-5 {
+    grid-area: green-5;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+.green-6 {
+    grid-area: green-6;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+.green-7 {
+    grid-area: green-7;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+.green-8 {
+    grid-area: green-8;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+.green-9 {
+    grid-area: green-9;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: green;
+    border: 2px solid black;
+}
+
+
+.yellow-side {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "yellow-1 yellow-2 yellow-3"
+        "yellow-4 yellow-5 yellow-6"
+        "yellow-7 yellow-8 yellow-9"; 
+    grid-area: yellow-side; 
+}
+
+.yellow-1 {
+    grid-area: yellow-1;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+.yellow-2 {
+    grid-area: yellow-2;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+.yellow-3 {
+    grid-area: yellow-3;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+.yellow-4 {
+    grid-area: yellow-4;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+.yellow-5 {
+    grid-area: yellow-5;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+.yellow-6 {
+    grid-area: yellow-6;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+.yellow-7 {
+    grid-area: yellow-7;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+.yellow-8 {
+    grid-area: yellow-8;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+.yellow-9 {
+    grid-area: yellow-9;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: yellow;
+    border: 2px solid black;
+}
+
+
+.blue-side {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "blue-1 blue-2 blue-3"
+        "blue-4 blue-5 blue-6"
+        "blue-7 blue-8 blue-9"; 
+    grid-area: blue-side; 
+}
+
+.blue-1 {
+    grid-area: blue-1;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+.blue-2 {
+    grid-area: blue-2;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+.blue-3 {
+    grid-area: blue-3;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+.blue-4 {
+    grid-area: blue-4;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+.blue-5 {
+    grid-area: blue-5;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+.blue-6 {
+    grid-area: blue-6;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+.blue-7 {
+    grid-area: blue-7;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+.blue-8 {
+    grid-area: blue-8;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+.blue-9 {
+    grid-area: blue-9;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: blue;
+    border: 2px solid black;
+}
+
+
+.orange-side {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "orange-1 orange-2 orange-3"
+        "orange-4 orange-5 orange-6"
+        "orange-7 orange-8 orange-9"; 
+    grid-area: orange-side; 
+}
+
+.orange-1 {
+    grid-area: orange-1;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
+.orange-2 {
+    grid-area: orange-2;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
+.orange-3 {
+    grid-area: orange-3;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
+.orange-4 {
+    grid-area: orange-4;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
+.orange-5 {
+    grid-area: orange-5;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
+.orange-6 {
+    grid-area: orange-6;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
+.orange-7 {
+    grid-area: orange-7;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
+.orange-8 {
+    grid-area: orange-8;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
+.orange-9 {
+    grid-area: orange-9;
+    width: var(--width-height);
+    height: var(--width-height);
+    background-color: orangered;
+    border: 2px solid black;
+}
