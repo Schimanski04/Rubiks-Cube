@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/game_grid.css">
     <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/cube_move.js" defer></script>
     <link rel="shortcut icon" href="./images/rubiks_cube_icon.jpg" type="image/x-icon">
     <title>Rubikova kostka</title>
 </head>
@@ -19,16 +20,146 @@
             </div>
             <div class="links">
                 <a href="./index.html">Domov</a>
-                <a href="./gallery.html">Fotogalerie</a>
                 <a href="./rules.html">Pravidla</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <button id="mix-cube-btn">Zamíchat</button>
+        <!-- <button id="mix-cube-btn">Zamíchat</button> -->
 
         <div class="container">
+            <!-- LEFT -->
+            <div class="cube-3d">
+                <div id="cube" class="cube" style="transform: rotateX(30deg) rotateY(45deg);">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face right"></div>
+                    <div class="face left"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                </div>
+            </div>
+
+            <div class="choose-side">
+                <button id="choose-white"></button>
+                <button id="choose-red"></button>
+                <button id="choose-yellow"></button>
+                <button id="choose-orange"></button>
+                <button id="choose-green"></button>
+                <button id="choose-blue"></button>
+                <button id="cancel">&#10060;</button>
+            </div>
+
+            <div class="controler-container">
+                <button id="top-left" class="top-left">&#9664;</button>
+                <button id="top-right" class="top-right">&#9654;</button>
+                <button id="left-top" class="left-top">&#9650;</button>
+                <button id="left-down" class="left-down">&#9660;</button>
+                <button id="right-top" class="right-top">&#9650;</button>
+                <button id="right-down" class="right-down">&#9660;</button>
+                <button id="bottom-left" class="bottom-left">&#9664;</button>
+                <button id="bottom-right" class="bottom-right">&#9654;</button>
+                <div class="cube-control">
+                    <div class="cube-control-1"></div>
+                    <div class="cube-control-2"></div>
+                    <div class="cube-control-3"></div>
+                    <div class="cube-control-4"></div>
+                    <div class="cube-control-5"></div>
+                    <div class="cube-control-6"></div>
+                    <div class="cube-control-7"></div>
+                    <div class="cube-control-8"></div>
+                    <div class="cube-control-9"></div>
+                </div>
+            </div>
+
+            <div class="mix-btn">
+                <button id="mix-cube-btn">Zamíchat</button>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="game-container">
+                <div id="white-side" class="white-side cube-side">
+                    <div class="white-1"></div>
+                    <div class="white-2"></div>
+                    <div class="white-3"></div>
+                    <div class="white-4"></div>
+                    <div class="white-5"></div>
+                    <div class="white-6"></div>
+                    <div class="white-7"></div>
+                    <div class="white-8"></div>
+                    <div class="white-9"></div>
+                </div>
+                <div id="red-side" class="red-side cube-side">
+                    <div class="red-1"></div>
+                    <div class="red-2"></div>
+                    <div class="red-3"></div>
+                    <div class="red-4"></div>
+                    <div class="red-5"></div>
+                    <div class="red-6"></div>
+                    <div class="red-7"></div>
+                    <div class="red-8"></div>
+                    <div class="red-9"></div>
+                </div>
+                <div id="yellow-side" class="yellow-side cube-side">
+                    <div class="yellow-1"></div>
+                    <div class="yellow-2"></div>
+                    <div class="yellow-3"></div>
+                    <div class="yellow-4"></div>
+                    <div class="yellow-5"></div>
+                    <div class="yellow-6"></div>
+                    <div class="yellow-7"></div>
+                    <div class="yellow-8"></div>
+                    <div class="yellow-9"></div>
+                </div>
+                <div id="orange-side" class="orange-side cube-side">
+                    <div class="orange-1"></div>
+                    <div class="orange-2"></div>
+                    <div class="orange-3"></div>
+                    <div class="orange-4"></div>
+                    <div class="orange-5"></div>
+                    <div class="orange-6"></div>
+                    <div class="orange-7"></div>
+                    <div class="orange-8"></div>
+                    <div class="orange-9"></div>
+                </div>
+                <div id="green-side" class="green-side cube-side">
+                    <div class="green-1"></div>
+                    <div class="green-2"></div>
+                    <div class="green-3"></div>
+                    <div class="green-4"></div>
+                    <div class="green-5"></div>
+                    <div class="green-6"></div>
+                    <div class="green-7"></div>
+                    <div class="green-8"></div>
+                    <div class="green-9"></div>
+                </div>
+                <div id="blue-side" class="blue-side cube-side">
+                    <div class="blue-1"></div>
+                    <div class="blue-2"></div>
+                    <div class="blue-3"></div>
+                    <div class="blue-4"></div>
+                    <div class="blue-5"></div>
+                    <div class="blue-6"></div>
+                    <div class="blue-7"></div>
+                    <div class="blue-8"></div>
+                    <div class="blue-9"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="cube-container">
+            <div class="cube">
+              <div class="face front"></div>
+              <div class="face back"></div>
+              <div class="face right"></div>
+              <div class="face left"></div>
+              <div class="face top"></div>
+              <div class="face bottom"></div>
+            </div>
+        </div> -->
+
+        <!-- <div class="game-container">
             <div class="white-side">
                 <div class="white-1"></div>
                 <div class="white-2"></div>
@@ -95,11 +226,12 @@
                 <div class="orange-8"></div>
                 <div class="orange-9"></div>
             </div>
-        </div>
+        </div> -->
     </main>
 
     <footer>
         <h3>&copy; 2022 - Rubikova kostka - Šimon Janata (P2 - WEB)</h3>
+        <h3>Email: <a href="mailto:simon.janata.020@pslib.cz">simon.janata.020@pslib.cz</a></h3>
     </footer>
 </body>
 </html>
