@@ -15,6 +15,7 @@ console.log(window.scrollY);
 window.addEventListener("scroll", () => {
     console.log(window.scrollY);
 
+    // zmenseni/zvetseni navbaru
     if (window.scrollY > 80) { // zmensit navbar
         navbar[0].style.padding = "0px 10px";
         title_div[0].children[0].style.width = "12.5%";
@@ -23,12 +24,13 @@ window.addEventListener("scroll", () => {
         links_div[0].children[1].style.fontSize = "1.5rem";
     } else { // zvetsit navbar
         navbar[0].style.padding = "10px";
-        title_div[0].children[0].style.width = "20%";
-        title_div[0].children[1].style.fontSize = "3rem";
-        links_div[0].children[0].style.fontSize = "1.75rem";
-        links_div[0].children[1].style.fontSize = "1.75rem";
+        title_div[0].children[0].style.width = "17.5%";
+        title_div[0].children[1].style.fontSize = "2.75rem";
+        links_div[0].children[0].style.fontSize = "1.5rem";
+        links_div[0].children[1].style.fontSize = "1.5rem";
     }
 
+    // zobrazit TOP btn
     if (window.scrollY < 100) { // 350
         btn_scroll_top.classList.add("hidden");
     } else {
@@ -43,9 +45,3 @@ btn_scroll_top.addEventListener("click", () => {
         behavior: "smooth"
     })
 })
-
-// console.log(navbar[0]);
-// console.log(title_div[0].children[0]);
-// console.log(title_div[0].children[1]);
-// console.log(links_div[0].children[0]);
-// console.log(links_div[0].children[1]);
