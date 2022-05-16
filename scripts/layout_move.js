@@ -10,10 +10,10 @@ const btn_scroll_top = document.getElementById("btn-scroll-top");
 // links_div[0].children[0] - ./index.html
 // links_div[0].children[1] - ./rules.html
 
-console.log(window.scrollY);
+// console.log(window.scrollY);
 
 window.addEventListener("scroll", () => {
-    console.log(window.scrollY);
+    // console.log(window.scrollY);
 
     // zmenseni/zvetseni navbaru
     if (window.scrollY > 80) { // zmensit navbar

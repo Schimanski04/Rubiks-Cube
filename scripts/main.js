@@ -308,6 +308,8 @@ const mix_btn = document.getElementById("mix-cube-btn");
 mix_btn.addEventListener("click", () => {
     console.log("Míchám");
     mixCube();
+
+    // mix_btn.classList.add("cursor-disabled");
 })
 
 function mixCube() {
@@ -315,23 +317,20 @@ function mixCube() {
 
     console.log(colors.length);
 
-    for (var w of white_side) {
-        console.log(w)
+    for (var s of cube_sides) {
+        for (let i = 0; i < 9; i++) {
+            if (i != 4) {
+                let index_color = Math.floor(Math.random() * colors.length);
+                s.children[i].style.backgroundColor = colors[index_color];
+                colors.splice(index_color, 1);
+            }
+        }
     }
 
-    // console.log(cube_sides[1])
-
-    // for (var side of cube_sides) {
-    //     console.log(side);
-        // for (let i = 0; i < 9; i++) {
-        //     if (i !== 4) {
-        //         side[i].style.backgroundColor = "red";
-        //     }
-        // }
-
-    //     for (var i of side) {
-    //         // let index_i = side.indx
-    //         console.log(i)
-    //     }
-    // }
+    // console.log(colors.length);
 }
+
+// Zamíchání kostky po načtení stránky
+window.addEventListener('DOMContentLoaded', () => {
+    mixCube();
+});

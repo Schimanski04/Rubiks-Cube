@@ -23,6 +23,7 @@
         camera.position.z = 1;
 
         const scene = new THREE.Scene();
+        scene.background = new THREE.Color( "red" );
 
         const geometry = new THREE.BoxGeometry( 0.42, 0.42, 0.42 ); // 0.14 jedna kostka
         const material = new THREE.MeshNormalMaterial();
@@ -46,5 +47,149 @@
 
         }
     </script>
+
+    <!-- <script>
+        let solutionCubeState = [
+            Array(9).fill("Orange"),
+            Array(9).fill("Blue"),
+            Array(9).fill("White"),
+            Array(9).fill("Red"),
+            Array(9).fill("Yellow"),
+            Array(9).fill("Green"),
+        ];
+
+        // Array(9) /* --(>) */ [empty x 9]
+
+        let arrayToFill = Array(2);
+        arrayToFill.fill('Delicious Creamy Filling');
+        ['Delicious Creamy Filling', 'Delicious Creamy Filling'];
+
+        var stateMapping = {
+        0: {
+                0: [2, 2],
+                1: null,
+                2: null,
+                3: [5, 6],      
+                4: [0, 0],
+                5: null,
+        },
+        26: {      
+                0: null,
+                1: [4, 8],
+                2: [1, 8],
+                3: null,      
+                4: null,
+                5: [3, 6],
+        }
+        }
+
+        rubiks.handleRotateEdgesFrontClockwise = (rubiksArray) => {
+            // Rotate edge pieces for the front face by swapping in place
+            let temp1 = rubiksArray[1][0];
+            let temp2 = rubiksArray[1][1];
+            let temp3 = rubiksArray[1][2];
+            rubiksArray[1][0] = rubiksArray[4][6];
+            rubiksArray[1][1] = rubiksArray[4][3];
+            rubiksArray[1][2] = rubiksArray[4][0];
+            rubiksArray[4][6] = rubiksArray[5][8];
+            rubiksArray[4][3] = rubiksArray[5][7];
+            rubiksArray[4][0] = rubiksArray[5][6];
+            rubiksArray[5][8] = rubiksArray[2][2];
+            rubiksArray[5][7] = rubiksArray[2][5];
+            rubiksArray[5][6] = rubiksArray[2][8];
+            rubiksArray[2][2] = temp1;
+            rubiksArray[2][5] = temp2;
+            rubiksArray[2][8] = temp3;
+            }
+            rubiks.handleRotateCubeFaceClockwise = (faceNum, rubiksArray) => {
+            // Rotate pieces on front face by swapping in place
+            var tempCross = rubiksArray[faceNum][1];
+            rubiksArray[faceNum][1] = rubiksArray[faceNum][3];
+            rubiksArray[faceNum][3] = rubiksArray[faceNum][7];
+            rubiksArray[faceNum][7] = rubiksArray[faceNum][5];
+            rubiksArray[faceNum][5] = tempCross;
+            var tempDiagonal = rubiksArray[faceNum][0];
+            rubiksArray[faceNum][0] = rubiksArray[faceNum][6];
+            rubiksArray[faceNum][6] = rubiksArray[faceNum][8];
+            rubiksArray[faceNum][8] = rubiksArray[faceNum][2];
+            rubiksArray[faceNum][2] = tempDiagonal;
+        }
+
+        const material = new THREE.MeshBasicMaterial({ 
+            color:0xffffff, 
+            vertexColors: THREE.FaceColors
+        });
+
+        const newCubeGeometry = new THREE.BoxGeometry(0.95, 0.95, 0.95);
+        const newCubeMesh = THREE.Mesh(cubeGeometries[cubeNum], material);
+        scene.add(newCubeMesh);
+
+        // Initial representation of React component state
+        this.state = {
+            cubePositions: [];
+        }
+        // Generating coordinates for all cubes
+        let newCubePositions = [];
+        for (let z = 1; z >= -1; z -- ) {
+        for (let y = -1; y <= 1; y ++) {
+            for (let x = 1; x >= -1; x -- ) {
+            newCubePositions.push([x, y, z]);
+            }
+        }
+        }
+        // Set state to store coordinates of all cubes
+        this.setState({
+        cubePositions: newCubePositions
+        })
+        // Use Three.JS methods to set position of each cube
+        for (let cubeNum in cubes) {
+        cubes[cubeNum].position.set(...this.state.cubePositions[cubeNum]);
+        }
+
+        // Use data from state to render Three.JS model colours
+        function handleRenderCubeColorPositions() {
+            for (let cubeNum = 0; cubeNum < 27; cubeNum++) {
+                // Get coordinates for element in nested array
+                let aCubeMap = stateToCubesMapping[cubeNum];
+                for ( let i = 0, c = 0; i < this.cubeGeometries[cubeNum]
+                        .faces.length; i += 2, c++ ) {
+                        let hex;
+                        
+                        if (!!aCubeMap[c]) {
+                        // If the side to be coloured is not null, get the colour code
+                        // Set hex equal to the colour code
+                        let colorCode = this.state.rubiksArray[aCubeMap[c][0]][aCubeMap[c][1]];
+                        hex = this.state.colorCodes[colorCode];
+                        } else {
+                        
+                        // If the side to be coloured is null, set hex to black
+                        
+                        hex = "0x000000";
+                        }
+                        // Use Three.JS methods to set the face colour using hex
+                        this.cubeGeometries[cubeNum].faces[ i ].color.setHex( hex );
+                        this.cubeGeometries[cubeNum].faces[ i + 1 ].color.setHex( hex );
+                        this.cubes[cubeNum].geometry.colorsNeedUpdate = true;
+                    }
+            }
+            // renderScene must be called in order to affect the changes made in the function
+            this.renderScene();
+        }
+
+        // Animate function - calls itself repeatedly
+        function animate() {
+            this.renderScene();
+            this.frameId = window.requestAnimationFrame(this.animate);
+            // Example use of animation boolean
+            if (this.state.spinLeft) {
+                this.groupCubes.rotation.y -= 0.05;
+            }
+            // ...
+            if (this.state.party) {
+                this.groupCubes.rotation.x += 0.06;
+                this.groupCubes.rotation.y += 0.05;
+            }
+        }
+    </script> -->
 </body>
 </html>

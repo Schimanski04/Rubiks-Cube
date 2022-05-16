@@ -6,7 +6,7 @@
     --footer-bg: lightgreen;
     --font-color: white;
     --border-color: darkgreen;
-    --transition-duration-time: 1.5s;
+    --transition-duration-time: 1.25s;
 }
 
 *, *::after, *::before {
@@ -28,6 +28,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
+}
+
+.cursor-disabled {
+    pointer-events: none;
 }
 
 
