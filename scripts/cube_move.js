@@ -6,7 +6,7 @@ document.addEventListener("keypress", (e) => {
     let position = cube.style.transform;
     position = position.split(" ");
 
-    console.log(position)
+    // console.log(position)
 
     position_x = position[0];
     position_y = position[1];
@@ -17,24 +17,28 @@ document.addEventListener("keypress", (e) => {
     switch(e.key) {
         case "w":
             console.log("W");
-            cube.style.transform = `rotateX(${position_x + 30}deg) rotateY(${position_y}deg)`;
+            cube.style.transform = `rotateX(${Math.abs(position_x + 60)}deg) rotateY(${Math.abs(position_y)}deg)`;
             cube.style.transitionDuration = "2s";
+            console.log("x:" + position_x + " ; y:" + position_y)
             // console.log(cube_3d.style.transform[8]);
             break;
         case "a":
             console.log("A");
-            cube.style.transform = `rotateX(${position_x}deg) rotateY(${position_y + 30}deg)`;
+            cube.style.transform = `rotateX(${Math.abs(position_x)}deg) rotateY(${Math.abs(position_y - 60)}deg)`;
             cube.style.transitionDuration = "2s";
+            console.log("x:" + position_x + " ; y:" + position_y)
             break;
         case "s":
             console.log("S");
-            cube.style.transform = `rotateX(${position_x - 30}deg) rotateY(${position_y}deg)`;
+            cube.style.transform = `rotateX(${Math.abs(position_x - 60)}deg) rotateY(${Math.abs(position_y)}deg)`;
             cube.style.transitionDuration = "2s";
+            console.log("x:" + position_x + " ; y:" + position_y)
             break;
         case "d":
             console.log("D");
-            cube.style.transform = `rotateX(${position_x}deg) rotateY(${position_y - 30}deg)`;
+            cube.style.transform = `rotateX(${Math.abs(position_x)}deg) rotateY(${Math.abs(position_y + 60)}deg)`;
             cube.style.transitionDuration = "2s";
+            console.log("x:" + position_x + " ; y:" + position_y)
             break;
 
         default:
@@ -43,3 +47,17 @@ document.addEventListener("keypress", (e) => {
 
     // console.log(`Key "${e.key}"`)
 })
+
+// let cubeBoundingRect = cube.getBoundingClientRect();
+// let cubeCenter= {
+//     x: cubeBoundingRect.left + cubeBoundingRect.width / 2, 
+//     y: cubeBoundingRect.top + cubeBoundingRect.height / 2
+// };
+
+// cube.addEventListener("mousedown", () => {
+//     document.addEventListener("mousemove", (e) => {
+//         let angleX = Math.atan2(e.pageX - cubeCenter.x, - (e.pageY - cubeCenter.y) ) * (180 / Math.PI);      
+//         let angleY = Math.atan2(e.pageY - cubeCenter.y, - (e.pagex - cubeCenter.x) ) * (180 / Math.PI);      
+//         cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;  
+//     })
+// })
