@@ -3,10 +3,9 @@ const cube = document.getElementById("cube");
 document.addEventListener("keypress", (e) => {
     // console.log(cube_3d.style.transform)
 
-    let position = cube.style.transform;
-    position = position.split(" ");
+    let position = cube.style.transform.split(" ");
 
-    // console.log(position)
+    console.log(position)
 
     position_x = position[0];
     position_y = position[1];
@@ -17,7 +16,7 @@ document.addEventListener("keypress", (e) => {
     switch(e.key) {
         case "w":
             console.log("W");
-            cube.style.transform = `rotateX(${Math.abs(position_x + 60)}deg) rotateY(${Math.abs(position_y)}deg)`;
+            cube.style.transform = `rotateX(${Math.abs(position_x + 60)}deg) rotateY(${position_y}deg)`;
             cube.style.transitionDuration = "2s";
             console.log("x:" + position_x + " ; y:" + position_y)
             // console.log(cube_3d.style.transform[8]);
@@ -30,7 +29,7 @@ document.addEventListener("keypress", (e) => {
             break;
         case "s":
             console.log("S");
-            cube.style.transform = `rotateX(${Math.abs(position_x - 60)}deg) rotateY(${Math.abs(position_y)}deg)`;
+            cube.style.transform = `rotateX(${position_x - 60}deg) rotateY(${position_y}deg)`;
             cube.style.transitionDuration = "2s";
             console.log("x:" + position_x + " ; y:" + position_y)
             break;

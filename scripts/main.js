@@ -17,6 +17,8 @@ const right_down = document.getElementById("right-down");
 const bottom_left = document.getElementById("bottom-left");
 const bottom_right = document.getElementById("bottom-right");
 
+const cube_control_center = document.getElementById("cube-control-center");
+
 // strany kostky
 const white_side = document.getElementById("white-side");
 const red_side = document.getElementById("red-side");
@@ -33,96 +35,123 @@ let cube_sides = [white_side, red_side, yellow_side, orange_side, green_side, bl
 let selected_bool = false;
 let selected_color = "";
 
-// výběr barvy
-white_btn.addEventListener("click", () => {
-    for (var z of choose_btns) {
-        z.classList.remove("side-selected");
-    }
-    for (var x of cube_sides) {
-        x.classList.remove("side-selected");
-    }
 
-    white_btn.classList.add("side-selected");
-    white_side.classList.add("side-selected");
+// for (var btnPL of tlacitkaPlayer) {
+//     btnPL.addEventListener("click", function (e) {
+//         for (var z of tlacitkaPlayer) {
+//             z.classList.remove("icon-selected");
+//         }
+//         e.target.classList.add("icon-selected");
 
-    selected_bool = true;
-    selected_color = "white";
-})
+for (var btn of choose_btns) {
+    btn.addEventListener("click", (e) => {
+        for (var x of choose_btns) {
+            x.classList.remove("side-selected");
+        }
 
-red_btn.addEventListener("click", () => {
-    for (var z of choose_btns) {
-        z.classList.remove("side-selected");
-    }
-    for (var x of cube_sides) {
-        x.classList.remove("side-selected");
-    }
+        // console.log(choose_btns[0].id);
+        console.log(e.target.style);
+        console.log(e.target.style.backgroundColor);
+        e.target.classList.add("side-selected");
 
-    red_btn.classList.add("side-selected");
-    red_side.classList.add("side-selected");
+        console.log(cube_control_center.style);
 
-    selected_bool = true;
-    selected_color = "red";
-})
+        // cube_control_center.style.backgroundColor = `${e.target.style.backgroundColor}`;
+        cube_control_center.style.backgroundColor = e.target.style.backgroundColor;
+        // cube_control_center.style.backgroundColor = "red";
+    })
+}
 
-yellow_btn.addEventListener("click", () => {
-    for (var z of choose_btns) {
-        z.classList.remove("side-selected");
-    }
-    for (var x of cube_sides) {
-        x.classList.remove("side-selected");
-    }
+// // výběr barvy
+// white_btn.addEventListener("click", () => {
+//     for (var z of choose_btns) {
+//         z.classList.remove("side-selected");
+//     }
+//     for (var x of cube_sides) {
+//         x.classList.remove("side-selected");
+//     }
 
-    yellow_btn.classList.add("side-selected");
-    yellow_side.classList.add("side-selected");
+//     white_btn.classList.add("side-selected");
+//     white_side.classList.add("side-selected");
 
-    selected_bool = true;
-    selected_color = "yellow";
-})
+//     selected_bool = true;
+//     selected_color = "white";
+// })
 
-orange_btn.addEventListener("click", () => {
-    for (var z of choose_btns) {
-        z.classList.remove("side-selected");
-    }
-    for (var x of cube_sides) {
-        x.classList.remove("side-selected");
-    }
+// red_btn.addEventListener("click", () => {
+//     for (var z of choose_btns) {
+//         z.classList.remove("side-selected");
+//     }
+//     for (var x of cube_sides) {
+//         x.classList.remove("side-selected");
+//     }
 
-    orange_btn.classList.add("side-selected");
-    orange_side.classList.add("side-selected");
+//     red_btn.classList.add("side-selected");
+//     red_side.classList.add("side-selected");
 
-    selected_bool = true;
-    selected_color = "orange";
-})
+//     selected_bool = true;
+//     selected_color = "red";
+// })
 
-green_btn.addEventListener("click", () => {
-    for (var z of choose_btns) {
-        z.classList.remove("side-selected");
-    }
-    for (var x of cube_sides) {
-        x.classList.remove("side-selected");
-    }
+// yellow_btn.addEventListener("click", () => {
+//     for (var z of choose_btns) {
+//         z.classList.remove("side-selected");
+//     }
+//     for (var x of cube_sides) {
+//         x.classList.remove("side-selected");
+//     }
 
-    green_btn.classList.add("side-selected");
-    green_side.classList.add("side-selected");
+//     yellow_btn.classList.add("side-selected");
+//     yellow_side.classList.add("side-selected");
 
-    selected_bool = true;
-    selected_color = "green";
-})
+//     selected_bool = true;
+//     selected_color = "yellow";
+// })
 
-blue_btn.addEventListener("click", () => {
-    for (var z of choose_btns) {
-        z.classList.remove("side-selected");
-    }
-    for (var x of cube_sides) {
-        x.classList.remove("side-selected");
-    }
+// orange_btn.addEventListener("click", () => {
+//     for (var z of choose_btns) {
+//         z.classList.remove("side-selected");
+//     }
+//     for (var x of cube_sides) {
+//         x.classList.remove("side-selected");
+//     }
 
-    blue_btn.classList.add("side-selected");
-    blue_side.classList.add("side-selected");
+//     orange_btn.classList.add("side-selected");
+//     orange_side.classList.add("side-selected");
 
-    selected_bool = true;
-    selected_color = "blue";
-})
+//     selected_bool = true;
+//     selected_color = "orange";
+// })
+
+// green_btn.addEventListener("click", () => {
+//     for (var z of choose_btns) {
+//         z.classList.remove("side-selected");
+//     }
+//     for (var x of cube_sides) {
+//         x.classList.remove("side-selected");
+//     }
+
+//     green_btn.classList.add("side-selected");
+//     green_side.classList.add("side-selected");
+
+//     selected_bool = true;
+//     selected_color = "green";
+// })
+
+// blue_btn.addEventListener("click", () => {
+//     for (var z of choose_btns) {
+//         z.classList.remove("side-selected");
+//     }
+//     for (var x of cube_sides) {
+//         x.classList.remove("side-selected");
+//     }
+
+//     blue_btn.classList.add("side-selected");
+//     blue_side.classList.add("side-selected");
+
+//     selected_bool = true;
+//     selected_color = "blue";
+// })
 
 cancel.addEventListener("click", () => {
     for (var z of choose_btns) {
@@ -135,6 +164,8 @@ cancel.addEventListener("click", () => {
     selected_bool = false;
     selected_color = "";
     console.log(selected_bool);
+
+    cube_control_center.style.backgroundColor = "gray";
 })
 
 
