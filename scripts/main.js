@@ -35,30 +35,30 @@ let cube_sides = [white_side, red_side, yellow_side, orange_side, green_side, bl
 let selected_bool = false;
 let selected_color = "";
 
+console.log(red_btn.id)
+console.log(typeof(red_btn.id))
 
-// for (var btnPL of tlacitkaPlayer) {
-//     btnPL.addEventListener("click", function (e) {
-//         for (var z of tlacitkaPlayer) {
-//             z.classList.remove("icon-selected");
-//         }
-//         e.target.classList.add("icon-selected");
-
+// výběr barvy
 for (var btn of choose_btns) {
     btn.addEventListener("click", (e) => {
         for (var x of choose_btns) {
             x.classList.remove("side-selected");
         }
 
-        // console.log(choose_btns[0].id);
-        console.log(e.target.style);
-        console.log(e.target.style.backgroundColor);
+        let e_index = choose_btns.indexOf(e.target, 0); // index pro zvetšení celé strany kostky
+
+        for (var z of cube_sides) {
+            z.classList.remove("side-selected");
+        }
+
+        cube_sides[e_index].classList.add("side-selected");
+
         e.target.classList.add("side-selected");
 
-        console.log(cube_control_center.style);
+        cube_control_center.style.backgroundColor = getComputedStyle(e.target).backgroundColor;
 
-        // cube_control_center.style.backgroundColor = `${e.target.style.backgroundColor}`;
-        cube_control_center.style.backgroundColor = e.target.style.backgroundColor;
-        // cube_control_center.style.backgroundColor = "red";
+        selected_color = e.target.id.slice(7); // string barva
+        selected_bool = true;
     })
 }
 
@@ -175,7 +175,7 @@ top_left.addEventListener("click", () => {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
         if (selected_color === "white") {
-            //
+            alert("white")
         } else if (selected_color === "red") {
             //
         } else if (selected_color === "yellow") {
@@ -339,8 +339,6 @@ const mix_btn = document.getElementById("mix-cube-btn");
 mix_btn.addEventListener("click", () => {
     console.log("Míchám");
     mixCube();
-
-    // mix_btn.classList.add("cursor-disabled");
 })
 
 function mixCube() {
@@ -362,6 +360,6 @@ function mixCube() {
 }
 
 // Zamíchání kostky po načtení stránky
-window.addEventListener('DOMContentLoaded', () => {
-    mixCube();
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//     mixCube();
+// });
