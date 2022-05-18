@@ -1,3 +1,11 @@
+// strany rotující 3D kostky
+const front_3d = document.getElementById("front"); // white
+const back_3d = document.getElementById("back"); // yellow
+const right_3d = document.getElementById("right"); // red
+const left_3d = document.getElementById("left"); // orangered
+const top_3d = document.getElementById("top"); // blue
+const bottom_3d = document.getElementById("bottom"); // green
+
 // prvky pro vybrání barvy
 const white_btn = document.getElementById("choose-white");
 const red_btn = document.getElementById("choose-red");
@@ -59,36 +67,42 @@ function changeColors() {
             //
             for (let j = 0; j < 9; j++) {
                 white_side.children[j].style.backgroundColor = sides_colors.white[j];
+                front_3d.children[j].style.backgroundColor = sides_colors.white[j];
             }
             //
         } else if (i == 1) {
             //
             for (let j = 0; j < 9; j++) {
                 red_side.children[j].style.backgroundColor = sides_colors.red[j];
+                right_3d.children[j].style.backgroundColor = sides_colors.red[j];
             }
             //
         } else if (i == 2) {
             //
             for (let j = 0; j < 9; j++) {
                 yellow_side.children[j].style.backgroundColor = sides_colors.yellow[j];
+                back_3d.children[j].style.backgroundColor = sides_colors.yellow[j];
             }
             //
         } else if (i == 3) {
             //
             for (let j = 0; j < 9; j++) {
                 orange_side.children[j].style.backgroundColor = sides_colors.orange[j];
+                left_3d.children[j].style.backgroundColor = sides_colors.orange[j];
             }
             //
         } else if (i == 4) {
             //
             for (let j = 0; j < 9; j++) {
                 green_side.children[j].style.backgroundColor = sides_colors.green[j];
+                bottom_3d.children[j].style.backgroundColor = sides_colors.green[j];
             }
             //
         } else if (i == 5) {
             //
             for (let j = 0; j < 9; j++) {
                 blue_side.children[j].style.backgroundColor = sides_colors.blue[j];
+                top_3d.children[j].style.backgroundColor = sides_colors.blue[j];
             }
             //
         }
