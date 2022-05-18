@@ -117,20 +117,6 @@ main {
     /* min-height: 100vh; */
 }
 
-/* main button {
-    display: block;
-    background-color: orange;
-    border: 2px solid orange;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 30px auto;
-}
-
-main button:hover {
-    transform: scale(1.1, 1.1);
-} */
-
-
 /* tlačítka výběru a zrušení barvy */
 .choose-side {
     display: flex;
@@ -298,11 +284,15 @@ main > .info {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    margin: auto 8px;
+}
+
+.info > div {
+    max-width: 75vw;
 }
 
 .info img {
-    width: 20%;
-    margin: 0px 8px;
+    max-width: 15vw;
 }
 
 main > .rules {
@@ -310,10 +300,16 @@ main > .rules {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    margin: auto 8px;
+}
+
+.rules > div {
+    max-width: 45vw;
 }
 
 .rules iframe {
-    margin-right: 8px;
+    /* margin-right: 8px; */
+    max-width: 45vw;
 }
 
 .back-to-top {

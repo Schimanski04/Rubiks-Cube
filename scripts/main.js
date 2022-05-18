@@ -27,16 +27,73 @@ const orange_side = document.getElementById("orange-side");
 const green_side = document.getElementById("green-side");
 const blue_side = document.getElementById("blue-side");
 
+const mix_btn = document.getElementById("mix-cube-btn");
 
 let choose_btns = [white_btn, red_btn, yellow_btn, orange_btn, green_btn, blue_btn];
 
 let cube_sides = [white_side, red_side, yellow_side, orange_side, green_side, blue_side];
 
+let sides_colors = {
+    white : ["", "", "", "", "white", "", "", "", ""],
+    red : ["", "", "", "", "red", "", "", "", ""],
+    yellow : ["", "", "", "", "yellow", "", "", "", ""],
+    orange : ["", "", "", "", "orangered", "", "", "", ""],
+    green : ["", "", "", "", "green", "", "", "", ""],
+    blue : ["", "", "", "", "blue", "", "", "", ""],
+}
+
+// sides_colors.line1[0] = 10;
+
+console.log(sides_colors)
+
 let selected_bool = false;
 let selected_color = "";
 
-console.log(red_btn.id)
-console.log(typeof(red_btn.id))
+// console.log(red_btn.id);
+// console.log(typeof(red_btn.id));
+
+// změní barvy na jednotlivých stranách kostky
+function changeColors() {
+    for (let i = 0; i < 6; i++) {
+        if (i == 0) {
+            //
+            for (let j = 0; j < 9; j++) {
+                white_side.children[j].style.backgroundColor = sides_colors.white[j];
+            }
+            //
+        } else if (i == 1) {
+            //
+            for (let j = 0; j < 9; j++) {
+                red_side.children[j].style.backgroundColor = sides_colors.red[j];
+            }
+            //
+        } else if (i == 2) {
+            //
+            for (let j = 0; j < 9; j++) {
+                yellow_side.children[j].style.backgroundColor = sides_colors.yellow[j];
+            }
+            //
+        } else if (i == 3) {
+            //
+            for (let j = 0; j < 9; j++) {
+                orange_side.children[j].style.backgroundColor = sides_colors.orange[j];
+            }
+            //
+        } else if (i == 4) {
+            //
+            for (let j = 0; j < 9; j++) {
+                green_side.children[j].style.backgroundColor = sides_colors.green[j];
+            }
+            //
+        } else if (i == 5) {
+            //
+            for (let j = 0; j < 9; j++) {
+                blue_side.children[j].style.backgroundColor = sides_colors.blue[j];
+            }
+            //
+        }
+    }
+}
 
 // výběr barvy
 for (var btn of choose_btns) {
@@ -57,102 +114,12 @@ for (var btn of choose_btns) {
 
         cube_control_center.style.backgroundColor = getComputedStyle(e.target).backgroundColor;
 
-        selected_color = e.target.id.slice(7); // string barva
         selected_bool = true;
+        selected_color = e.target.id.slice(7); // string barva
     })
 }
 
-// // výběr barvy
-// white_btn.addEventListener("click", () => {
-//     for (var z of choose_btns) {
-//         z.classList.remove("side-selected");
-//     }
-//     for (var x of cube_sides) {
-//         x.classList.remove("side-selected");
-//     }
-
-//     white_btn.classList.add("side-selected");
-//     white_side.classList.add("side-selected");
-
-//     selected_bool = true;
-//     selected_color = "white";
-// })
-
-// red_btn.addEventListener("click", () => {
-//     for (var z of choose_btns) {
-//         z.classList.remove("side-selected");
-//     }
-//     for (var x of cube_sides) {
-//         x.classList.remove("side-selected");
-//     }
-
-//     red_btn.classList.add("side-selected");
-//     red_side.classList.add("side-selected");
-
-//     selected_bool = true;
-//     selected_color = "red";
-// })
-
-// yellow_btn.addEventListener("click", () => {
-//     for (var z of choose_btns) {
-//         z.classList.remove("side-selected");
-//     }
-//     for (var x of cube_sides) {
-//         x.classList.remove("side-selected");
-//     }
-
-//     yellow_btn.classList.add("side-selected");
-//     yellow_side.classList.add("side-selected");
-
-//     selected_bool = true;
-//     selected_color = "yellow";
-// })
-
-// orange_btn.addEventListener("click", () => {
-//     for (var z of choose_btns) {
-//         z.classList.remove("side-selected");
-//     }
-//     for (var x of cube_sides) {
-//         x.classList.remove("side-selected");
-//     }
-
-//     orange_btn.classList.add("side-selected");
-//     orange_side.classList.add("side-selected");
-
-//     selected_bool = true;
-//     selected_color = "orange";
-// })
-
-// green_btn.addEventListener("click", () => {
-//     for (var z of choose_btns) {
-//         z.classList.remove("side-selected");
-//     }
-//     for (var x of cube_sides) {
-//         x.classList.remove("side-selected");
-//     }
-
-//     green_btn.classList.add("side-selected");
-//     green_side.classList.add("side-selected");
-
-//     selected_bool = true;
-//     selected_color = "green";
-// })
-
-// blue_btn.addEventListener("click", () => {
-//     for (var z of choose_btns) {
-//         z.classList.remove("side-selected");
-//     }
-//     for (var x of cube_sides) {
-//         x.classList.remove("side-selected");
-//     }
-
-//     blue_btn.classList.add("side-selected");
-//     blue_side.classList.add("side-selected");
-
-//     selected_bool = true;
-//     selected_color = "blue";
-// })
-
+// zrušení barvy
 cancel.addEventListener("click", () => {
     for (var z of choose_btns) {
         z.classList.remove("side-selected");
@@ -170,172 +137,170 @@ cancel.addEventListener("click", () => {
 
 
 // pohyb políček
-top_left.addEventListener("click", () => {
-    if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
-    } else {
-        if (selected_color === "white") {
-            alert("white")
-        } else if (selected_color === "red") {
-            //
-        } else if (selected_color === "yellow") {
-            //
-        } else if (selected_color === "orange") {
-            //
-        } else if (selected_color === "green") {
-            //
-        } else if (selected_color === "blue") {
-            //
-        }
-    }
-})
+// top_left.addEventListener("click", () => {
+//     if (selected_bool === false) {
+//         alert("Nevybral jsi barvu pro pohyb!");
+//     } else {
+//         if (selected_color === "white") {
+//             //
+//         } else if (selected_color === "red") {
+//             //
+//         } else if (selected_color === "yellow") {
+//             //
+//         } else if (selected_color === "orange") {
+//             //
+//         } else if (selected_color === "green") {
+//             //
+//         } else if (selected_color === "blue") {
+//             //
+//         }
+//     }
+// })
 
-top_right.addEventListener("click", () => {
-    if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
-    } else {
-        if (selected_color === "white") {
-            //
-        } else if (selected_color === "red") {
-            //
-        } else if (selected_color === "yellow") {
-            //
-        } else if (selected_color === "orange") {
-            //
-        } else if (selected_color === "green") {
-            //
-        } else if (selected_color === "blue") {
-            //
-        }
-    }
-})
+// top_right.addEventListener("click", () => {
+//     if (selected_bool === false) {
+//         alert("Nevybral jsi barvu pro pohyb!");
+//     } else {
+//         if (selected_color === "white") {
+//             //
+//         } else if (selected_color === "red") {
+//             //
+//         } else if (selected_color === "yellow") {
+//             //
+//         } else if (selected_color === "orange") {
+//             //
+//         } else if (selected_color === "green") {
+//             //
+//         } else if (selected_color === "blue") {
+//             //
+//         }
+//     }
+// })
 
-left_top.addEventListener("click", () => {
-    if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
-    } else {
-        if (selected_color === "white") {
-            //
-        } else if (selected_color === "red") {
-            //
-        } else if (selected_color === "yellow") {
-            //
-        } else if (selected_color === "orange") {
-            //
-        } else if (selected_color === "green") {
-            //
-        } else if (selected_color === "blue") {
-            //
-        }
-    }
-})
+// left_top.addEventListener("click", () => {
+//     if (selected_bool === false) {
+//         alert("Nevybral jsi barvu pro pohyb!");
+//     } else {
+//         if (selected_color === "white") {
+//             //
+//         } else if (selected_color === "red") {
+//             //
+//         } else if (selected_color === "yellow") {
+//             //
+//         } else if (selected_color === "orange") {
+//             //
+//         } else if (selected_color === "green") {
+//             //
+//         } else if (selected_color === "blue") {
+//             //
+//         }
+//     }
+// })
 
-left_down.addEventListener("click", () => {
-    if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
-    } else {
-        if (selected_color === "white") {
-            //
-        } else if (selected_color === "red") {
-            //
-        } else if (selected_color === "yellow") {
-            //
-        } else if (selected_color === "orange") {
-            //
-        } else if (selected_color === "green") {
-            //
-        } else if (selected_color === "blue") {
-            //
-        }
-    }
-})
+// left_down.addEventListener("click", () => {
+//     if (selected_bool === false) {
+//         alert("Nevybral jsi barvu pro pohyb!");
+//     } else {
+//         if (selected_color === "white") {
+//             //
+//         } else if (selected_color === "red") {
+//             //
+//         } else if (selected_color === "yellow") {
+//             //
+//         } else if (selected_color === "orange") {
+//             //
+//         } else if (selected_color === "green") {
+//             //
+//         } else if (selected_color === "blue") {
+//             //
+//         }
+//     }
+// })
 
-right_top.addEventListener("click", () => {
-    if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
-    } else {
-        if (selected_color === "white") {
-            //
-        } else if (selected_color === "red") {
-            //
-        } else if (selected_color === "yellow") {
-            //
-        } else if (selected_color === "orange") {
-            //
-        } else if (selected_color === "green") {
-            //
-        } else if (selected_color === "blue") {
-            //
-        }
-    }
-})
+// right_top.addEventListener("click", () => {
+//     if (selected_bool === false) {
+//         alert("Nevybral jsi barvu pro pohyb!");
+//     } else {
+//         if (selected_color === "white") {
+//             //
+//         } else if (selected_color === "red") {
+//             //
+//         } else if (selected_color === "yellow") {
+//             //
+//         } else if (selected_color === "orange") {
+//             //
+//         } else if (selected_color === "green") {
+//             //
+//         } else if (selected_color === "blue") {
+//             //
+//         }
+//     }
+// })
 
-right_down.addEventListener("click", () => {
-    if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
-    } else {
-        if (selected_color === "white") {
-            //
-        } else if (selected_color === "red") {
-            //
-        } else if (selected_color === "yellow") {
-            //
-        } else if (selected_color === "orange") {
-            //
-        } else if (selected_color === "green") {
-            //
-        } else if (selected_color === "blue") {
-            //
-        }
-    }
-})
+// right_down.addEventListener("click", () => {
+//     if (selected_bool === false) {
+//         alert("Nevybral jsi barvu pro pohyb!");
+//     } else {
+//         if (selected_color === "white") {
+//             //
+//         } else if (selected_color === "red") {
+//             //
+//         } else if (selected_color === "yellow") {
+//             //
+//         } else if (selected_color === "orange") {
+//             //
+//         } else if (selected_color === "green") {
+//             //
+//         } else if (selected_color === "blue") {
+//             //
+//         }
+//     }
+// })
 
-bottom_left.addEventListener("click", () => {
-    if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
-    } else {
-        if (selected_color === "white") {
-            //
-        } else if (selected_color === "red") {
-            //
-        } else if (selected_color === "yellow") {
-            //
-        } else if (selected_color === "orange") {
-            //
-        } else if (selected_color === "green") {
-            //
-        } else if (selected_color === "blue") {
-            //
-        }
-    }
-})
+// bottom_left.addEventListener("click", () => {
+//     if (selected_bool === false) {
+//         alert("Nevybral jsi barvu pro pohyb!");
+//     } else {
+//         if (selected_color === "white") {
+//             //
+//         } else if (selected_color === "red") {
+//             //
+//         } else if (selected_color === "yellow") {
+//             //
+//         } else if (selected_color === "orange") {
+//             //
+//         } else if (selected_color === "green") {
+//             //
+//         } else if (selected_color === "blue") {
+//             //
+//         }
+//     }
+// })
 
-bottom_right.addEventListener("click", () => {
-    if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
-    } else {
-        if (selected_color === "white") {
-            //
-        } else if (selected_color === "red") {
-            //
-        } else if (selected_color === "yellow") {
-            //
-        } else if (selected_color === "orange") {
-            //
-        } else if (selected_color === "green") {
-            //
-        } else if (selected_color === "blue") {
-            //
-        }
-    }
-})
+// bottom_right.addEventListener("click", () => {
+//     if (selected_bool === false) {
+//         alert("Nevybral jsi barvu pro pohyb!");
+//     } else {
+//         if (selected_color === "white") {
+//             //
+//         } else if (selected_color === "red") {
+//             //
+//         } else if (selected_color === "yellow") {
+//             //
+//         } else if (selected_color === "orange") {
+//             //
+//         } else if (selected_color === "green") {
+//             //
+//         } else if (selected_color === "blue") {
+//             //
+//         }
+//     }
+// })
 
 
 
 
 // Zamíchání kostky
-const mix_btn = document.getElementById("mix-cube-btn");
-
 mix_btn.addEventListener("click", () => {
     console.log("Míchám");
     mixCube();
@@ -346,17 +311,69 @@ function mixCube() {
 
     console.log(colors.length);
 
-    for (var s of cube_sides) {
-        for (let i = 0; i < 9; i++) {
-            if (i != 4) {
-                let index_color = Math.floor(Math.random() * colors.length);
-                s.children[i].style.backgroundColor = colors[index_color];
-                colors.splice(index_color, 1);
-            }
+    for (let i = 0; i < 6; i++) { // cyklus pro random generaci barev
+        switch (i) {
+            case 0:
+                for (let j = 0; j < 9; j++) {
+                    if (j != 4) {
+                        let index_color = Math.floor(Math.random() * colors.length);
+                        sides_colors.white[j] = colors[index_color];
+                        colors.splice(index_color, 1);
+                    }
+                }
+                break;
+            case 1:
+                for (let j = 0; j < 9; j++) {
+                    if (j != 4) {
+                        let index_color = Math.floor(Math.random() * colors.length);
+                        sides_colors.red[j] = colors[index_color];
+                        colors.splice(index_color, 1);
+                    }
+                }
+                break;
+            case 2:
+                for (let j = 0; j < 9; j++) {
+                    if (j != 4) {
+                        let index_color = Math.floor(Math.random() * colors.length);
+                        sides_colors.yellow[j] = colors[index_color];
+                        colors.splice(index_color, 1);
+                    }
+                }
+                break;
+            case 3:
+                for (let j = 0; j < 9; j++) {
+                    if (j != 4) {
+                        let index_color = Math.floor(Math.random() * colors.length);
+                        sides_colors.orange[j] = colors[index_color];
+                        colors.splice(index_color, 1);
+                    }
+                }
+                break;
+            case 4:
+                for (let j = 0; j < 9; j++) {
+                    if (j != 4) {
+                        let index_color = Math.floor(Math.random() * colors.length);
+                        sides_colors.green[j] = colors[index_color];
+                        colors.splice(index_color, 1);
+                    }
+                }
+                break;
+            case 5:
+                for (let j = 0; j < 9; j++) {
+                    if (j != 4) {
+                        let index_color = Math.floor(Math.random() * colors.length);
+                        sides_colors.blue[j] = colors[index_color];
+                        colors.splice(index_color, 1);
+                    }
+                }
+                break;
         }
     }
 
-    // console.log(colors.length);
+    console.log(colors.length);
+    console.log(sides_colors);
+
+    changeColors();
 }
 
 // Zamíchání kostky po načtení stránky

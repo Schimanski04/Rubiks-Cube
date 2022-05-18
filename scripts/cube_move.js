@@ -1,5 +1,8 @@
 const cube = document.getElementById("cube");
 
+cube.style.transform = "rotateX(-30deg) rotateY(30deg)";
+let angle = 72;
+
 document.addEventListener("keypress", (e) => {
     // console.log(cube_3d.style.transform)
 
@@ -16,26 +19,26 @@ document.addEventListener("keypress", (e) => {
     switch(e.key) {
         case "w":
             console.log("W");
-            cube.style.transform = `rotateX(${Math.abs(position_x + 60)}deg) rotateY(${position_y}deg)`;
+            cube.style.transform = `rotateX(${Math.abs(position_x + angle)}deg) rotateY(${position_y}deg)`;
             cube.style.transitionDuration = "2s";
             console.log("x:" + position_x + " ; y:" + position_y)
             // console.log(cube_3d.style.transform[8]);
             break;
         case "a":
             console.log("A");
-            cube.style.transform = `rotateX(${Math.abs(position_x)}deg) rotateY(${Math.abs(position_y - 60)}deg)`;
+            cube.style.transform = `rotateX(${position_x}deg) rotateY(${Math.abs(position_y - angle)}deg)`;
             cube.style.transitionDuration = "2s";
             console.log("x:" + position_x + " ; y:" + position_y)
             break;
         case "s":
             console.log("S");
-            cube.style.transform = `rotateX(${position_x - 60}deg) rotateY(${position_y}deg)`;
+            cube.style.transform = `rotateX(${position_x - angle}deg) rotateY(${position_y}deg)`;
             cube.style.transitionDuration = "2s";
             console.log("x:" + position_x + " ; y:" + position_y)
             break;
         case "d":
             console.log("D");
-            cube.style.transform = `rotateX(${Math.abs(position_x)}deg) rotateY(${Math.abs(position_y + 60)}deg)`;
+            cube.style.transform = `rotateX(${position_x}deg) rotateY(${Math.abs(position_y + angle)}deg)`;
             cube.style.transitionDuration = "2s";
             console.log("x:" + position_x + " ; y:" + position_y)
             break;
