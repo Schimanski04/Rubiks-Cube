@@ -1,0 +1,466 @@
+/* #region front - white */
+.front {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "front-1 front-2 front-3"
+        "front-4 front-5 front-6"
+        "front-7 front-8 front-9";
+}
+
+.front-1 {
+    grid-area: front-1;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+.front-2 {
+    grid-area: front-2;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+.front-3 {
+    grid-area: front-3;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+.front-4 {
+    grid-area: front-4;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+.front-5 {
+    grid-area: front-5;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+.front-6 {
+    grid-area: front-6;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+.front-7 {
+    grid-area: front-7;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+.front-8 {
+    grid-area: front-8;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+.front-9 {
+    grid-area: front-9;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid black;
+}
+/* #endregion */
+
+
+/* #region back - yellow */
+.back {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "back-1 back-2 back-3"
+        "back-4 back-5 back-6"
+        "back-7 back-8 back-9";
+}
+
+.back-1 {
+    grid-area: back-1;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.back-2 {
+    grid-area: back-2;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.back-3 {
+    grid-area: back-3;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.back-4 {
+    grid-area: back-4;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.back-5 {
+    grid-area: back-5;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.back-6 {
+    grid-area: back-6;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.back-7 {
+    grid-area: back-7;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.back-8 {
+    grid-area: back-8;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.back-9 {
+    grid-area: back-9;
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    border: 2px solid black;
+}
+/* #endregion */
+
+
+/* #region right - red */
+.right {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "right-1 right-2 right-3"
+        "right-4 right-5 right-6"
+        "right-7 right-8 right-9";
+}
+
+.right-1 {
+    grid-area: right-1;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+.right-2 {
+    grid-area: right-2;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+.right-3 {
+    grid-area: right-3;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+.right-4 {
+    grid-area: right-4;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+.right-5 {
+    grid-area: right-5;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+.right-6 {
+    grid-area: right-6;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+.right-7 {
+    grid-area: right-7;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+.right-8 {
+    grid-area: right-8;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+.right-9 {
+    grid-area: right-9;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border: 2px solid black;
+}
+/* #endregion */
+
+
+/* #region left - orangered */
+.left {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "left-1 left-2 left-3"
+        "left-4 left-5 left-6"
+        "left-7 left-8 left-9";
+}
+
+.left-1 {
+    grid-area: left-1;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+.left-2 {
+    grid-area: left-2;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+.left-3 {
+    grid-area: left-3;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+.left-4 {
+    grid-area: left-4;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+.left-5 {
+    grid-area: left-5;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+.left-6 {
+    grid-area: left-6;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+.left-7 {
+    grid-area: left-7;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+.left-8 {
+    grid-area: left-8;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+.left-9 {
+    grid-area: left-9;
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+    border: 2px solid black;
+}
+/* #endregion */
+
+
+/* #region top - blue */
+.top {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "top-1 top-2 top-3"
+        "top-4 top-5 top-6"
+        "top-7 top-8 top-9";
+}
+
+.top-1 {
+    grid-area: top-1;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+.top-2 {
+    grid-area: top-2;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+.top-3 {
+    grid-area: top-3;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+.top-4 {
+    grid-area: top-4;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+.top-5 {
+    grid-area: top-5;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+.top-6 {
+    grid-area: top-6;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+.top-7 {
+    grid-area: top-7;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+.top-8 {
+    grid-area: top-8;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+.top-9 {
+    grid-area: top-9;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border: 2px solid black;
+}
+/* #endregion */
+
+
+/* #region bottom - green */
+.bottom {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "bottom-1 bottom-2 bottom-3"
+        "bottom-4 bottom-5 bottom-6"
+        "bottom-7 bottom-8 bottom-9";
+}
+
+.bottom-1 {
+    grid-area: bottom-1;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+.bottom-2 {
+    grid-area: bottom-2;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+.bottom-3 {
+    grid-area: bottom-3;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+.bottom-4 {
+    grid-area: bottom-4;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+.bottom-5 {
+    grid-area: bottom-5;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+.bottom-6 {
+    grid-area: bottom-6;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+.bottom-7 {
+    grid-area: bottom-7;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+.bottom-8 {
+    grid-area: bottom-8;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+.bottom-9 {
+    grid-area: bottom-9;
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border: 2px solid black;
+}
+/* #endregion */

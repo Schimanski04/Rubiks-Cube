@@ -1,6 +1,5 @@
 const cube = document.getElementById("cube");
 
-cube.style.transform = "rotateX(-30deg) rotateY(30deg)";
 let angle = 72;
 
 document.addEventListener("keypress", (e) => {
