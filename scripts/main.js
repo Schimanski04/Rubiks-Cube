@@ -109,6 +109,10 @@ function changeColors() {
     }
 }
 
+function checkIfSolved() {
+
+}
+
 // výběr barvy
 for (var btn of choose_btns) {
     btn.addEventListener("click", (e) => {
@@ -144,7 +148,7 @@ cancel.addEventListener("click", () => {
 
     selected_bool = false;
     selected_color = "";
-    console.log(selected_bool);
+    // console.log(selected_bool);
 
     cube_control_center.style.backgroundColor = "gray";
 })
@@ -317,6 +321,7 @@ cancel.addEventListener("click", () => {
 // Zamíchání kostky
 mix_btn.addEventListener("click", () => {
     console.log("Míchám");
+    mix_btn.style.pointerEvents = "none";
     mixCube();
 })
 
