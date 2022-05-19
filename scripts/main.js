@@ -42,12 +42,12 @@ let choose_btns = [white_btn, red_btn, yellow_btn, orange_btn, green_btn, blue_b
 let cube_sides = [white_side, red_side, yellow_side, orange_side, green_side, blue_side];
 
 let sides_colors = {
-    white : ["", "", "", "", "white", "", "", "", ""],
-    red : ["", "", "", "", "red", "", "", "", ""],
-    yellow : ["", "", "", "", "yellow", "", "", "", ""],
-    orange : ["", "", "", "", "orangered", "", "", "", ""],
-    green : ["", "", "", "", "green", "", "", "", ""],
-    blue : ["", "", "", "", "blue", "", "", "", ""],
+    white: ["white", "white", "white", "white", "white", "white", "white", "white", "white"],
+    red: ["red", "red", "red", "red", "red", "red", "red", "red", "red"],
+    yellow: ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"],
+    orange: ["orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered"],
+    green: ["green", "green", "green", "green", "green", "green", "green", "green", "green"],
+    blue: ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"],
 }
 
 // sides_colors.line1[0] = 10;
@@ -109,8 +109,43 @@ function changeColors() {
     }
 }
 
-function checkIfSolved() {
+function rotateSideLeft(side) {
+    let first_element = side[0];
+    let second_element = side[1];
 
+    side[0] = side[2];
+    side[2] = side[8];
+    side[8] = side[6];
+    side[6] = first_element;
+
+    side[1] = side[5];
+    side[5] = side[7];
+    side[7] = side[3];
+    side[3] = second_element;
+}
+
+function rotateSideRight(side) {
+    let first_element = side[0];
+    let second_element = side[1];
+
+    side[0] = side[6];
+    side[6] = side[8];
+    side[8] = side[2];
+    side[2] = first_element;
+
+    side[1] = side[3];
+    side[3] = side[7];
+    side[7] = side[5];
+    side[5] = second_element;
+}
+
+function checkIfSolved() {
+    if (sides_colors.white == Array("white", "white", "white", "white", "white", "white", "white", "white", "white") /*&& sides_colors.red == ["red", "red", "red", "red", "red", "red", "red", "red", "red"] && sides_colors.yellow == ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"] && sides_colors.orange == ["orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered"] && sides_colors.green == ["green", "green", "green", "green", "green", "green", "green", "green", "green"] && sides_colors.blue == ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"]*/) {
+        return true;
+        // alert("Kostka je složená! Gratuluji");
+    } else {
+        return false;
+    }
 }
 
 // výběr barvy
@@ -155,165 +190,328 @@ cancel.addEventListener("click", () => {
 
 
 // pohyb políček
-// top_left.addEventListener("click", () => {
-//     if (selected_bool === false) {
-//         alert("Nevybral jsi barvu pro pohyb!");
-//     } else {
-//         if (selected_color === "white") {
-//             //
-//         } else if (selected_color === "red") {
-//             //
-//         } else if (selected_color === "yellow") {
-//             //
-//         } else if (selected_color === "orange") {
-//             //
-//         } else if (selected_color === "green") {
-//             //
-//         } else if (selected_color === "blue") {
-//             //
-//         }
-//     }
-// })
+top_left.addEventListener("click", () => {
+    if (selected_bool === false) {
+        alert("Nevybral jsi barvu pro pohyb!");
+    } else {
+        if (selected_color === "white") {
+            let top_white_memory = sides_colors.white.slice(0, 3);
 
-// top_right.addEventListener("click", () => {
-//     if (selected_bool === false) {
-//         alert("Nevybral jsi barvu pro pohyb!");
-//     } else {
-//         if (selected_color === "white") {
-//             //
-//         } else if (selected_color === "red") {
-//             //
-//         } else if (selected_color === "yellow") {
-//             //
-//         } else if (selected_color === "orange") {
-//             //
-//         } else if (selected_color === "green") {
-//             //
-//         } else if (selected_color === "blue") {
-//             //
-//         }
-//     }
-// })
+            // for (let prop in sides_colors) {
+            //     console.log(`${prop}: ${sides_colors[prop]}`);
+            // }
 
-// left_top.addEventListener("click", () => {
-//     if (selected_bool === false) {
-//         alert("Nevybral jsi barvu pro pohyb!");
-//     } else {
-//         if (selected_color === "white") {
-//             //
-//         } else if (selected_color === "red") {
-//             //
-//         } else if (selected_color === "yellow") {
-//             //
-//         } else if (selected_color === "orange") {
-//             //
-//         } else if (selected_color === "green") {
-//             //
-//         } else if (selected_color === "blue") {
-//             //
-//         }
-//     }
-// })
+            // sides_colors.white.slice(0, 3) = sides_colors.red.slice(0,3);
 
-// left_down.addEventListener("click", () => {
-//     if (selected_bool === false) {
-//         alert("Nevybral jsi barvu pro pohyb!");
-//     } else {
-//         if (selected_color === "white") {
-//             //
-//         } else if (selected_color === "red") {
-//             //
-//         } else if (selected_color === "yellow") {
-//             //
-//         } else if (selected_color === "orange") {
-//             //
-//         } else if (selected_color === "green") {
-//             //
-//         } else if (selected_color === "blue") {
-//             //
-//         }
-//     }
-// })
+            for (let k = 0; k < 3; k++) {
+                sides_colors.white[k] = sides_colors.red[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.red[k] = sides_colors.yellow[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.yellow[k] = sides_colors.orange[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.orange[k] = top_white_memory[k];
+            }
 
-// right_top.addEventListener("click", () => {
-//     if (selected_bool === false) {
-//         alert("Nevybral jsi barvu pro pohyb!");
-//     } else {
-//         if (selected_color === "white") {
-//             //
-//         } else if (selected_color === "red") {
-//             //
-//         } else if (selected_color === "yellow") {
-//             //
-//         } else if (selected_color === "orange") {
-//             //
-//         } else if (selected_color === "green") {
-//             //
-//         } else if (selected_color === "blue") {
-//             //
-//         }
-//     }
-// })
+            rotateSideRight(sides_colors.blue);
 
-// right_down.addEventListener("click", () => {
-//     if (selected_bool === false) {
-//         alert("Nevybral jsi barvu pro pohyb!");
-//     } else {
-//         if (selected_color === "white") {
-//             //
-//         } else if (selected_color === "red") {
-//             //
-//         } else if (selected_color === "yellow") {
-//             //
-//         } else if (selected_color === "orange") {
-//             //
-//         } else if (selected_color === "green") {
-//             //
-//         } else if (selected_color === "blue") {
-//             //
-//         }
-//     }
-// })
+            // console.log(top_white_memory)
 
-// bottom_left.addEventListener("click", () => {
-//     if (selected_bool === false) {
-//         alert("Nevybral jsi barvu pro pohyb!");
-//     } else {
-//         if (selected_color === "white") {
-//             //
-//         } else if (selected_color === "red") {
-//             //
-//         } else if (selected_color === "yellow") {
-//             //
-//         } else if (selected_color === "orange") {
-//             //
-//         } else if (selected_color === "green") {
-//             //
-//         } else if (selected_color === "blue") {
-//             //
-//         }
-//     }
-// })
+            // sides_colors.orange[0] = "purple"
 
-// bottom_right.addEventListener("click", () => {
-//     if (selected_bool === false) {
-//         alert("Nevybral jsi barvu pro pohyb!");
-//     } else {
-//         if (selected_color === "white") {
-//             //
-//         } else if (selected_color === "red") {
-//             //
-//         } else if (selected_color === "yellow") {
-//             //
-//         } else if (selected_color === "orange") {
-//             //
-//         } else if (selected_color === "green") {
-//             //
-//         } else if (selected_color === "blue") {
-//             //
-//         }
-//     }
-// })
+            // console.log(typeof(list(sides_colors.white.slice(0, 3))))
+
+            changeColors();
+
+        } else if (selected_color === "red") {
+            //
+        } else if (selected_color === "yellow") {
+            //
+        } else if (selected_color === "orange") {
+            //
+        } else if (selected_color === "green") {
+            //
+        } else if (selected_color === "blue") {
+            //
+        }
+    }
+})
+
+top_right.addEventListener("click", () => {
+    if (selected_bool === false) {
+        alert("Nevybral jsi barvu pro pohyb!");
+    } else {
+        if (selected_color === "white") {
+            //
+            let top_white_memory = sides_colors.white.slice(0, 3);
+
+            for (let k = 0; k < 3; k++) {
+                sides_colors.white[k] = sides_colors.orange[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.orange[k] = sides_colors.yellow[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.yellow[k] = sides_colors.red[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.red[k] = top_white_memory[k];
+            }
+
+            rotateSideLeft(sides_colors.blue);
+
+            changeColors();
+            //
+        } else if (selected_color === "red") {
+            //
+        } else if (selected_color === "yellow") {
+            //
+        } else if (selected_color === "orange") {
+            //
+        } else if (selected_color === "green") {
+            //
+        } else if (selected_color === "blue") {
+            //
+        }
+    }
+})
+
+left_top.addEventListener("click", () => {
+    if (selected_bool === false) {
+        alert("Nevybral jsi barvu pro pohyb!");
+    } else {
+        if (selected_color === "white") {
+            //
+            let left_white_memory = [sides_colors.white[0], "", "", sides_colors.white[3], "", "", sides_colors.white[6]]
+
+            for (let k = 0; k < 7; k += 3) {
+                sides_colors.white[k] = sides_colors.green[k];
+            }
+            for (let k = 0; k < 7; k += 3) {
+                sides_colors.green[k] = sides_colors.yellow[k];
+            }
+            for (let k = 0; k < 7; k += 3) {
+                sides_colors.yellow[k+2] = sides_colors.blue[k];
+            }
+            for (let k = 0; k < 7; k += 3) {
+                sides_colors.blue[k] = left_white_memory[k];
+            }
+
+            rotateSideLeft(sides_colors.orange);
+
+            changeColors();
+            //
+        } else if (selected_color === "red") {
+            //
+        } else if (selected_color === "yellow") {
+            //
+        } else if (selected_color === "orange") {
+            //
+        } else if (selected_color === "green") {
+            //
+        } else if (selected_color === "blue") {
+            //
+        }
+    }
+})
+
+left_down.addEventListener("click", () => {
+    if (selected_bool === false) {
+        alert("Nevybral jsi barvu pro pohyb!");
+    } else {
+        if (selected_color === "white") {
+            //
+            let left_white_memory = [sides_colors.white[0], "", "", sides_colors.white[3], "", "", sides_colors.white[6]]
+
+            for (let k = 0; k < 7; k += 3) {
+                sides_colors.white[k] = sides_colors.blue[k];
+            }
+            for (let k = 0; k < 7; k += 3) {
+                sides_colors.blue[k] = sides_colors.yellow[k];
+            }
+            for (let k = 0; k < 7; k += 3) {
+                sides_colors.yellow[k+2] = sides_colors.green[k];
+            }
+            for (let k = 0; k < 7; k += 3) {
+                sides_colors.green[k] = left_white_memory[k];
+            }
+
+            rotateSideRight(sides_colors.orange);
+
+            changeColors();
+            //
+        } else if (selected_color === "red") {
+            //
+        } else if (selected_color === "yellow") {
+            //
+        } else if (selected_color === "orange") {
+            //
+        } else if (selected_color === "green") {
+            //
+        } else if (selected_color === "blue") {
+            //
+        }
+    }
+})
+
+right_top.addEventListener("click", () => {
+    if (selected_bool === false) {
+        alert("Nevybral jsi barvu pro pohyb!");
+    } else {
+        if (selected_color === "white") {
+            //
+            let right_white_memory = [sides_colors.white[0], "", "", sides_colors.white[3], "", "", sides_colors.white[6]]
+
+            for (let k = 2; k < 9; k += 3) {
+                sides_colors.white[k] = sides_colors.green[k];
+            }
+            for (let k = 2; k < 9; k += 3) {
+                sides_colors.green[k] = sides_colors.yellow[k];
+            }
+            for (let k = 2; k < 9; k += 3) {
+                sides_colors.yellow[k-2] = sides_colors.blue[k];
+            }
+            for (let k = 2; k < 9; k += 3) {
+                sides_colors.blue[k] = right_white_memory[k-2];
+            }
+
+            rotateSideRight(sides_colors.red);
+
+            changeColors();
+            //
+        } else if (selected_color === "red") {
+            //
+        } else if (selected_color === "yellow") {
+            //
+        } else if (selected_color === "orange") {
+            //
+        } else if (selected_color === "green") {
+            //
+        } else if (selected_color === "blue") {
+            //
+        }
+    }
+})
+
+right_down.addEventListener("click", () => {
+    if (selected_bool === false) {
+        alert("Nevybral jsi barvu pro pohyb!");
+    } else {
+        if (selected_color === "white") {
+            //
+            let right_white_memory = [sides_colors.white[0], "", "", sides_colors.white[3], "", "", sides_colors.white[6]]
+
+            for (let k = 2; k < 9; k += 3) {
+                sides_colors.white[k] = sides_colors.blue[k];
+            }
+            for (let k = 2; k < 9; k += 3) {
+                sides_colors.blue[k] = sides_colors.yellow[k];
+            }
+            for (let k = 2; k < 9; k += 3) {
+                sides_colors.yellow[k-2] = sides_colors.green[k];
+            }
+            for (let k = 2; k < 9; k += 3) {
+                sides_colors.green[k] = right_white_memory[k-2];
+            }
+
+            rotateSideLeft(sides_colors.red);
+
+            changeColors();
+            //
+        } else if (selected_color === "red") {
+            //
+        } else if (selected_color === "yellow") {
+            //
+        } else if (selected_color === "orange") {
+            //
+        } else if (selected_color === "green") {
+            //
+        } else if (selected_color === "blue") {
+            //
+        }
+    }
+})
+
+bottom_left.addEventListener("click", () => {
+    if (selected_bool === false) {
+        alert("Nevybral jsi barvu pro pohyb!");
+    } else {
+        if (selected_color === "white") {
+            //
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]]
+
+            for (let k = 6; k < 9; k++) {
+                sides_colors.white[k] = sides_colors.red[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.red[k] = sides_colors.yellow[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.yellow[k] = sides_colors.orange[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.orange[k] = bottom_white_memory[k];
+            }
+
+            rotateSideLeft(sides_colors.green);
+
+            changeColors();
+            //
+        } else if (selected_color === "red") {
+            //
+        } else if (selected_color === "yellow") {
+            //
+        } else if (selected_color === "orange") {
+            //
+        } else if (selected_color === "green") {
+            //
+        } else if (selected_color === "blue") {
+            //
+        }
+    }
+})
+
+bottom_right.addEventListener("click", () => {
+    if (selected_bool === false) {
+        alert("Nevybral jsi barvu pro pohyb!");
+    } else {
+        if (selected_color === "white") {
+            //
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]]
+
+            for (let k = 6; k < 9; k++) {
+                sides_colors.white[k] = sides_colors.orange[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.orange[k] = sides_colors.yellow[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.yellow[k] = sides_colors.red[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.red[k] = bottom_white_memory[k];
+            }
+
+            rotateSideRight(sides_colors.green);
+
+            changeColors();
+            //
+        } else if (selected_color === "red") {
+            //
+        } else if (selected_color === "yellow") {
+            //
+        } else if (selected_color === "orange") {
+            //
+        } else if (selected_color === "green") {
+            //
+        } else if (selected_color === "blue") {
+            //
+        }
+    }
+})
 
 
 
@@ -395,7 +593,16 @@ function mixCube() {
     changeColors();
 }
 
+// for (let prop in sides_colors) {
+//     console.log(`${prop}: ${sides_colors[prop]}`);
+// }
+
 // Zamíchání kostky po načtení stránky
 // window.addEventListener('DOMContentLoaded', () => {
 //     mixCube();
 // });
+
+// Nastavení barev kostky po načtení stránky
+window.addEventListener('DOMContentLoaded', () => {
+    changeColors();
+});
