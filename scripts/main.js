@@ -1,3 +1,6 @@
+// kostka
+const cube = document.getElementById("cube");
+
 // strany rotující 3D kostky
 const front_3d = document.getElementById("front"); // white
 const back_3d = document.getElementById("back"); // yellow
@@ -109,6 +112,46 @@ function changeColors() {
     }
 }
 
+function rotateCubeAccordingColor() {
+    if (selected_color === "white") {
+        //
+        console.log("w");
+        // cube.style.transform = "rotateX(0deg) rotateY(-60deg);";
+        // cube.style.transitionDuration = "2s";
+        //
+    } else if (selected_color === "red") {
+        //
+        console.log("r");
+        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
+        // cube.style.transitionDuration = "2s";
+        //
+    } else if (selected_color === "yellow") {
+        //
+        console.log("y");
+        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
+        // cube.style.transitionDuration = "2s";
+        //
+    } else if (selected_color === "orange") {
+        //
+        console.log("o");
+        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
+        // cube.style.transitionDuration = "2s";
+        //
+    } else if (selected_color === "green") {
+        //
+        console.log("g");
+        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
+        // cube.style.transitionDuration = "2s";
+        //
+    } else if (selected_color === "blue") {
+        //
+        console.log("b");
+        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
+        // cube.style.transitionDuration = "2s";
+        //
+    }
+}
+
 function rotateSideLeft(side) {
     let first_element = side[0];
     let second_element = side[1];
@@ -176,6 +219,8 @@ for (var btn of choose_btns) {
 
         selected_bool = true;
         selected_color = e.target.id.slice(7); // string barva
+
+        rotateCubeAccordingColor();
     })
 }
 
