@@ -224,8 +224,11 @@ top_left.addEventListener("click", () => {
             //
         } else if (selected_color === "red") {
             //
-            let top_red_memory = sides_colors.red.slice(0, 3);
+            let top_white_memory = sides_colors.white.slice(0, 3);
 
+            for (let k = 0; k < 3; k++) {
+                sides_colors.white[k] = sides_colors.red[k];
+            }
             for (let k = 0; k < 3; k++) {
                 sides_colors.red[k] = sides_colors.yellow[k];
             }
@@ -233,10 +236,7 @@ top_left.addEventListener("click", () => {
                 sides_colors.yellow[k] = sides_colors.orange[k];
             }
             for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = sides_colors.white[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = top_red_memory[k];
+                sides_colors.orange[k] = top_white_memory[k];
             }
 
             rotateSideRight(sides_colors.blue);
@@ -245,19 +245,19 @@ top_left.addEventListener("click", () => {
             //
         } else if (selected_color === "yellow") {
             //
-            let top_yellow_memory = sides_colors.yellow.slice(0, 3);
+            let top_white_memory = sides_colors.white.slice(0, 3);
 
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = sides_colors.white[k];
-            }
             for (let k = 0; k < 3; k++) {
                 sides_colors.white[k] = sides_colors.red[k];
             }
             for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = top_yellow_memory[k];
+                sides_colors.red[k] = sides_colors.yellow[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.yellow[k] = sides_colors.orange[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.orange[k] = top_white_memory[k];
             }
 
             rotateSideRight(sides_colors.blue);
@@ -265,6 +265,25 @@ top_left.addEventListener("click", () => {
             changeColors();
             //
         } else if (selected_color === "orange") {
+            //
+            let top_white_memory = sides_colors.white.slice(0, 3);
+
+            for (let k = 0; k < 3; k++) {
+                sides_colors.white[k] = sides_colors.red[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.red[k] = sides_colors.yellow[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.yellow[k] = sides_colors.orange[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.orange[k] = top_white_memory[k];
+            }
+
+            rotateSideRight(sides_colors.blue);
+
+            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -301,11 +320,8 @@ top_right.addEventListener("click", () => {
             //
         } else if (selected_color === "red") {
             //
-            let top_red_memory = sides_colors.red.slice(0, 3);
+            let top_white_memory = sides_colors.white.slice(0, 3);
 
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = sides_colors.white[k];
-            }
             for (let k = 0; k < 3; k++) {
                 sides_colors.white[k] = sides_colors.orange[k];
             }
@@ -313,7 +329,10 @@ top_right.addEventListener("click", () => {
                 sides_colors.orange[k] = sides_colors.yellow[k];
             }
             for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = top_red_memory[k];
+                sides_colors.yellow[k] = sides_colors.red[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.red[k] = top_white_memory[k];
             }
 
             rotateSideLeft(sides_colors.blue);
@@ -322,19 +341,19 @@ top_right.addEventListener("click", () => {
             //
         } else if (selected_color === "yellow") {
             //
-            let top_yellow_memory = sides_colors.yellow.slice(0, 3);
+            let top_white_memory = sides_colors.white.slice(0, 3);
 
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = sides_colors.white[k];
-            }
             for (let k = 0; k < 3; k++) {
                 sides_colors.white[k] = sides_colors.orange[k];
             }
             for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = top_yellow_memory[k];
+                sides_colors.orange[k] = sides_colors.yellow[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.yellow[k] = sides_colors.red[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.red[k] = top_white_memory[k];
             }
 
             rotateSideLeft(sides_colors.blue);
@@ -342,6 +361,25 @@ top_right.addEventListener("click", () => {
             changeColors();
             //
         } else if (selected_color === "orange") {
+            //
+            let top_white_memory = sides_colors.white.slice(0, 3);
+
+            for (let k = 0; k < 3; k++) {
+                sides_colors.white[k] = sides_colors.orange[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.orange[k] = sides_colors.yellow[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.yellow[k] = sides_colors.red[k];
+            }
+            for (let k = 0; k < 3; k++) {
+                sides_colors.red[k] = top_white_memory[k];
+            }
+
+            rotateSideLeft(sides_colors.blue);
+
+            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -426,6 +464,28 @@ left_top.addEventListener("click", () => {
             //
         } else if (selected_color === "orange") {
             //
+            let left_orange_memory = [sides_colors.orange[0], sides_colors.orange[3], sides_colors.orange[6]]
+
+            sides_colors.orange[0] = sides_colors.green[6];
+            sides_colors.orange[3] = sides_colors.green[7];
+            sides_colors.orange[6] = sides_colors.green[8];
+
+            sides_colors.green[6] = sides_colors.red[8];
+            sides_colors.green[7] = sides_colors.red[5];
+            sides_colors.green[8] = sides_colors.red[2];
+
+            sides_colors.red[2] = sides_colors.blue[0];
+            sides_colors.red[5] = sides_colors.blue[1];
+            sides_colors.red[8] = sides_colors.blue[2];
+
+            sides_colors.blue[0] = left_orange_memory[2];
+            sides_colors.blue[1] = left_orange_memory[1];
+            sides_colors.blue[2] = left_orange_memory[0];
+
+            rotateSideLeft(sides_colors.yellow);
+
+            changeColors();
+            //
         } else if (selected_color === "green") {
             //
         } else if (selected_color === "blue") {
@@ -508,6 +568,28 @@ left_down.addEventListener("click", () => {
             changeColors();
             //
         } else if (selected_color === "orange") {
+            //
+            let left_orange_memory = [sides_colors.orange[0], sides_colors.orange[3], sides_colors.orange[6]]
+
+            sides_colors.orange[0] = sides_colors.blue[2];
+            sides_colors.orange[3] = sides_colors.blue[1];
+            sides_colors.orange[6] = sides_colors.blue[0];
+
+            sides_colors.blue[0] = sides_colors.red[2];
+            sides_colors.blue[1] = sides_colors.red[5];
+            sides_colors.blue[2] = sides_colors.red[8];
+
+            sides_colors.red[2] = sides_colors.green[8];
+            sides_colors.red[5] = sides_colors.green[7];
+            sides_colors.red[8] = sides_colors.green[6];
+
+            sides_colors.green[6] = left_orange_memory[0];
+            sides_colors.green[7] = left_orange_memory[1];
+            sides_colors.green[8] = left_orange_memory[2];
+
+            rotateSideRight(sides_colors.yellow);
+
+            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -592,6 +674,28 @@ right_top.addEventListener("click", () => {
             //
         } else if (selected_color === "orange") {
             //
+            let right_orange_memory = [sides_colors.orange[2], sides_colors.orange[5], sides_colors.orange[8]]
+
+            sides_colors.orange[2] = sides_colors.green[0];
+            sides_colors.orange[5] = sides_colors.green[1];
+            sides_colors.orange[8] = sides_colors.green[2];
+
+            sides_colors.green[0] = sides_colors.red[6];
+            sides_colors.green[1] = sides_colors.red[3];
+            sides_colors.green[2] = sides_colors.red[0];
+
+            sides_colors.red[0] = sides_colors.blue[6];
+            sides_colors.red[3] = sides_colors.blue[7];
+            sides_colors.red[6] = sides_colors.blue[8];
+
+            sides_colors.blue[6] = right_orange_memory[2];
+            sides_colors.blue[7] = right_orange_memory[1];
+            sides_colors.blue[8] = right_orange_memory[0];
+
+            rotateSideRight(sides_colors.white);
+
+            changeColors();
+            //
         } else if (selected_color === "green") {
             //
         } else if (selected_color === "blue") {
@@ -675,6 +779,28 @@ right_down.addEventListener("click", () => {
             //
         } else if (selected_color === "orange") {
             //
+            let right_orange_memory = [sides_colors.orange[2], sides_colors.orange[5], sides_colors.orange[8]]
+
+            sides_colors.orange[2] = sides_colors.blue[8];
+            sides_colors.orange[5] = sides_colors.blue[7];
+            sides_colors.orange[8] = sides_colors.blue[6];
+
+            sides_colors.blue[6] = sides_colors.red[0];
+            sides_colors.blue[7] = sides_colors.red[3];
+            sides_colors.blue[8] = sides_colors.red[6];
+
+            sides_colors.red[0] = sides_colors.green[2];
+            sides_colors.red[3] = sides_colors.green[1];
+            sides_colors.red[6] = sides_colors.green[0];
+
+            sides_colors.green[0] = right_orange_memory[0];
+            sides_colors.green[1] = right_orange_memory[1];
+            sides_colors.green[2] = right_orange_memory[2];
+
+            rotateSideLeft(sides_colors.white);
+
+            changeColors();
+            //
         } else if (selected_color === "green") {
             //
         } else if (selected_color === "blue") {
@@ -689,7 +815,7 @@ bottom_left.addEventListener("click", () => {
     } else {
         if (selected_color === "white") {
             //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]]
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
 
             for (let k = 6; k < 9; k++) {
                 sides_colors.white[k] = sides_colors.red[k];
@@ -710,23 +836,20 @@ bottom_left.addEventListener("click", () => {
             //
         } else if (selected_color === "red") {
             //
-            let bottom_red_memory = sides_colors.red.slice(6);
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
 
-            sides_colors.red[6] = sides_colors.yellow[6];
-            sides_colors.red[7] = sides_colors.yellow[7];
-            sides_colors.red[8] = sides_colors.yellow[8];
-
-            sides_colors.yellow[6] = sides_colors.orange[6];
-            sides_colors.yellow[7] = sides_colors.orange[7];
-            sides_colors.yellow[8] = sides_colors.orange[8];
-
-            sides_colors.orange[6] = sides_colors.white[6];
-            sides_colors.orange[7] = sides_colors.white[7];
-            sides_colors.orange[8] = sides_colors.white[8];
-
-            sides_colors.white[6] = bottom_red_memory[0];
-            sides_colors.white[7] = bottom_red_memory[1];
-            sides_colors.white[8] = bottom_red_memory[2];
+            for (let k = 6; k < 9; k++) {
+                sides_colors.white[k] = sides_colors.red[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.red[k] = sides_colors.yellow[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.yellow[k] = sides_colors.orange[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.orange[k] = bottom_white_memory[k];
+            }
 
             rotateSideLeft(sides_colors.green);
 
@@ -734,29 +857,45 @@ bottom_left.addEventListener("click", () => {
             //
         } else if (selected_color === "yellow") {
             //
-            let bottom_yellow_memory = sides_colors.yellow.slice(6);
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
 
-            sides_colors.yellow[6] = sides_colors.orange[6];
-            sides_colors.yellow[7] = sides_colors.orange[7];
-            sides_colors.yellow[8] = sides_colors.orange[8];
-
-            sides_colors.orange[6] = sides_colors.white[6];
-            sides_colors.orange[7] = sides_colors.white[7];
-            sides_colors.orange[8] = sides_colors.white[8];
-
-            sides_colors.white[6] = sides_colors.red[6];
-            sides_colors.white[7] = sides_colors.red[7];
-            sides_colors.white[8] = sides_colors.red[8];
-
-            sides_colors.red[6] = bottom_yellow_memory[0];
-            sides_colors.red[7] = bottom_yellow_memory[1];
-            sides_colors.red[8] = bottom_yellow_memory[2];
+            for (let k = 6; k < 9; k++) {
+                sides_colors.white[k] = sides_colors.red[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.red[k] = sides_colors.yellow[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.yellow[k] = sides_colors.orange[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.orange[k] = bottom_white_memory[k];
+            }
 
             rotateSideLeft(sides_colors.green);
 
             changeColors();
             //
         } else if (selected_color === "orange") {
+            //
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
+
+            for (let k = 6; k < 9; k++) {
+                sides_colors.white[k] = sides_colors.red[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.red[k] = sides_colors.yellow[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.yellow[k] = sides_colors.orange[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.orange[k] = bottom_white_memory[k];
+            }
+
+            rotateSideLeft(sides_colors.green);
+
+            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -772,7 +911,7 @@ bottom_right.addEventListener("click", () => {
     } else {
         if (selected_color === "white") {
             //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]]
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
 
             for (let k = 6; k < 9; k++) {
                 sides_colors.white[k] = sides_colors.orange[k];
@@ -793,23 +932,20 @@ bottom_right.addEventListener("click", () => {
             //
         } else if (selected_color === "red") {
             //
-            let bottom_red_memory = sides_colors.red.slice(6);
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
 
-            sides_colors.red[6] = sides_colors.white[6];
-            sides_colors.red[7] = sides_colors.white[7];
-            sides_colors.red[8] = sides_colors.white[8];
-
-            sides_colors.white[6] = sides_colors.orange[6];
-            sides_colors.white[7] = sides_colors.orange[7];
-            sides_colors.white[8] = sides_colors.orange[8];
-
-            sides_colors.orange[6] = sides_colors.yellow[6];
-            sides_colors.orange[7] = sides_colors.yellow[7];
-            sides_colors.orange[8] = sides_colors.yellow[8];
-
-            sides_colors.yellow[6] = bottom_red_memory[0];
-            sides_colors.yellow[7] = bottom_red_memory[1];
-            sides_colors.yellow[8] = bottom_red_memory[2];
+            for (let k = 6; k < 9; k++) {
+                sides_colors.white[k] = sides_colors.orange[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.orange[k] = sides_colors.yellow[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.yellow[k] = sides_colors.red[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.red[k] = bottom_white_memory[k];
+            }
 
             rotateSideRight(sides_colors.green);
 
@@ -817,29 +953,45 @@ bottom_right.addEventListener("click", () => {
             //
         } else if (selected_color === "yellow") {
             //
-            let bottom_yellow_memory = sides_colors.yellow.slice(6);
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
 
-            sides_colors.yellow[6] = sides_colors.red[6];
-            sides_colors.yellow[7] = sides_colors.red[7];
-            sides_colors.yellow[8] = sides_colors.red[8];
-
-            sides_colors.red[6] = sides_colors.white[6];
-            sides_colors.red[7] = sides_colors.white[7];
-            sides_colors.red[8] = sides_colors.white[8];
-
-            sides_colors.white[6] = sides_colors.orange[6];
-            sides_colors.white[7] = sides_colors.orange[7];
-            sides_colors.white[8] = sides_colors.orange[8];
-
-            sides_colors.orange[6] = bottom_yellow_memory[0];
-            sides_colors.orange[7] = bottom_yellow_memory[1];
-            sides_colors.orange[8] = bottom_yellow_memory[2];
+            for (let k = 6; k < 9; k++) {
+                sides_colors.white[k] = sides_colors.orange[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.orange[k] = sides_colors.yellow[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.yellow[k] = sides_colors.red[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.red[k] = bottom_white_memory[k];
+            }
 
             rotateSideRight(sides_colors.green);
 
             changeColors();
             //
         } else if (selected_color === "orange") {
+            //
+            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
+
+            for (let k = 6; k < 9; k++) {
+                sides_colors.white[k] = sides_colors.orange[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.orange[k] = sides_colors.yellow[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.yellow[k] = sides_colors.red[k];
+            }
+            for (let k = 6; k < 9; k++) {
+                sides_colors.red[k] = bottom_white_memory[k];
+            }
+
+            rotateSideRight(sides_colors.green);
+
+            changeColors();
             //
         } else if (selected_color === "green") {
             //
