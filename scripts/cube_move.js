@@ -1,6 +1,6 @@
 const cube = document.getElementById("cube");
 
-let angle = 72;
+let angle = 60;
 
 document.addEventListener("keypress", (e) => {
     // console.log(cube_3d.style.transform)
