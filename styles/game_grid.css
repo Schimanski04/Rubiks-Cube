@@ -50,7 +50,8 @@
         "left-top cube-control cube-control right-top"
         "left-down cube-control cube-control right-down"
         ". bottom-left bottom-right .";
-    width: 50%;
+    min-width: 50%;
+    max-width: 70%;
     align-items: center;
     justify-items: center;
 }
