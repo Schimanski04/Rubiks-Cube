@@ -73,6 +73,7 @@ nav > .title {
     flex-direction: row;
     /* justify-content: space-between; */
     align-items: center;
+    max-width: 60%;
     height: auto;
 }
 
@@ -95,6 +96,7 @@ nav > .links {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    max-width: 40%;
     height: auto;
     column-gap: 3em;
 }
