@@ -1348,6 +1348,7 @@ bottom_right.addEventListener("click", () => {
 mix_btn.addEventListener("click", () => {
     console.log("Míchám");
     mix_btn.style.pointerEvents = "none";
+    mix_btn.style.opacity = "0.75";
     mixCube();
 })
 
