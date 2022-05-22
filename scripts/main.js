@@ -1,5 +1,5 @@
 // kostka
-const cube = document.getElementById("cube");
+// const cube = document.getElementById("cube");
 
 // strany rotující 3D kostky
 const front_3d = document.getElementById("front"); // white
@@ -50,7 +50,7 @@ let sides_colors = {
     yellow: ["magenta", "yellow", "brown", "yellow", "yellow", "yellow", "cyan", "yellow", "yellow"],
     orange: ["black", "orangered", "lightgreen", "orangered", "orangered", "orangered", "red", "orangered", "orangered"],
     green: ["green", "purple", "green", "green", "green", "purple", "green", "green", "green"],
-    blue: ["blue", "blue", "blue", "yellow", "blue", "yellow", "blue", "yellow", "blue"],
+    blue: ["lime", "blue", "silver", "yellow", "blue", "yellow", "blue", "yellow", "blue"],
 }
 
 // sides_colors.line1[0] = 10;
@@ -334,6 +334,28 @@ top_left.addEventListener("click", () => {
             //
         } else if (selected_color === "blue") {
             //
+            let top_blue_memory = sides_colors.blue.slice(0, 3);
+
+            sides_colors.blue[0] = sides_colors.red[2];
+            sides_colors.blue[1] = sides_colors.red[5];
+            sides_colors.blue[2] = sides_colors.red[8];
+
+            sides_colors.red[2] = sides_colors.green[8];
+            sides_colors.red[5] = sides_colors.green[7];
+            sides_colors.red[8] = sides_colors.green[6];
+
+            sides_colors.green[6] = sides_colors.orange[0];
+            sides_colors.green[7] = sides_colors.orange[3];
+            sides_colors.green[8] = sides_colors.orange[6];
+
+            sides_colors.orange[0] = top_blue_memory[2];
+            sides_colors.orange[3] = top_blue_memory[1];
+            sides_colors.orange[6] = top_blue_memory[0];
+
+            rotateSideRight(sides_colors.yellow);
+
+            changeColors();
+            //
         }
     }
 })
@@ -429,6 +451,28 @@ top_right.addEventListener("click", () => {
         } else if (selected_color === "green") {
             //
         } else if (selected_color === "blue") {
+            //
+            let top_blue_memory = sides_colors.blue.slice(0, 3);
+
+            sides_colors.blue[0] = sides_colors.orange[6];
+            sides_colors.blue[1] = sides_colors.orange[3];
+            sides_colors.blue[2] = sides_colors.orange[0];
+
+            sides_colors.orange[0] = sides_colors.green[6];
+            sides_colors.orange[3] = sides_colors.green[7];
+            sides_colors.orange[6] = sides_colors.green[8];
+
+            sides_colors.green[6] = sides_colors.red[8];
+            sides_colors.green[7] = sides_colors.red[5];
+            sides_colors.green[8] = sides_colors.red[2];
+
+            sides_colors.red[2] = top_blue_memory[0];
+            sides_colors.red[5] = top_blue_memory[1];
+            sides_colors.red[8] = top_blue_memory[2];
+
+            rotateSideLeft(sides_colors.yellow);
+
+            changeColors();
             //
         }
     }
@@ -535,6 +579,28 @@ left_top.addEventListener("click", () => {
             //
         } else if (selected_color === "blue") {
             //
+            let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
+
+            sides_colors.blue[0] = sides_colors.white[0];
+            sides_colors.blue[3] = sides_colors.white[3];
+            sides_colors.blue[6] = sides_colors.white[6];
+
+            sides_colors.white[0] = sides_colors.green[0];
+            sides_colors.white[3] = sides_colors.green[3];
+            sides_colors.white[6] = sides_colors.green[6];
+
+            sides_colors.green[0] = sides_colors.yellow[8];
+            sides_colors.green[3] = sides_colors.yellow[5];
+            sides_colors.green[6] = sides_colors.yellow[2];
+
+            sides_colors.yellow[2] = left_blue_memory[2];
+            sides_colors.yellow[5] = left_blue_memory[1];
+            sides_colors.yellow[8] = left_blue_memory[0];
+
+            rotateSideLeft(sides_colors.orange);
+
+            changeColors();
+            //
         }
     }
 })
@@ -639,6 +705,28 @@ left_down.addEventListener("click", () => {
         } else if (selected_color === "green") {
             //
         } else if (selected_color === "blue") {
+            //
+            let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
+
+            sides_colors.blue[0] = sides_colors.yellow[8];
+            sides_colors.blue[3] = sides_colors.yellow[5];
+            sides_colors.blue[6] = sides_colors.yellow[2];
+
+            sides_colors.yellow[2] = sides_colors.green[6];
+            sides_colors.yellow[5] = sides_colors.green[3];
+            sides_colors.yellow[8] = sides_colors.green[0];
+
+            sides_colors.green[0] = sides_colors.white[0];
+            sides_colors.green[3] = sides_colors.white[3];
+            sides_colors.green[6] = sides_colors.white[6];
+
+            sides_colors.white[0] = left_blue_memory[0];
+            sides_colors.white[3] = left_blue_memory[1];
+            sides_colors.white[6] = left_blue_memory[2];
+
+            rotateSideRight(sides_colors.orange);
+
+            changeColors();
             //
         }
     }
@@ -745,6 +833,28 @@ right_top.addEventListener("click", () => {
             //
         } else if (selected_color === "blue") {
             //
+            let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
+
+            sides_colors.blue[2] = sides_colors.white[2];
+            sides_colors.blue[5] = sides_colors.white[5];
+            sides_colors.blue[8] = sides_colors.white[8];
+
+            sides_colors.white[2] = sides_colors.green[2];
+            sides_colors.white[5] = sides_colors.green[5];
+            sides_colors.white[8] = sides_colors.green[8];
+
+            sides_colors.green[2] = sides_colors.yellow[6];
+            sides_colors.green[5] = sides_colors.yellow[3];
+            sides_colors.green[8] = sides_colors.yellow[0];
+
+            sides_colors.yellow[0] = right_blue_memory[2];
+            sides_colors.yellow[3] = right_blue_memory[1];
+            sides_colors.yellow[6] = right_blue_memory[0];
+
+            rotateSideRight(sides_colors.red);
+
+            changeColors();
+            //
         }
     }
 })
@@ -850,6 +960,28 @@ right_down.addEventListener("click", () => {
             //
         } else if (selected_color === "blue") {
             //
+            let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
+
+            sides_colors.blue[2] = sides_colors.yellow[6];
+            sides_colors.blue[5] = sides_colors.yellow[3];
+            sides_colors.blue[8] = sides_colors.yellow[0];
+
+            sides_colors.yellow[0] = sides_colors.green[8];
+            sides_colors.yellow[3] = sides_colors.green[5];
+            sides_colors.yellow[6] = sides_colors.green[2];
+
+            sides_colors.green[2] = sides_colors.white[2];
+            sides_colors.green[5] = sides_colors.white[5];
+            sides_colors.green[8] = sides_colors.white[8];
+
+            sides_colors.white[2] = right_blue_memory[0];
+            sides_colors.white[5] = right_blue_memory[1];
+            sides_colors.white[8] = right_blue_memory[2];
+
+            rotateSideLeft(sides_colors.red);
+
+            changeColors();
+            //
         }
     }
 })
@@ -946,6 +1078,28 @@ bottom_left.addEventListener("click", () => {
             //
         } else if (selected_color === "blue") {
             //
+            let bottom_blue_memory = sides_colors.blue.slice(6);
+
+            sides_colors.blue[6] = sides_colors.red[0];
+            sides_colors.blue[7] = sides_colors.red[3];
+            sides_colors.blue[8] = sides_colors.red[6];
+
+            sides_colors.red[0] = sides_colors.green[2];
+            sides_colors.red[3] = sides_colors.green[1];
+            sides_colors.red[6] = sides_colors.green[0];
+
+            sides_colors.green[0] = sides_colors.orange[2];
+            sides_colors.green[1] = sides_colors.orange[5];
+            sides_colors.green[2] = sides_colors.orange[8];
+
+            sides_colors.orange[2] = bottom_blue_memory[2];
+            sides_colors.orange[5] = bottom_blue_memory[1];
+            sides_colors.orange[8] = bottom_blue_memory[0];
+
+            rotateSideLeft(sides_colors.white);
+
+            changeColors();
+            //
         }
     }
 })
@@ -1041,6 +1195,28 @@ bottom_right.addEventListener("click", () => {
         } else if (selected_color === "green") {
             //
         } else if (selected_color === "blue") {
+            //
+            let bottom_blue_memory = sides_colors.blue.slice(6);
+
+            sides_colors.blue[6] = sides_colors.orange[8];
+            sides_colors.blue[7] = sides_colors.orange[5];
+            sides_colors.blue[8] = sides_colors.orange[2];
+
+            sides_colors.orange[2] = sides_colors.green[0];
+            sides_colors.orange[5] = sides_colors.green[1];
+            sides_colors.orange[8] = sides_colors.green[2];
+
+            sides_colors.green[0] = sides_colors.red[6];
+            sides_colors.green[1] = sides_colors.red[3];
+            sides_colors.green[2] = sides_colors.red[0];
+
+            sides_colors.red[0] = bottom_blue_memory[0];
+            sides_colors.red[3] = bottom_blue_memory[1];
+            sides_colors.red[6] = bottom_blue_memory[2];
+
+            rotateSideRight(sides_colors.white);
+
+            changeColors();
             //
         }
     }
