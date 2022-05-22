@@ -44,13 +44,22 @@ let choose_btns = [white_btn, red_btn, yellow_btn, orange_btn, green_btn, blue_b
 
 let cube_sides = [white_side, red_side, yellow_side, orange_side, green_side, blue_side];
 
+// let sides_colors = {
+//     white: ["pink", "white", "purple", "white", "white", "white", "magenta", "white", "white"],
+//     red: ["lightblue", "red", "cyan", "red", "red", "red", "red", "red", "blue"],
+//     yellow: ["magenta", "yellow", "brown", "yellow", "yellow", "yellow", "cyan", "yellow", "yellow"],
+//     orange: ["black", "orangered", "lightgreen", "orangered", "orangered", "orangered", "red", "orangered", "orangered"],
+//     green: ["green", "purple", "green", "green", "green", "purple", "green", "green", "green"],
+//     blue: ["lime", "blue", "silver", "yellow", "blue", "yellow", "blue", "yellow", "blue"],
+// }
+
 let sides_colors = {
-    white: ["pink", "white", "purple", "white", "white", "white", "magenta", "white", "white"],
-    red: ["lightblue", "red", "cyan", "red", "red", "red", "red", "red", "blue"],
-    yellow: ["magenta", "yellow", "brown", "yellow", "yellow", "yellow", "cyan", "yellow", "yellow"],
-    orange: ["black", "orangered", "lightgreen", "orangered", "orangered", "orangered", "red", "orangered", "orangered"],
-    green: ["green", "purple", "green", "green", "green", "purple", "green", "green", "green"],
-    blue: ["lime", "blue", "silver", "yellow", "blue", "yellow", "blue", "yellow", "blue"],
+    white: ["white", "white", "white", "white", "white", "white", "white", "white", "white"],
+    red: ["red", "red", "red", "red", "red", "red", "red", "red", "red"],
+    yellow: ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"],
+    orange: ["orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered"],
+    green: ["green", "green", "green", "green", "green", "green", "green", "green", "green"],
+    blue: ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"],
 }
 
 // sides_colors.line1[0] = 10;
@@ -264,8 +273,6 @@ top_left.addEventListener("click", () => {
             }
 
             rotateSideRight(sides_colors.blue);
-
-            changeColors();
             //
         } else if (selected_color === "red") {
             //
@@ -285,8 +292,6 @@ top_left.addEventListener("click", () => {
             }
 
             rotateSideRight(sides_colors.blue);
-
-            changeColors();
             //
         } else if (selected_color === "yellow") {
             //
@@ -306,8 +311,6 @@ top_left.addEventListener("click", () => {
             }
 
             rotateSideRight(sides_colors.blue);
-
-            changeColors();
             //
         } else if (selected_color === "orange") {
             //
@@ -327,8 +330,6 @@ top_left.addEventListener("click", () => {
             }
 
             rotateSideRight(sides_colors.blue);
-
-            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -351,8 +352,6 @@ top_left.addEventListener("click", () => {
             sides_colors.orange[8] = top_green_memory[2];
 
             rotateSideRight(sides_colors.white);
-
-            changeColors();
             //
         } else if (selected_color === "blue") {
             //
@@ -375,10 +374,10 @@ top_left.addEventListener("click", () => {
             sides_colors.orange[6] = top_blue_memory[0];
 
             rotateSideRight(sides_colors.yellow);
-
-            changeColors();
             //
         }
+
+        changeColors();
     }
 })
 
@@ -404,8 +403,6 @@ top_right.addEventListener("click", () => {
             }
 
             rotateSideLeft(sides_colors.blue);
-
-            changeColors();
             //
         } else if (selected_color === "red") {
             //
@@ -425,8 +422,6 @@ top_right.addEventListener("click", () => {
             }
 
             rotateSideLeft(sides_colors.blue);
-
-            changeColors();
             //
         } else if (selected_color === "yellow") {
             //
@@ -446,8 +441,6 @@ top_right.addEventListener("click", () => {
             }
 
             rotateSideLeft(sides_colors.blue);
-
-            changeColors();
             //
         } else if (selected_color === "orange") {
             //
@@ -467,8 +460,6 @@ top_right.addEventListener("click", () => {
             }
 
             rotateSideLeft(sides_colors.blue);
-
-            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -491,8 +482,6 @@ top_right.addEventListener("click", () => {
             sides_colors.red[6] = top_green_memory[0];
 
             rotateSideLeft(sides_colors.white);
-
-            changeColors();
             //
         } else if (selected_color === "blue") {
             //
@@ -515,10 +504,10 @@ top_right.addEventListener("click", () => {
             sides_colors.red[8] = top_blue_memory[2];
 
             rotateSideLeft(sides_colors.yellow);
-
-            changeColors();
             //
         }
+
+        changeColors();
     }
 })
 
@@ -528,24 +517,25 @@ left_top.addEventListener("click", () => {
     } else {
         if (selected_color === "white") {
             //
-            let left_white_memory = [sides_colors.white[0], "", "", sides_colors.white[3], "", "", sides_colors.white[6]]
+            let left_white_memory = [sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]];
 
-            for (let k = 0; k < 7; k += 3) {
-                sides_colors.white[k] = sides_colors.green[k];
-            }
-            for (let k = 0; k < 7; k += 3) {
-                sides_colors.green[k] = sides_colors.yellow[k+2];
-            }
-            for (let k = 0; k < 7; k += 3) {
-                sides_colors.yellow[k+2] = sides_colors.blue[k];
-            }
-            for (let k = 0; k < 7; k += 3) {
-                sides_colors.blue[k] = left_white_memory[k];
-            }
+            sides_colors.white[0] = sides_colors.green[0];
+            sides_colors.white[3] = sides_colors.green[3];
+            sides_colors.white[6] = sides_colors.green[6];
+
+            sides_colors.green[0] = sides_colors.yellow[8];
+            sides_colors.green[3] = sides_colors.yellow[5];
+            sides_colors.green[6] = sides_colors.yellow[2];
+
+            sides_colors.yellow[2] = sides_colors.blue[6];
+            sides_colors.yellow[5] = sides_colors.blue[3];
+            sides_colors.yellow[8] = sides_colors.blue[0];
+
+            sides_colors.blue[0] = left_white_memory[0];
+            sides_colors.blue[3] = left_white_memory[1];
+            sides_colors.blue[6] = left_white_memory[2];
 
             rotateSideLeft(sides_colors.orange);
-
-            changeColors();
             //
         } else if (selected_color === "red") {
             //
@@ -568,8 +558,6 @@ left_top.addEventListener("click", () => {
             sides_colors.blue[8] = left_red_memory[2];
 
             rotateSideLeft(sides_colors.white);
-
-            changeColors();
             //
         } else if (selected_color === "yellow") {
             //
@@ -592,8 +580,6 @@ left_top.addEventListener("click", () => {
             sides_colors.blue[8] = left_yellow_memory[0];
 
             rotateSideLeft(sides_colors.red);
-
-            changeColors();
             //
         } else if (selected_color === "orange") {
             //
@@ -616,8 +602,6 @@ left_top.addEventListener("click", () => {
             sides_colors.blue[2] = left_orange_memory[0];
 
             rotateSideLeft(sides_colors.yellow);
-
-            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -640,8 +624,6 @@ left_top.addEventListener("click", () => {
             sides_colors.yellow[8] = left_blue_memory[0];
 
             rotateSideLeft(sides_colors.orange);
-
-            changeColors();
             //
         } else if (selected_color === "blue") {
             //
@@ -664,10 +646,10 @@ left_top.addEventListener("click", () => {
             sides_colors.yellow[8] = left_blue_memory[0];
 
             rotateSideLeft(sides_colors.orange);
-
-            changeColors();
             //
         }
+
+        changeColors();
     }
 })
 
@@ -677,24 +659,25 @@ left_down.addEventListener("click", () => {
     } else {
         if (selected_color === "white") {
             //
-            let left_white_memory = [sides_colors.white[0], "", "", sides_colors.white[3], "", "", sides_colors.white[6]]
+            let left_white_memory = [sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]];
 
-            for (let k = 0; k < 7; k += 3) {
-                sides_colors.white[k] = sides_colors.blue[k];
-            }
-            for (let k = 0; k < 7; k += 3) {
-                sides_colors.blue[k] = sides_colors.yellow[k+2];
-            }
-            for (let k = 0; k < 7; k += 3) {
-                sides_colors.yellow[k+2] = sides_colors.green[k];
-            }
-            for (let k = 0; k < 7; k += 3) {
-                sides_colors.green[k] = left_white_memory[k];
-            }
+            sides_colors.white[0] = sides_colors.blue[0];
+            sides_colors.white[3] = sides_colors.blue[3];
+            sides_colors.white[6] = sides_colors.blue[6];
+
+            sides_colors.blue[0] = sides_colors.yellow[8];
+            sides_colors.blue[3] = sides_colors.yellow[5];
+            sides_colors.blue[6] = sides_colors.yellow[2];
+
+            sides_colors.yellow[2] = sides_colors.green[6];
+            sides_colors.yellow[5] = sides_colors.green[3];
+            sides_colors.yellow[8] = sides_colors.green[0];
+
+            sides_colors.green[0] = left_white_memory[0];
+            sides_colors.green[3] = left_white_memory[1];
+            sides_colors.green[6] = left_white_memory[2];
 
             rotateSideRight(sides_colors.orange);
-
-            changeColors();
             //
         } else if (selected_color === "red") {
             //
@@ -717,8 +700,6 @@ left_down.addEventListener("click", () => {
             sides_colors.green[0] = left_red_memory[2];
 
             rotateSideRight(sides_colors.white);
-
-            changeColors();
             //
         } else if (selected_color === "yellow") {
             //
@@ -741,8 +722,6 @@ left_down.addEventListener("click", () => {
             sides_colors.green[8] = left_yellow_memory[0];
 
             rotateSideRight(sides_colors.red);
-
-            changeColors();
             //
         } else if (selected_color === "orange") {
             //
@@ -765,8 +744,6 @@ left_down.addEventListener("click", () => {
             sides_colors.green[8] = left_orange_memory[2];
 
             rotateSideRight(sides_colors.yellow);
-
-            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -789,8 +766,6 @@ left_down.addEventListener("click", () => {
             sides_colors.white[6] = left_blue_memory[2];
 
             rotateSideRight(sides_colors.orange);
-
-            changeColors();
             //
         } else if (selected_color === "blue") {
             //
@@ -813,10 +788,10 @@ left_down.addEventListener("click", () => {
             sides_colors.white[6] = left_blue_memory[2];
 
             rotateSideRight(sides_colors.orange);
-
-            changeColors();
             //
         }
+
+        changeColors();
     }
 })
 
@@ -826,24 +801,25 @@ right_top.addEventListener("click", () => {
     } else {
         if (selected_color === "white") {
             //
-            let right_white_memory = [sides_colors.white[0], "", "", sides_colors.white[3], "", "", sides_colors.white[6]]
+            let right_white_memory = [sides_colors.white[2], sides_colors.white[5], sides_colors.white[8]];
 
-            for (let k = 2; k < 9; k += 3) {
-                sides_colors.white[k] = sides_colors.green[k];
-            }
-            for (let k = 2; k < 9; k += 3) {
-                sides_colors.green[k] = sides_colors.yellow[k];
-            }
-            for (let k = 2; k < 9; k += 3) {
-                sides_colors.yellow[k-2] = sides_colors.blue[k];
-            }
-            for (let k = 2; k < 9; k += 3) {
-                sides_colors.blue[k] = right_white_memory[k-2];
-            }
+            sides_colors.white[2] = sides_colors.green[2];
+            sides_colors.white[5] = sides_colors.green[5];
+            sides_colors.white[8] = sides_colors.green[8];
+
+            sides_colors.green[2] = sides_colors.yellow[6];
+            sides_colors.green[5] = sides_colors.yellow[3];
+            sides_colors.green[8] = sides_colors.yellow[0];
+
+            sides_colors.yellow[0] = sides_colors.blue[8];
+            sides_colors.yellow[3] = sides_colors.blue[5];
+            sides_colors.yellow[6] = sides_colors.blue[2];
+
+            sides_colors.blue[2] = right_white_memory[0];
+            sides_colors.blue[5] = right_white_memory[1];
+            sides_colors.blue[8] = right_white_memory[2];
 
             rotateSideRight(sides_colors.red);
-
-            changeColors();
             //
         } else if (selected_color === "red") {
             //
@@ -866,8 +842,6 @@ right_top.addEventListener("click", () => {
             sides_colors.blue[2] = right_red_memory[2];
 
             rotateSideRight(sides_colors.yellow);
-
-            changeColors();
             //
         } else if (selected_color === "yellow") {
             //
@@ -890,8 +864,6 @@ right_top.addEventListener("click", () => {
             sides_colors.blue[6] = right_yellow_memory[0];
 
             rotateSideRight(sides_colors.orange);
-
-            changeColors();
             //
         } else if (selected_color === "orange") {
             //
@@ -914,8 +886,6 @@ right_top.addEventListener("click", () => {
             sides_colors.blue[8] = right_orange_memory[0];
 
             rotateSideRight(sides_colors.white);
-
-            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -938,8 +908,6 @@ right_top.addEventListener("click", () => {
             sides_colors.yellow[6] = right_blue_memory[0];
 
             rotateSideRight(sides_colors.red);
-
-            changeColors();
             //
         } else if (selected_color === "blue") {
             //
@@ -962,10 +930,10 @@ right_top.addEventListener("click", () => {
             sides_colors.yellow[6] = right_blue_memory[0];
 
             rotateSideRight(sides_colors.red);
-
-            changeColors();
             //
         }
+
+        changeColors();
     }
 })
 
@@ -975,24 +943,25 @@ right_down.addEventListener("click", () => {
     } else {
         if (selected_color === "white") {
             //
-            let right_white_memory = [sides_colors.white[0], "", "", sides_colors.white[3], "", "", sides_colors.white[6]]
+            let right_white_memory = [sides_colors.white[2], sides_colors.white[5], sides_colors.white[8]];
 
-            for (let k = 2; k < 9; k += 3) {
-                sides_colors.white[k] = sides_colors.blue[k];
-            }
-            for (let k = 2; k < 9; k += 3) {
-                sides_colors.blue[k] = sides_colors.yellow[k];
-            }
-            for (let k = 2; k < 9; k += 3) {
-                sides_colors.yellow[k-2] = sides_colors.green[k];
-            }
-            for (let k = 2; k < 9; k += 3) {
-                sides_colors.green[k] = right_white_memory[k-2];
-            }
+            sides_colors.white[2] = sides_colors.blue[2];
+            sides_colors.white[5] = sides_colors.blue[5];
+            sides_colors.white[8] = sides_colors.blue[8];
+
+            sides_colors.blue[2] = sides_colors.yellow[6];
+            sides_colors.blue[5] = sides_colors.yellow[3];
+            sides_colors.blue[8] = sides_colors.yellow[0];
+
+            sides_colors.yellow[0] = sides_colors.green[8];
+            sides_colors.yellow[3] = sides_colors.green[5];
+            sides_colors.yellow[6] = sides_colors.green[2];
+
+            sides_colors.green[2] = right_white_memory[0];
+            sides_colors.green[5] = right_white_memory[1];
+            sides_colors.green[8] = right_white_memory[2];
 
             rotateSideLeft(sides_colors.red);
-
-            changeColors();
             //
         } else if (selected_color === "red") {
             //
@@ -1015,8 +984,6 @@ right_down.addEventListener("click", () => {
             sides_colors.green[8] = right_red_memory[0];
 
             rotateSideLeft(sides_colors.yellow);
-
-            changeColors();
             //
         } else if (selected_color === "yellow") {
             //
@@ -1039,8 +1006,6 @@ right_down.addEventListener("click", () => {
             sides_colors.green[6] = right_yellow_memory[0];
 
             rotateSideLeft(sides_colors.orange);
-
-            changeColors();
             //
         } else if (selected_color === "orange") {
             //
@@ -1063,8 +1028,6 @@ right_down.addEventListener("click", () => {
             sides_colors.green[2] = right_orange_memory[2];
 
             rotateSideLeft(sides_colors.white);
-
-            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -1087,8 +1050,6 @@ right_down.addEventListener("click", () => {
             sides_colors.white[8] = right_blue_memory[2];
 
             rotateSideLeft(sides_colors.red);
-
-            changeColors();
             //
         } else if (selected_color === "blue") {
             //
@@ -1111,10 +1072,10 @@ right_down.addEventListener("click", () => {
             sides_colors.white[8] = right_blue_memory[2];
 
             rotateSideLeft(sides_colors.red);
-
-            changeColors();
             //
         }
+
+        changeColors();
     }
 })
 
@@ -1124,7 +1085,7 @@ bottom_left.addEventListener("click", () => {
     } else {
         if (selected_color === "white") {
             //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
+            let bottom_white_memory = sides_colors.white.slice(6);
 
             for (let k = 6; k < 9; k++) {
                 sides_colors.white[k] = sides_colors.red[k];
@@ -1135,13 +1096,12 @@ bottom_left.addEventListener("click", () => {
             for (let k = 6; k < 9; k++) {
                 sides_colors.yellow[k] = sides_colors.orange[k];
             }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.orange[k] = bottom_white_memory[k];
-            }
+
+            sides_colors.orange[6] = bottom_white_memory[0];
+            sides_colors.orange[7] = bottom_white_memory[1];
+            sides_colors.orange[8] = bottom_white_memory[2];
 
             rotateSideLeft(sides_colors.green);
-
-            changeColors();
             //
         } else if (selected_color === "red") {
             //
@@ -1161,8 +1121,6 @@ bottom_left.addEventListener("click", () => {
             }
 
             rotateSideLeft(sides_colors.green);
-
-            changeColors();
             //
         } else if (selected_color === "yellow") {
             //
@@ -1182,8 +1140,6 @@ bottom_left.addEventListener("click", () => {
             }
 
             rotateSideLeft(sides_colors.green);
-
-            changeColors();
             //
         } else if (selected_color === "orange") {
             //
@@ -1203,8 +1159,6 @@ bottom_left.addEventListener("click", () => {
             }
 
             rotateSideLeft(sides_colors.green);
-
-            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -1227,8 +1181,6 @@ bottom_left.addEventListener("click", () => {
             sides_colors.orange[6] = bottom_green_memory[2];
 
             rotateSideLeft(sides_colors.yellow);
-
-            changeColors();
             //
         } else if (selected_color === "blue") {
             //
@@ -1251,10 +1203,10 @@ bottom_left.addEventListener("click", () => {
             sides_colors.orange[8] = bottom_blue_memory[0];
 
             rotateSideLeft(sides_colors.white);
-
-            changeColors();
             //
         }
+
+        changeColors();
     }
 })
 
@@ -1264,7 +1216,7 @@ bottom_right.addEventListener("click", () => {
     } else {
         if (selected_color === "white") {
             //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
+            let bottom_white_memory = sides_colors.white.slice(6);
 
             for (let k = 6; k < 9; k++) {
                 sides_colors.white[k] = sides_colors.orange[k];
@@ -1275,13 +1227,12 @@ bottom_right.addEventListener("click", () => {
             for (let k = 6; k < 9; k++) {
                 sides_colors.yellow[k] = sides_colors.red[k];
             }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.red[k] = bottom_white_memory[k];
-            }
+
+            sides_colors.red[6] = bottom_white_memory[0];
+            sides_colors.red[7] = bottom_white_memory[1];
+            sides_colors.red[8] = bottom_white_memory[2];
 
             rotateSideRight(sides_colors.green);
-
-            changeColors();
             //
         } else if (selected_color === "red") {
             //
@@ -1301,8 +1252,6 @@ bottom_right.addEventListener("click", () => {
             }
 
             rotateSideRight(sides_colors.green);
-
-            changeColors();
             //
         } else if (selected_color === "yellow") {
             //
@@ -1322,8 +1271,6 @@ bottom_right.addEventListener("click", () => {
             }
 
             rotateSideRight(sides_colors.green);
-
-            changeColors();
             //
         } else if (selected_color === "orange") {
             //
@@ -1343,8 +1290,6 @@ bottom_right.addEventListener("click", () => {
             }
 
             rotateSideRight(sides_colors.green);
-
-            changeColors();
             //
         } else if (selected_color === "green") {
             //
@@ -1367,8 +1312,6 @@ bottom_right.addEventListener("click", () => {
             sides_colors.red[8] = bottom_green_memory[0];
 
             rotateSideRight(sides_colors.yellow);
-
-            changeColors();
             //
         } else if (selected_color === "blue") {
             //
@@ -1391,10 +1334,10 @@ bottom_right.addEventListener("click", () => {
             sides_colors.red[6] = bottom_blue_memory[2];
 
             rotateSideRight(sides_colors.white);
-
-            changeColors();
             //
         }
+
+        changeColors();
     }
 })
 
