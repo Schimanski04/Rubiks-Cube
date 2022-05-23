@@ -57,7 +57,7 @@ let sides_colors = {
     white: ["white", "white", "white", "white", "white", "white", "white", "white", "white"],
     red: ["red", "red", "red", "red", "red", "red", "red", "red", "red"],
     yellow: ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"],
-    orange: ["orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered"],
+    orange: ["#fe7701", "#fe7701", "#fe7701", "#fe7701", "#fe7701", "#fe7701", "#fe7701", "#fe7701", "#fe7701"],
     green: ["green", "green", "green", "green", "green", "green", "green", "green", "green"],
     blue: ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"],
 }
@@ -136,43 +136,36 @@ function changeColors() {
 function rotateCubeAccordingColor() {
     if (selected_color === "white") {
         //
-        console.log("w");
-        cube.style.transform = "rotateX(20deg) rotateY(-10deg)";
+        cube.style.transform = "rotateX(-30deg) rotateY(-20deg)";
         cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "red") {
         //
-        console.log("r");
-        cube.style.transform = "rotateX(40deg) rotateY(-20deg)";
+        cube.style.transform = "rotateX(-30deg) rotateY(-110deg)";
         cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "yellow") {
         //
-        console.log("y");
-        cube.style.transform = "rotateX(60deg) rotateY(-30deg)";
+        cube.style.transform = "rotateX(-30deg) rotateY(-200deg)";
         cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "orange") {
         //
-        console.log("o");
-        cube.style.transform = "rotateX(80deg) rotateY(-40deg)";
+        cube.style.transform = "rotateX(-30deg) rotateY(70deg)";
         cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "green") {
         //
-        console.log("g");
-        cube.style.transform = "rotateX(100deg) rotateY(-50deg)";
+        cube.style.transform = "rotateX(60deg) rotateZ(20deg)";
         cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "blue") {
         //
-        console.log("b");
-        cube.style.transform = "rotateX(120deg) rotateY(-60deg)";
+        cube.style.transform = "rotateX(-120deg) rotateZ(-20deg)";
         cube.style.transitionDuration = "2s";
         //
     } else if (selected_color == "none") {
         //
-        console.log("none")
         cube.style.transform = "rotateX(-30deg) rotateY(-60deg)";
         cube.style.transitionDuration = "2s";
         //
@@ -180,33 +173,33 @@ function rotateCubeAccordingColor() {
 }
 
 function rotateSideLeft(side) {
-    let first_element = side[0];
-    let second_element = side[1];
+    let left_corner = side[0];
+    let middle_top = side[1];
 
     side[0] = side[2];
     side[2] = side[8];
     side[8] = side[6];
-    side[6] = first_element;
+    side[6] = left_corner;
 
     side[1] = side[5];
     side[5] = side[7];
     side[7] = side[3];
-    side[3] = second_element;
+    side[3] = middle_top;
 }
 
 function rotateSideRight(side) {
-    let first_element = side[0];
-    let second_element = side[1];
+    let left_corner = side[0];
+    let middle_top = side[1];
 
     side[0] = side[6];
     side[6] = side[8];
     side[8] = side[2];
-    side[2] = first_element;
+    side[2] = left_corner;
 
     side[1] = side[3];
     side[3] = side[7];
     side[7] = side[5];
-    side[5] = second_element;
+    side[5] = middle_top;
 }
 
 function checkIfSolved(/*ar1, ar2*/) {
@@ -218,20 +211,20 @@ function checkIfSolved(/*ar1, ar2*/) {
     // console.log(sides_colors.white == ["white", "white", "white", "white", "white", "white", "white", "white", "white"]);
     // // console.log(isEqual())
 
-    // // for (let prop in sides_colors) {
-    // //     for (let element of sides_colors[prop]) {
-    // //         if (element != listColors[count]) {
-    // //             return false;
-    // //         }
-    // //     }
-    // //     count += 1;
-    // // }
+    for (let prop in sides_colors) {
+        for (let element of sides_colors[prop]) {
+            if (element != listColors[count]) {
+                return false;
+            }
+        }
+        count += 1;
+    }
 
     // for (let val of sides_colors.white) {
     //     console.log(val == "white")
     // }
 
-    let areSame = true;
+    // let areSame = true;
 
     // ar1.map(x => {
     //     ar2.map (y => {
@@ -239,20 +232,20 @@ function checkIfSolved(/*ar1, ar2*/) {
     //     })
     // })
 
-    console.log(typeof(ar1))
+    // console.log(typeof(ar1))
 
-    for (let i = 0; i < ar2.length; i++) {
-        console.log(ar1[i])
-        console.log(ar2[i])
-        // if (ar1[i] != ar2[i]) areSame = false
-    }
-
-
-    return areSame;
+    // for (let i = 0; i < ar2.length; i++) {
+    //     console.log(ar1[i])
+    //     console.log(ar2[i])
+    //     // if (ar1[i] != ar2[i]) areSame = false
+    // }
 
 
+    // return areSame;
 
-    // return true;
+
+
+    return true;
 }
 
 // výběr barvy
