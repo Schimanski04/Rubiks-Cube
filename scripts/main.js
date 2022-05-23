@@ -67,7 +67,7 @@ let sides_colors = {
 console.log(sides_colors)
 
 let selected_bool = false;
-let selected_color = "";
+let selected_color = "none";
 
 // console.log(red_btn.id);
 // console.log(typeof(red_btn.id));
@@ -80,6 +80,8 @@ function changeColors() {
             for (let j = 0; j < 9; j++) {
                 white_side.children[j].style.backgroundColor = sides_colors.white[j];
                 front_3d.children[j].style.backgroundColor = sides_colors.white[j];
+                white_side.children[j].style.transition = "all 0.5s linear";
+                front_3d.children[j].style.transition = "all 0.5s linear";
             }
             //
         } else if (i == 1) {
@@ -87,6 +89,8 @@ function changeColors() {
             for (let j = 0; j < 9; j++) {
                 red_side.children[j].style.backgroundColor = sides_colors.red[j];
                 right_3d.children[j].style.backgroundColor = sides_colors.red[j];
+                red_side.children[j].style.transition = "all 0.5s linear";
+                right_3d.children[j].style.transition = "all 0.5s linear";
             }
             //
         } else if (i == 2) {
@@ -94,6 +98,8 @@ function changeColors() {
             for (let j = 0; j < 9; j++) {
                 yellow_side.children[j].style.backgroundColor = sides_colors.yellow[j];
                 back_3d.children[j].style.backgroundColor = sides_colors.yellow[j];
+                yellow_side.children[j].style.transition = "all 0.5s linear";
+                back_3d.children[j].style.transition = "all 0.5s linear";
             }
             //
         } else if (i == 3) {
@@ -101,6 +107,8 @@ function changeColors() {
             for (let j = 0; j < 9; j++) {
                 orange_side.children[j].style.backgroundColor = sides_colors.orange[j];
                 left_3d.children[j].style.backgroundColor = sides_colors.orange[j];
+                orange_side.children[j].style.transition = "all 0.5s linear";
+                left_3d.children[j].style.transition = "all 0.5s linear";
             }
             //
         } else if (i == 4) {
@@ -108,6 +116,8 @@ function changeColors() {
             for (let j = 0; j < 9; j++) {
                 green_side.children[j].style.backgroundColor = sides_colors.green[j];
                 bottom_3d.children[j].style.backgroundColor = sides_colors.green[j];
+                green_side.children[j].style.transition = "all 0.5s linear";
+                bottom_3d.children[j].style.transition = "all 0.5s linear";
             }
             //
         } else if (i == 5) {
@@ -115,6 +125,8 @@ function changeColors() {
             for (let j = 0; j < 9; j++) {
                 blue_side.children[j].style.backgroundColor = sides_colors.blue[j];
                 top_3d.children[j].style.backgroundColor = sides_colors.blue[j];
+                blue_side.children[j].style.transition = "all 0.5s linear";
+                top_3d.children[j].style.transition = "all 0.5s linear";
             }
             //
         }
@@ -125,38 +137,44 @@ function rotateCubeAccordingColor() {
     if (selected_color === "white") {
         //
         console.log("w");
-        // cube.style.transform = "rotateX(0deg) rotateY(-60deg);";
-        // cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(20deg) rotateY(-10deg)";
+        cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "red") {
         //
         console.log("r");
-        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
-        // cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(40deg) rotateY(-20deg)";
+        cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "yellow") {
         //
         console.log("y");
-        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
-        // cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(60deg) rotateY(-30deg)";
+        cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "orange") {
         //
         console.log("o");
-        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
-        // cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(80deg) rotateY(-40deg)";
+        cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "green") {
         //
         console.log("g");
-        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
-        // cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(100deg) rotateY(-50deg)";
+        cube.style.transitionDuration = "2s";
         //
     } else if (selected_color === "blue") {
         //
         console.log("b");
-        // cube.style.transform = "rotateX(0deg) rotateY(0deg)";
-        // cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(120deg) rotateY(-60deg)";
+        cube.style.transitionDuration = "2s";
+        //
+    } else if (selected_color == "none") {
+        //
+        console.log("none")
+        cube.style.transform = "rotateX(-30deg) rotateY(-60deg)";
+        cube.style.transitionDuration = "2s";
         //
     }
 }
@@ -191,20 +209,50 @@ function rotateSideRight(side) {
     side[5] = second_element;
 }
 
-function checkIfSolved() {
-    let listColors = ["white", "red", "yellow", "orangered", "green", "blue"];
-    let count = 0;
+function checkIfSolved(/*ar1, ar2*/) {
+    // let listColors = ["white", "red", "yellow", "orangered", "green", "blue"];
+    // let count = 0;
 
-    for (let prop in sides_colors) {
-        for (let element of sides_colors[prop]) {
-            if (element != listColors[count]) {
-                return false;
-            }
-        }
-        count += 1;
+    // console.log(sides_colors.white);
+
+    // console.log(sides_colors.white == ["white", "white", "white", "white", "white", "white", "white", "white", "white"]);
+    // // console.log(isEqual())
+
+    // // for (let prop in sides_colors) {
+    // //     for (let element of sides_colors[prop]) {
+    // //         if (element != listColors[count]) {
+    // //             return false;
+    // //         }
+    // //     }
+    // //     count += 1;
+    // // }
+
+    // for (let val of sides_colors.white) {
+    //     console.log(val == "white")
+    // }
+
+    let areSame = true;
+
+    // ar1.map(x => {
+    //     ar2.map (y => {
+    //         if (x != y) areSame = false;
+    //     })
+    // })
+
+    console.log(typeof(ar1))
+
+    for (let i = 0; i < ar2.length; i++) {
+        console.log(ar1[i])
+        console.log(ar2[i])
+        // if (ar1[i] != ar2[i]) areSame = false
     }
 
-    return true;
+
+    return areSame;
+
+
+
+    // return true;
 }
 
 // výběr barvy
@@ -243,8 +291,10 @@ cancel.addEventListener("click", () => {
     }
 
     selected_bool = false;
-    selected_color = "";
+    selected_color = "none";
     // console.log(selected_bool);
+
+    rotateCubeAccordingColor()
 
     cube_control_center.style.backgroundColor = "gray";
 })
@@ -378,6 +428,7 @@ top_left.addEventListener("click", () => {
         }
 
         changeColors();
+        checkIfSolved();
     }
 })
 
@@ -508,6 +559,7 @@ top_right.addEventListener("click", () => {
         }
 
         changeColors();
+        checkIfSolved();
     }
 })
 
@@ -650,6 +702,7 @@ left_top.addEventListener("click", () => {
         }
 
         changeColors();
+        checkIfSolved();
     }
 })
 
@@ -792,6 +845,7 @@ left_down.addEventListener("click", () => {
         }
 
         changeColors();
+        checkIfSolved();
     }
 })
 
@@ -934,6 +988,7 @@ right_top.addEventListener("click", () => {
         }
 
         changeColors();
+        checkIfSolved();
     }
 })
 
@@ -1076,6 +1131,7 @@ right_down.addEventListener("click", () => {
         }
 
         changeColors();
+        checkIfSolved();
     }
 })
 
@@ -1207,6 +1263,7 @@ bottom_left.addEventListener("click", () => {
         }
 
         changeColors();
+        checkIfSolved();
     }
 })
 
@@ -1338,6 +1395,7 @@ bottom_right.addEventListener("click", () => {
         }
 
         changeColors();
+        checkIfSolved();
     }
 })
 
