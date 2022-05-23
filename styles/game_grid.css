@@ -1,5 +1,6 @@
 :root {
     --width-height: 45px;
+    --orange-bg: #fe7701;
 }
 
 
@@ -395,63 +396,63 @@
         grid-area: orange-1;
         width: var(--width-height);
         height: var(--width-height);
-        background-color: orangered;
+        background-color: var(--orange-bg);
         border: 2px solid black;
     }
     .orange-2 {
         grid-area: orange-2;
         width: var(--width-height);
     height: var(--width-height);
-    background-color: orangered;
+    background-color: var(--orange-bg);
     border: 2px solid black;
 }
 .orange-3 {
     grid-area: orange-3;
     width: var(--width-height);
     height: var(--width-height);
-    background-color: orangered;
+    background-color: var(--orange-bg);
     border: 2px solid black;
 }
 .orange-4 {
     grid-area: orange-4;
     width: var(--width-height);
     height: var(--width-height);
-    background-color: orangered;
+    background-color: var(--orange-bg);
     border: 2px solid black;
 }
 .orange-5 {
     grid-area: orange-5;
     width: var(--width-height);
     height: var(--width-height);
-    background-color: orangered;
+    background-color: var(--orange-bg);
     border: 2px solid black;
 }
 .orange-6 {
     grid-area: orange-6;
     width: var(--width-height);
     height: var(--width-height);
-    background-color: orangered;
+    background-color: var(--orange-bg);
     border: 2px solid black;
 }
 .orange-7 {
     grid-area: orange-7;
     width: var(--width-height);
     height: var(--width-height);
-    background-color: orangered;
+    background-color: var(--orange-bg);
     border: 2px solid black;
 }
 .orange-8 {
     grid-area: orange-8;
     width: var(--width-height);
     height: var(--width-height);
-    background-color: orangered;
+    background-color: var(--orange-bg);
     border: 2px solid black;
 }
 .orange-9 {
     grid-area: orange-9;
     width: var(--width-height);
     height: var(--width-height);
-    background-color: orangered;
+    background-color: var(--orange-bg);
     border: 2px solid black;
 }
 
