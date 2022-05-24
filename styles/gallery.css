@@ -1,3 +1,4 @@
+/* pozice obrázků */
 main > .gallery {
     display: flex;
     flex-direction: row;
@@ -19,6 +20,7 @@ main > .gallery {
     height: auto;
 }
 
+/* :hover text */
 .overlay {
     position: absolute;
     top: 0;

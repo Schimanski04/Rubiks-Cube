@@ -323,12 +323,22 @@ main > .rules {
     margin: auto 8px;
 }
 
-.rules > div {
+/* .rules > div {
     max-width: 45vw;
 }
 
 .rules iframe {
-    /* margin-right: 8px; */
+    max-width: 45vw;
+} */
+
+main > .hint {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hint iframe {
     max-width: 45vw;
 }
 
