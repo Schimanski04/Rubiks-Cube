@@ -303,7 +303,7 @@ main > .info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     margin: auto 8px;
 }
 
