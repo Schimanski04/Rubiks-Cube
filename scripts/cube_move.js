@@ -1,64 +1,93 @@
 const cube = document.getElementById("cube");
 
 let angle = 60;
+let position;
+let position_x;
+let position_y;
+let position_z;
 
 document.addEventListener("keypress", (e) => {
-    // console.log(cube_3d.style.transform)
+    position = cube.style.transform.split(" ");
 
-    let position = cube.style.transform.split(" ");
-
-    console.log(position)
+    // console.log(position);
 
     position_x = position[0];
     position_y = position[1];
+    position_z = position[2];
 
-    position_x = parseInt(position_x.slice(8, 11));
-    position_y = parseInt(position_y.slice(8, 11));
+    position_x = parseInt(position_x.slice(8));
+    position_y = parseInt(position_y.slice(8));
+    position_z = parseInt(position_z.slice(8));
 
     switch(e.key) {
         case "w":
-            console.log("W");
-            cube.style.transform = `rotateX(${Math.abs(position_x + angle)}deg) rotateY(${position_y}deg)`;
+            if (selected_color === "white" || selected_color === "red" || selected_color === "yellow" || selected_color === "orange" || selected_color === "none") {
+                //
+                cube.style.transform = `rotateX(${position_x + angle}deg) rotateY(${position_y}deg) rotateZ(0deg)`; // hotovo
+                //
+            } else if (selected_color === "green") {
+                //
+                cube.style.transform = `rotateX(${position_x + angle}deg) rotateY(0deg) rotateZ(${position_z}deg)`; // hotovo
+                //
+            } else if (selected_color === "blue") {
+                //
+                cube.style.transform = `rotateX(${position_x + angle}deg) rotateY(0deg) rotateZ(${position_z}deg)`; // hotovo
+                //
+            }
+
             cube.style.transitionDuration = "2s";
-            console.log("x:" + position_x + " ; y:" + position_y)
-            // console.log(cube_3d.style.transform[8]);
             break;
         case "a":
-            console.log("A");
-            cube.style.transform = `rotateX(${position_x}deg) rotateY(${Math.abs(position_y - angle)}deg)`;
+            if (selected_color === "white" || selected_color === "red" || selected_color === "yellow" || selected_color === "orange" || selected_color === "none") {
+                //
+                cube.style.transform = `rotateX(${position_x}deg) rotateY(${position_y - angle}deg) rotateZ(0deg)`; // hotovo
+                //
+            } else if (selected_color === "green") {
+                //
+                cube.style.transform = `rotateX(${position_x}deg) rotateY(0deg) rotateZ(${position_z + angle}deg)`; // hotovo
+                //
+            } else if (selected_color === "blue") {
+                //
+                cube.style.transform = `rotateX(${position_x}deg) rotateY(0deg) rotateZ(${position_z - angle}deg)`; // hotovo
+                //
+            }
+
             cube.style.transitionDuration = "2s";
-            console.log("x:" + position_x + " ; y:" + position_y)
             break;
         case "s":
-            console.log("S");
-            cube.style.transform = `rotateX(${position_x - angle}deg) rotateY(${position_y}deg)`;
+            if (selected_color === "white" || selected_color === "red" || selected_color === "yellow" || selected_color === "orange" || selected_color === "none") {
+                //
+                cube.style.transform = `rotateX(${position_x - angle}deg) rotateY(${position_y}deg) rotateZ(0deg)`; // hotovo
+                //
+            } else if (selected_color === "green") {
+                //
+                cube.style.transform = `rotateX(${position_x - angle}deg) rotateY(0deg) rotateZ(${position_z}deg)`; // hotovo
+                //
+            } else if (selected_color === "blue") {
+                //
+                cube.style.transform = `rotateX(${position_x - angle}deg) rotateY(0deg) rotateZ(${position_z}deg)`; // hotovo
+                //
+            }
+
             cube.style.transitionDuration = "2s";
-            console.log("x:" + position_x + " ; y:" + position_y)
             break;
         case "d":
-            console.log("D");
-            cube.style.transform = `rotateX(${position_x}deg) rotateY(${Math.abs(position_y + angle)}deg)`;
+            if (selected_color === "white" || selected_color === "red" || selected_color === "yellow" || selected_color === "orange" || selected_color === "none") {
+                //
+                cube.style.transform = `rotateX(${position_x}deg) rotateY(${position_y + angle}deg) rotateZ(0deg)`; // hotovo
+                //
+            } else if (selected_color === "green") {
+                //
+                cube.style.transform = `rotateX(${position_x}deg) rotateY(0deg) rotateZ(${position_z - angle}deg)`; // hotovo
+                //
+            } else if (selected_color === "blue") {
+                //
+                cube.style.transform = `rotateX(${position_x}deg) rotateY(0deg) rotateZ(${position_z + angle}deg)`; // hotovo
+                //
+            }
+
             cube.style.transitionDuration = "2s";
-            console.log("x:" + position_x + " ; y:" + position_y)
             break;
-
-        default:
-            console.log("ANI JEDNO");
     } 
-
-    // console.log(`Key "${e.key}"`)
+    // console.log(`Key: "${e.key}"`);
 })
-
-// let cubeBoundingRect = cube.getBoundingClientRect();
-// let cubeCenter= {
-//     x: cubeBoundingRect.left + cubeBoundingRect.width / 2, 
-//     y: cubeBoundingRect.top + cubeBoundingRect.height / 2
-// };
-
-// cube.addEventListener("mousedown", () => {
-//     document.addEventListener("mousemove", (e) => {
-//         let angleX = Math.atan2(e.pageX - cubeCenter.x, - (e.pageY - cubeCenter.y) ) * (180 / Math.PI);      
-//         let angleY = Math.atan2(e.pageY - cubeCenter.y, - (e.pagex - cubeCenter.x) ) * (180 / Math.PI);      
-//         cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;  
-//     })
-// })
