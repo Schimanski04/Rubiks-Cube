@@ -10,7 +10,7 @@
     <script src="./scripts/main.js" defer></script>
     <script src="./scripts/layout_move.js" defer></script>
     <script src="./scripts/cube_move.js" defer></script>
-    <link rel="shortcut icon" href="./images/rubiks_cube_icon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
     <title>Rubikova kostka</title>
 </head>
 <body>
@@ -32,7 +32,7 @@
         <div class="container">
             <!-- LEFT -->
             <div class="cube-3d">
-                <div id="cube" class="cube" style="transform: rotateX(-30deg) rotateY(-60deg);">
+                <div id="cube" class="cube" style="transform: rotateX(-30deg) rotateY(-60deg) rotateZ(0deg);">
                     <div id="front" class="face front">
                         <div class="front-1">0</div>
                         <div class="front-2">1</div>
@@ -209,17 +209,15 @@
             </div>
         </div>
 
-        <section id="rules"></section>
-
         <button class="back-to-top hidden" id="btn-scroll-top">&#9650; TOP</button>
     </main>
 
     <footer>
         <h3>&copy; 2022 - Rubikova kostka 3×3×3 - Šimon Janata (P2 - WEB)</h3>
         <div class="footer-links">
-            <a href="mailto:simon.janata.020@pslib.cz"><img src="./images/outlook_logo.svg" alt=""></a>
-            <a href="https://github.com/Schimanski04/Rubiks-Cube" target="_blank" rel="noopener noreferrer"><img src="./images/github_logo.svg" alt=""></a>
-            <a href="https://cs.wikipedia.org/wiki/Rubikova_kostka" target="_blank" rel="noopener noreferrer"><img src="./images/wikipedia_logo.svg" alt=""></a>
+            <a href="mailto:simon.janata.020@pslib.cz"><img src="./images/outlook_logo.svg" alt="Outlook"></a>
+            <a href="https://github.com/Schimanski04/Rubiks-Cube" target="_blank" rel="noopener noreferrer"><img src="./images/github_logo.svg" alt="GitHub"></a>
+            <a href="https://cs.wikipedia.org/wiki/Rubikova_kostka" target="_blank" rel="noopener noreferrer"><img src="./images/wikipedia_logo.svg" alt="Wikipedia"></a>
         </div>
     </footer>
 </body>
