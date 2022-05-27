@@ -1,6 +1,4 @@
-// kostka
-// const cube = document.getElementById("cube");
-
+// #region IMPORT ELEMENTŮ & PRVOTNÍ NASTAVENÍ PROMĚNNÝCH
 // strany rotující 3D kostky
 const front_3d = document.getElementById("front"); // white
 const back_3d = document.getElementById("back"); // yellow
@@ -62,12 +60,11 @@ let sides_colors = {
     blue: ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"],
 }
 
-// sides_colors.line1[0] = 10;
-
-console.log(sides_colors)
+// console.log(sides_colors);
 
 let selected_bool = false;
 let selected_color = "none";
+// #endregion
 
 // console.log(red_btn.id);
 // console.log(typeof(red_btn.id));
@@ -136,40 +133,35 @@ function changeColors() {
 function rotateCubeAccordingColor() {
     if (selected_color === "white") {
         //
-        cube.style.transform = "rotateX(-30deg) rotateY(-20deg)";
-        cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(-30deg) rotateY(-20deg) rotateZ(0deg)";
         //
     } else if (selected_color === "red") {
         //
-        cube.style.transform = "rotateX(-30deg) rotateY(-110deg)";
-        cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(-30deg) rotateY(-110deg) rotateZ(0deg)";
         //
     } else if (selected_color === "yellow") {
         //
-        cube.style.transform = "rotateX(-30deg) rotateY(-200deg)";
-        cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(-30deg) rotateY(-200deg) rotateZ(0deg)";
         //
     } else if (selected_color === "orange") {
         //
-        cube.style.transform = "rotateX(-30deg) rotateY(70deg)";
-        cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(-30deg) rotateY(70deg) rotateZ(0deg)";
         //
     } else if (selected_color === "green") {
         //
-        cube.style.transform = "rotateX(60deg) rotateZ(20deg)";
-        cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(60deg) rotateY(0deg) rotateZ(20deg)";
         //
     } else if (selected_color === "blue") {
         //
-        cube.style.transform = "rotateX(-120deg) rotateZ(-20deg)";
-        cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(-120deg) rotateY(0deg) rotateZ(-20deg)";
         //
     } else if (selected_color == "none") {
         //
-        cube.style.transform = "rotateX(-30deg) rotateY(-60deg)";
-        cube.style.transitionDuration = "2s";
+        cube.style.transform = "rotateX(-30deg) rotateY(-60deg) rotateZ(0deg)";
         //
     }
+
+    cube.style.transitionDuration = "2s";
 }
 
 function rotateSideLeft(side) {
@@ -202,50 +194,34 @@ function rotateSideRight(side) {
     side[5] = middle_top;
 }
 
-function checkIfSolved(/*ar1, ar2*/) {
-    // let listColors = ["white", "red", "yellow", "orangered", "green", "blue"];
-    // let count = 0;
-
-    // console.log(sides_colors.white);
-
-    // console.log(sides_colors.white == ["white", "white", "white", "white", "white", "white", "white", "white", "white"]);
-    // // console.log(isEqual())
-
-    for (let prop in sides_colors) {
-        for (let element of sides_colors[prop]) {
-            if (element != listColors[count]) {
-                return false;
-            }
-        }
-        count += 1;
+function checkIfSolved() {
+    //
+    for (let val of sides_colors.white) {
+        if (val != "white") { return false; }
     }
 
-    // for (let val of sides_colors.white) {
-    //     console.log(val == "white")
-    // }
+    for (let val of sides_colors.red) {
+        if (val != "red") { return false; }
+    }
 
-    // let areSame = true;
+    for (let val of sides_colors.yellow) {
+        if (val != "yellow") { return false; }
+    }
 
-    // ar1.map(x => {
-    //     ar2.map (y => {
-    //         if (x != y) areSame = false;
-    //     })
-    // })
+    for (let val of sides_colors.orange) {
+        if (val != "#fe7701") { return false; }
+    }
 
-    // console.log(typeof(ar1))
+    for (let val of sides_colors.green) {
+        if (val != "green") { return false; }
+    }
 
-    // for (let i = 0; i < ar2.length; i++) {
-    //     console.log(ar1[i])
-    //     console.log(ar2[i])
-    //     // if (ar1[i] != ar2[i]) areSame = false
-    // }
-
-
-    // return areSame;
-
-
+    for (let val of sides_colors.blue) {
+        if (val != "blue") { return false; }
+    }
 
     return true;
+    //
 }
 
 // výběr barvy
@@ -285,7 +261,6 @@ cancel.addEventListener("click", () => {
 
     selected_bool = false;
     selected_color = "none";
-    // console.log(selected_bool);
 
     rotateCubeAccordingColor()
 
@@ -293,7 +268,7 @@ cancel.addEventListener("click", () => {
 })
 
 
-// pohyb políček
+// #region POHYB KOSTKY POMOCÍ TLAČÍTEK
 top_left.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
@@ -421,7 +396,7 @@ top_left.addEventListener("click", () => {
         }
 
         changeColors();
-        checkIfSolved();
+        console.log(checkIfSolved());
     }
 })
 
@@ -552,7 +527,7 @@ top_right.addEventListener("click", () => {
         }
 
         changeColors();
-        checkIfSolved();
+        console.log(checkIfSolved());
     }
 })
 
@@ -695,7 +670,7 @@ left_top.addEventListener("click", () => {
         }
 
         changeColors();
-        checkIfSolved();
+        console.log(checkIfSolved());
     }
 })
 
@@ -838,7 +813,7 @@ left_down.addEventListener("click", () => {
         }
 
         changeColors();
-        checkIfSolved();
+        console.log(checkIfSolved());
     }
 })
 
@@ -981,7 +956,7 @@ right_top.addEventListener("click", () => {
         }
 
         changeColors();
-        checkIfSolved();
+        console.log(checkIfSolved());
     }
 })
 
@@ -1124,7 +1099,7 @@ right_down.addEventListener("click", () => {
         }
 
         changeColors();
-        checkIfSolved();
+        console.log(checkIfSolved());
     }
 })
 
@@ -1256,7 +1231,7 @@ bottom_left.addEventListener("click", () => {
         }
 
         changeColors();
-        checkIfSolved();
+        console.log(checkIfSolved());
     }
 })
 
@@ -1388,11 +1363,10 @@ bottom_right.addEventListener("click", () => {
         }
 
         changeColors();
-        checkIfSolved();
+        console.log(checkIfSolved());
     }
 })
-
-
+// #endregion
 
 
 // Zamíchání kostky
@@ -1472,10 +1446,6 @@ function mixCube() {
 
     changeColors();
 }
-
-// for (let prop in sides_colors) {
-//     console.log(`${prop}: ${sides_colors[prop]}`);
-// }
 
 // Nastavení barev kostky po načtení stránky
 window.addEventListener('DOMContentLoaded', () => {
