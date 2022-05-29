@@ -19,7 +19,7 @@
 html {
     position: relative;
     scroll-behavior: smooth;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 body {
@@ -170,10 +170,15 @@ main {
 #cancel {
     width: 35px;
     height: 35px;
-    border: 2px solid black;
-    /* border-radius: 4px; */
+    background-color: #cbeaed;
+    border-style: solid;
+    border-color: #cbeaed;
     padding: 0px;
     margin: 0px 6px;
+    background-image: url("../images/red_cross.svg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: 100% 100%;
 }
 #cancel:hover {
     transform: scale(1.15);
@@ -310,8 +315,22 @@ main > .rules {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin: auto 8px;
+}
+
+.rules ol li::marker {
+    font-weight: bold;
+}
+
+.rules li:nth-child(6) > span {
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.rules li:nth-child(6) > span > a {
+    text-decoration: none;
+    /* color: #28527a; */
 }
 
 .rules > .rules-images {
@@ -319,17 +338,28 @@ main > .rules {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    min-height: 575px;
+}
+
+.rules-images > img {
+    width: 445px;
+    /* border: 2px solid var(--border-color); */
+}
+
+.rules-images > img:nth-child(2) {
+    border: 2px solid var(--border-color);
 }
 
 main > .hint {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin: auto 8px;
 }
 
 .hint iframe {
-    max-width: 45vw;
+    width: 30vw;
 }
 
 .back-to-top {
