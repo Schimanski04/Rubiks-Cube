@@ -17,14 +17,14 @@ const blue_btn = document.getElementById("choose-blue");
 const cancel = document.getElementById("cancel");
 
 // ovládací prvky
-const top_left = document.getElementById("top-left");
-const top_right = document.getElementById("top-right");
-const left_top = document.getElementById("left-top");
-const left_down = document.getElementById("left-down");
-const right_top = document.getElementById("right-top");
-const right_down = document.getElementById("right-down");
-const bottom_left = document.getElementById("bottom-left");
-const bottom_right = document.getElementById("bottom-right");
+const top_left = document.getElementById("top-left"); // 0
+const top_right = document.getElementById("top-right"); // 1
+const left_top = document.getElementById("left-top"); // 2
+const left_down = document.getElementById("left-down"); // 3
+const right_top = document.getElementById("right-top"); // 4
+const right_down = document.getElementById("right-down"); // 5
+const bottom_left = document.getElementById("bottom-left"); // 6
+const bottom_right = document.getElementById("bottom-right"); // 7
 
 const cube_control_center = document.getElementById("cube-control-center");
 
@@ -66,8 +66,6 @@ let selected_bool = false;
 let selected_color = "none";
 // #endregion
 
-// console.log(red_btn.id);
-// console.log(typeof(red_btn.id));
 
 // změní barvy na jednotlivých stranách kostky
 function changeColors() {
@@ -224,6 +222,10 @@ function checkIfSolved() {
     //
 }
 
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+}
+
 // výběr barvy
 for (var btn of choose_btns) {
     btn.addEventListener("click", (e) => {
@@ -268,132 +270,827 @@ cancel.addEventListener("click", () => {
 })
 
 
-// #region POHYB KOSTKY POMOCÍ TLAČÍTEK
+// #region FUNKCE POHYBU TLAČÍTKY
+function topLeft(col) {
+    if (col === "white" || col === "red" || col === "yellow" || col === "orange") {
+        //
+        let top_white_memory = sides_colors.white.slice(0, 3);
+
+        for (let k = 0; k < 3; k++) {
+            sides_colors.white[k] = sides_colors.red[k];
+        }
+        for (let k = 0; k < 3; k++) {
+            sides_colors.red[k] = sides_colors.yellow[k];
+        }
+        for (let k = 0; k < 3; k++) {
+            sides_colors.yellow[k] = sides_colors.orange[k];
+        }
+        for (let k = 0; k < 3; k++) {
+            sides_colors.orange[k] = top_white_memory[k];
+        }
+        rotateSideRight(sides_colors.blue);
+        //
+    } else if (col === "green") {
+        //
+        let top_green_memory = sides_colors.green.slice(0, 3);
+
+        sides_colors.green[0] = sides_colors.red[6];
+        sides_colors.green[1] = sides_colors.red[3];
+        sides_colors.green[2] = sides_colors.red[0];
+
+        sides_colors.red[0] = sides_colors.blue[6];
+        sides_colors.red[3] = sides_colors.blue[7];
+        sides_colors.red[6] = sides_colors.blue[8];
+
+        sides_colors.blue[6] = sides_colors.orange[8];
+        sides_colors.blue[7] = sides_colors.orange[5];
+        sides_colors.blue[8] = sides_colors.orange[2];
+
+        sides_colors.orange[2] = top_green_memory[0];
+        sides_colors.orange[5] = top_green_memory[1];
+        sides_colors.orange[8] = top_green_memory[2];
+
+        rotateSideRight(sides_colors.white);
+        //
+    } else if (col === "blue") {
+        //
+        let top_blue_memory = sides_colors.blue.slice(0, 3);
+
+        sides_colors.blue[0] = sides_colors.red[2];
+        sides_colors.blue[1] = sides_colors.red[5];
+        sides_colors.blue[2] = sides_colors.red[8];
+
+        sides_colors.red[2] = sides_colors.green[8];
+        sides_colors.red[5] = sides_colors.green[7];
+        sides_colors.red[8] = sides_colors.green[6];
+
+        sides_colors.green[6] = sides_colors.orange[0];
+        sides_colors.green[7] = sides_colors.orange[3];
+        sides_colors.green[8] = sides_colors.orange[6];
+
+        sides_colors.orange[0] = top_blue_memory[2];
+        sides_colors.orange[3] = top_blue_memory[1];
+        sides_colors.orange[6] = top_blue_memory[0];
+
+        rotateSideRight(sides_colors.yellow);
+        //
+    }
+}
+
+function topRight(col) {
+    if (col === "white" || col === "red" || col === "yellow" || col === "orange") {
+        //
+        let top_white_memory = sides_colors.white.slice(0, 3);
+
+        for (let k = 0; k < 3; k++) {
+            sides_colors.white[k] = sides_colors.orange[k];
+        }
+        for (let k = 0; k < 3; k++) {
+            sides_colors.orange[k] = sides_colors.yellow[k];
+        }
+        for (let k = 0; k < 3; k++) {
+            sides_colors.yellow[k] = sides_colors.red[k];
+        }
+        for (let k = 0; k < 3; k++) {
+            sides_colors.red[k] = top_white_memory[k];
+        }
+        rotateSideLeft(sides_colors.blue);
+        //
+    } else if (col === "green") {
+        //
+        let top_green_memory = sides_colors.green.slice(0, 3);
+
+        sides_colors.green[0] = sides_colors.orange[2];
+        sides_colors.green[1] = sides_colors.orange[5];
+        sides_colors.green[2] = sides_colors.orange[8];
+
+        sides_colors.orange[2] = sides_colors.blue[8];
+        sides_colors.orange[5] = sides_colors.blue[7];
+        sides_colors.orange[8] = sides_colors.blue[6];
+
+        sides_colors.blue[6] = sides_colors.red[0];
+        sides_colors.blue[7] = sides_colors.red[3];
+        sides_colors.blue[8] = sides_colors.red[6];
+
+        sides_colors.red[0] = top_green_memory[2];
+        sides_colors.red[3] = top_green_memory[1];
+        sides_colors.red[6] = top_green_memory[0];
+
+        rotateSideLeft(sides_colors.white);
+        //
+    } else if (col === "blue") {
+        //
+        let top_blue_memory = sides_colors.blue.slice(0, 3);
+
+        sides_colors.blue[0] = sides_colors.orange[6];
+        sides_colors.blue[1] = sides_colors.orange[3];
+        sides_colors.blue[2] = sides_colors.orange[0];
+
+        sides_colors.orange[0] = sides_colors.green[6];
+        sides_colors.orange[3] = sides_colors.green[7];
+        sides_colors.orange[6] = sides_colors.green[8];
+
+        sides_colors.green[6] = sides_colors.red[8];
+        sides_colors.green[7] = sides_colors.red[5];
+        sides_colors.green[8] = sides_colors.red[2];
+
+        sides_colors.red[2] = top_blue_memory[0];
+        sides_colors.red[5] = top_blue_memory[1];
+        sides_colors.red[8] = top_blue_memory[2];
+
+        rotateSideLeft(sides_colors.yellow);
+        //
+    }
+}
+
+function leftTop(col) {
+    if (col === "white") {
+        //
+        let left_white_memory = [sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]];
+
+        sides_colors.white[0] = sides_colors.green[0];
+        sides_colors.white[3] = sides_colors.green[3];
+        sides_colors.white[6] = sides_colors.green[6];
+
+        sides_colors.green[0] = sides_colors.yellow[8];
+        sides_colors.green[3] = sides_colors.yellow[5];
+        sides_colors.green[6] = sides_colors.yellow[2];
+
+        sides_colors.yellow[2] = sides_colors.blue[6];
+        sides_colors.yellow[5] = sides_colors.blue[3];
+        sides_colors.yellow[8] = sides_colors.blue[0];
+
+        sides_colors.blue[0] = left_white_memory[0];
+        sides_colors.blue[3] = left_white_memory[1];
+        sides_colors.blue[6] = left_white_memory[2];
+
+        rotateSideLeft(sides_colors.orange);
+        //
+    } else if (col === "red") {
+        //
+        let left_red_memory = [sides_colors.red[0], sides_colors.red[3], sides_colors.red[6]]
+
+        sides_colors.red[0] = sides_colors.green[2];
+        sides_colors.red[3] = sides_colors.green[1];
+        sides_colors.red[6] = sides_colors.green[0];
+
+        sides_colors.green[0] = sides_colors.orange[2];
+        sides_colors.green[1] = sides_colors.orange[5];
+        sides_colors.green[2] = sides_colors.orange[8];
+
+        sides_colors.orange[2] = sides_colors.blue[8];
+        sides_colors.orange[5] = sides_colors.blue[7];
+        sides_colors.orange[8] = sides_colors.blue[6];
+
+        sides_colors.blue[6] = left_red_memory[0];
+        sides_colors.blue[7] = left_red_memory[1];
+        sides_colors.blue[8] = left_red_memory[2];
+
+        rotateSideLeft(sides_colors.white);
+        //
+    } else if (col === "yellow") {
+        //
+        let left_yellow_memory = [sides_colors.yellow[0], sides_colors.yellow[3], sides_colors.yellow[6]]
+
+        sides_colors.yellow[0] = sides_colors.green[8];
+        sides_colors.yellow[3] = sides_colors.green[5];
+        sides_colors.yellow[6] = sides_colors.green[2];
+
+        sides_colors.green[2] = sides_colors.white[2];
+        sides_colors.green[5] = sides_colors.white[5];
+        sides_colors.green[8] = sides_colors.white[8];
+
+        sides_colors.white[2] = sides_colors.blue[2];
+        sides_colors.white[5] = sides_colors.blue[5];
+        sides_colors.white[8] = sides_colors.blue[8];
+
+        sides_colors.blue[2] = left_yellow_memory[2];
+        sides_colors.blue[5] = left_yellow_memory[1];
+        sides_colors.blue[8] = left_yellow_memory[0];
+
+        rotateSideLeft(sides_colors.red);
+        //
+    } else if (col === "orange") {
+        //
+        let left_orange_memory = [sides_colors.orange[0], sides_colors.orange[3], sides_colors.orange[6]]
+
+        sides_colors.orange[0] = sides_colors.green[6];
+        sides_colors.orange[3] = sides_colors.green[7];
+        sides_colors.orange[6] = sides_colors.green[8];
+
+        sides_colors.green[6] = sides_colors.red[8];
+        sides_colors.green[7] = sides_colors.red[5];
+        sides_colors.green[8] = sides_colors.red[2];
+
+        sides_colors.red[2] = sides_colors.blue[0];
+        sides_colors.red[5] = sides_colors.blue[1];
+        sides_colors.red[8] = sides_colors.blue[2];
+
+        sides_colors.blue[0] = left_orange_memory[2];
+        sides_colors.blue[1] = left_orange_memory[1];
+        sides_colors.blue[2] = left_orange_memory[0];
+
+        rotateSideLeft(sides_colors.yellow);
+        //
+    } else if (col === "green") {
+        //
+        let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
+
+        sides_colors.blue[0] = sides_colors.white[0];
+        sides_colors.blue[3] = sides_colors.white[3];
+        sides_colors.blue[6] = sides_colors.white[6];
+
+        sides_colors.white[0] = sides_colors.green[0];
+        sides_colors.white[3] = sides_colors.green[3];
+        sides_colors.white[6] = sides_colors.green[6];
+
+        sides_colors.green[0] = sides_colors.yellow[8];
+        sides_colors.green[3] = sides_colors.yellow[5];
+        sides_colors.green[6] = sides_colors.yellow[2];
+
+        sides_colors.yellow[2] = left_blue_memory[2];
+        sides_colors.yellow[5] = left_blue_memory[1];
+        sides_colors.yellow[8] = left_blue_memory[0];
+
+        rotateSideLeft(sides_colors.orange);
+        //
+    } else if (col === "blue") {
+        //
+        let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
+
+        sides_colors.blue[0] = sides_colors.white[0];
+        sides_colors.blue[3] = sides_colors.white[3];
+        sides_colors.blue[6] = sides_colors.white[6];
+
+        sides_colors.white[0] = sides_colors.green[0];
+        sides_colors.white[3] = sides_colors.green[3];
+        sides_colors.white[6] = sides_colors.green[6];
+
+        sides_colors.green[0] = sides_colors.yellow[8];
+        sides_colors.green[3] = sides_colors.yellow[5];
+        sides_colors.green[6] = sides_colors.yellow[2];
+
+        sides_colors.yellow[2] = left_blue_memory[2];
+        sides_colors.yellow[5] = left_blue_memory[1];
+        sides_colors.yellow[8] = left_blue_memory[0];
+
+        rotateSideLeft(sides_colors.orange);
+        //
+    }
+}
+
+function leftDown(col) {
+    if (col === "white") {
+        //
+        let left_white_memory = [sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]];
+
+        sides_colors.white[0] = sides_colors.blue[0];
+        sides_colors.white[3] = sides_colors.blue[3];
+        sides_colors.white[6] = sides_colors.blue[6];
+
+        sides_colors.blue[0] = sides_colors.yellow[8];
+        sides_colors.blue[3] = sides_colors.yellow[5];
+        sides_colors.blue[6] = sides_colors.yellow[2];
+
+        sides_colors.yellow[2] = sides_colors.green[6];
+        sides_colors.yellow[5] = sides_colors.green[3];
+        sides_colors.yellow[8] = sides_colors.green[0];
+
+        sides_colors.green[0] = left_white_memory[0];
+        sides_colors.green[3] = left_white_memory[1];
+        sides_colors.green[6] = left_white_memory[2];
+
+        rotateSideRight(sides_colors.orange);
+        //
+    } else if (col === "red") {
+        //
+        let left_red_memory = [sides_colors.red[0], sides_colors.red[3], sides_colors.red[6]]
+
+        sides_colors.red[0] = sides_colors.blue[6];
+        sides_colors.red[3] = sides_colors.blue[7];
+        sides_colors.red[6] = sides_colors.blue[8];
+
+        sides_colors.blue[8] = sides_colors.orange[2];
+        sides_colors.blue[7] = sides_colors.orange[5];
+        sides_colors.blue[6] = sides_colors.orange[8];
+
+        sides_colors.orange[2] = sides_colors.green[0];
+        sides_colors.orange[5] = sides_colors.green[1];
+        sides_colors.orange[8] = sides_colors.green[2];
+
+        sides_colors.green[2] = left_red_memory[0];
+        sides_colors.green[1] = left_red_memory[1];
+        sides_colors.green[0] = left_red_memory[2];
+
+        rotateSideRight(sides_colors.white);
+        //
+    } else if (col === "yellow") {
+        //
+        let left_yellow_memory = [sides_colors.yellow[0], sides_colors.yellow[3], sides_colors.yellow[6]]
+
+        sides_colors.yellow[0] = sides_colors.blue[8];
+        sides_colors.yellow[3] = sides_colors.blue[5];
+        sides_colors.yellow[6] = sides_colors.blue[2];
+
+        sides_colors.blue[2] = sides_colors.white[2];
+        sides_colors.blue[5] = sides_colors.white[5];
+        sides_colors.blue[8] = sides_colors.white[8];
+
+        sides_colors.white[2] = sides_colors.green[2];
+        sides_colors.white[5] = sides_colors.green[5];
+        sides_colors.white[8] = sides_colors.green[8];
+
+        sides_colors.green[2] = left_yellow_memory[2];
+        sides_colors.green[5] = left_yellow_memory[1];
+        sides_colors.green[8] = left_yellow_memory[0];
+
+        rotateSideRight(sides_colors.red);
+        //
+    } else if (col === "orange") {
+        //
+        let left_orange_memory = [sides_colors.orange[0], sides_colors.orange[3], sides_colors.orange[6]]
+
+        sides_colors.orange[0] = sides_colors.blue[2];
+        sides_colors.orange[3] = sides_colors.blue[1];
+        sides_colors.orange[6] = sides_colors.blue[0];
+
+        sides_colors.blue[0] = sides_colors.red[2];
+        sides_colors.blue[1] = sides_colors.red[5];
+        sides_colors.blue[2] = sides_colors.red[8];
+
+        sides_colors.red[2] = sides_colors.green[8];
+        sides_colors.red[5] = sides_colors.green[7];
+        sides_colors.red[8] = sides_colors.green[6];
+
+        sides_colors.green[6] = left_orange_memory[0];
+        sides_colors.green[7] = left_orange_memory[1];
+        sides_colors.green[8] = left_orange_memory[2];
+
+        rotateSideRight(sides_colors.yellow);
+        //
+    } else if (col === "green") {
+        //
+        let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
+
+        sides_colors.blue[0] = sides_colors.yellow[8];
+        sides_colors.blue[3] = sides_colors.yellow[5];
+        sides_colors.blue[6] = sides_colors.yellow[2];
+
+        sides_colors.yellow[2] = sides_colors.green[6];
+        sides_colors.yellow[5] = sides_colors.green[3];
+        sides_colors.yellow[8] = sides_colors.green[0];
+
+        sides_colors.green[0] = sides_colors.white[0];
+        sides_colors.green[3] = sides_colors.white[3];
+        sides_colors.green[6] = sides_colors.white[6];
+
+        sides_colors.white[0] = left_blue_memory[0];
+        sides_colors.white[3] = left_blue_memory[1];
+        sides_colors.white[6] = left_blue_memory[2];
+
+        rotateSideRight(sides_colors.orange);
+        //
+    } else if (col === "blue") {
+        //
+        let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
+
+        sides_colors.blue[0] = sides_colors.yellow[8];
+        sides_colors.blue[3] = sides_colors.yellow[5];
+        sides_colors.blue[6] = sides_colors.yellow[2];
+
+        sides_colors.yellow[2] = sides_colors.green[6];
+        sides_colors.yellow[5] = sides_colors.green[3];
+        sides_colors.yellow[8] = sides_colors.green[0];
+
+        sides_colors.green[0] = sides_colors.white[0];
+        sides_colors.green[3] = sides_colors.white[3];
+        sides_colors.green[6] = sides_colors.white[6];
+
+        sides_colors.white[0] = left_blue_memory[0];
+        sides_colors.white[3] = left_blue_memory[1];
+        sides_colors.white[6] = left_blue_memory[2];
+
+        rotateSideRight(sides_colors.orange);
+        //
+    }
+}
+
+function rightTop(col) {
+    if (col === "white") {
+        //
+        let right_white_memory = [sides_colors.white[2], sides_colors.white[5], sides_colors.white[8]];
+
+        sides_colors.white[2] = sides_colors.green[2];
+        sides_colors.white[5] = sides_colors.green[5];
+        sides_colors.white[8] = sides_colors.green[8];
+
+        sides_colors.green[2] = sides_colors.yellow[6];
+        sides_colors.green[5] = sides_colors.yellow[3];
+        sides_colors.green[8] = sides_colors.yellow[0];
+
+        sides_colors.yellow[0] = sides_colors.blue[8];
+        sides_colors.yellow[3] = sides_colors.blue[5];
+        sides_colors.yellow[6] = sides_colors.blue[2];
+
+        sides_colors.blue[2] = right_white_memory[0];
+        sides_colors.blue[5] = right_white_memory[1];
+        sides_colors.blue[8] = right_white_memory[2];
+
+        rotateSideRight(sides_colors.red);
+        //
+    } else if (col === "red") {
+        //
+        let right_red_memory = [sides_colors.red[2], sides_colors.red[5], sides_colors.red[8]]
+
+        sides_colors.red[2] = sides_colors.green[8];
+        sides_colors.red[5] = sides_colors.green[7];
+        sides_colors.red[8] = sides_colors.green[6];
+
+        sides_colors.green[8] = sides_colors.orange[6];
+        sides_colors.green[7] = sides_colors.orange[3];
+        sides_colors.green[6] = sides_colors.orange[0];
+
+        sides_colors.orange[0] = sides_colors.blue[2];
+        sides_colors.orange[3] = sides_colors.blue[1];
+        sides_colors.orange[6] = sides_colors.blue[0];
+
+        sides_colors.blue[0] = right_red_memory[0];
+        sides_colors.blue[1] = right_red_memory[1];
+        sides_colors.blue[2] = right_red_memory[2];
+
+        rotateSideRight(sides_colors.yellow);
+        //
+    } else if (col === "yellow") {
+        //
+        let right_yellow_memory = [sides_colors.yellow[2], sides_colors.yellow[5], sides_colors.yellow[8]]
+
+        sides_colors.yellow[2] = sides_colors.green[6];
+        sides_colors.yellow[5] = sides_colors.green[3];
+        sides_colors.yellow[8] = sides_colors.green[0];
+
+        sides_colors.green[0] = sides_colors.white[0];
+        sides_colors.green[3] = sides_colors.white[3];
+        sides_colors.green[6] = sides_colors.white[6];
+
+        sides_colors.white[0] = sides_colors.blue[0];
+        sides_colors.white[3] = sides_colors.blue[3];
+        sides_colors.white[6] = sides_colors.blue[6];
+
+        sides_colors.blue[0] = right_yellow_memory[2];
+        sides_colors.blue[3] = right_yellow_memory[1];
+        sides_colors.blue[6] = right_yellow_memory[0];
+
+        rotateSideRight(sides_colors.orange);
+        //
+    } else if (col === "orange") {
+        //
+        let right_orange_memory = [sides_colors.orange[2], sides_colors.orange[5], sides_colors.orange[8]]
+
+        sides_colors.orange[2] = sides_colors.green[0];
+        sides_colors.orange[5] = sides_colors.green[1];
+        sides_colors.orange[8] = sides_colors.green[2];
+
+        sides_colors.green[0] = sides_colors.red[6];
+        sides_colors.green[1] = sides_colors.red[3];
+        sides_colors.green[2] = sides_colors.red[0];
+
+        sides_colors.red[0] = sides_colors.blue[6];
+        sides_colors.red[3] = sides_colors.blue[7];
+        sides_colors.red[6] = sides_colors.blue[8];
+
+        sides_colors.blue[6] = right_orange_memory[2];
+        sides_colors.blue[7] = right_orange_memory[1];
+        sides_colors.blue[8] = right_orange_memory[0];
+
+        rotateSideRight(sides_colors.white);
+        //
+    } else if (col === "green") {
+        //
+        let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
+
+        sides_colors.blue[2] = sides_colors.white[2];
+        sides_colors.blue[5] = sides_colors.white[5];
+        sides_colors.blue[8] = sides_colors.white[8];
+
+        sides_colors.white[2] = sides_colors.green[2];
+        sides_colors.white[5] = sides_colors.green[5];
+        sides_colors.white[8] = sides_colors.green[8];
+
+        sides_colors.green[2] = sides_colors.yellow[6];
+        sides_colors.green[5] = sides_colors.yellow[3];
+        sides_colors.green[8] = sides_colors.yellow[0];
+
+        sides_colors.yellow[0] = right_blue_memory[2];
+        sides_colors.yellow[3] = right_blue_memory[1];
+        sides_colors.yellow[6] = right_blue_memory[0];
+
+        rotateSideRight(sides_colors.red);
+        //
+    } else if (col === "blue") {
+        //
+        let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
+
+        sides_colors.blue[2] = sides_colors.white[2];
+        sides_colors.blue[5] = sides_colors.white[5];
+        sides_colors.blue[8] = sides_colors.white[8];
+
+        sides_colors.white[2] = sides_colors.green[2];
+        sides_colors.white[5] = sides_colors.green[5];
+        sides_colors.white[8] = sides_colors.green[8];
+
+        sides_colors.green[2] = sides_colors.yellow[6];
+        sides_colors.green[5] = sides_colors.yellow[3];
+        sides_colors.green[8] = sides_colors.yellow[0];
+
+        sides_colors.yellow[0] = right_blue_memory[2];
+        sides_colors.yellow[3] = right_blue_memory[1];
+        sides_colors.yellow[6] = right_blue_memory[0];
+
+        rotateSideRight(sides_colors.red);
+        //
+    }
+}
+
+function rightDown(col) {
+    if (col === "white") {
+        //
+        let right_white_memory = [sides_colors.white[2], sides_colors.white[5], sides_colors.white[8]];
+
+        sides_colors.white[2] = sides_colors.blue[2];
+        sides_colors.white[5] = sides_colors.blue[5];
+        sides_colors.white[8] = sides_colors.blue[8];
+
+        sides_colors.blue[2] = sides_colors.yellow[6];
+        sides_colors.blue[5] = sides_colors.yellow[3];
+        sides_colors.blue[8] = sides_colors.yellow[0];
+
+        sides_colors.yellow[0] = sides_colors.green[8];
+        sides_colors.yellow[3] = sides_colors.green[5];
+        sides_colors.yellow[6] = sides_colors.green[2];
+
+        sides_colors.green[2] = right_white_memory[0];
+        sides_colors.green[5] = right_white_memory[1];
+        sides_colors.green[8] = right_white_memory[2];
+
+        rotateSideLeft(sides_colors.red);
+        //
+    } else if (col === "red") {
+        //
+        let right_red_memory = [sides_colors.red[2], sides_colors.red[5], sides_colors.red[8]]
+
+        sides_colors.red[2] = sides_colors.blue[0];
+        sides_colors.red[5] = sides_colors.blue[1];
+        sides_colors.red[8] = sides_colors.blue[2];
+
+        sides_colors.blue[0] = sides_colors.orange[6];
+        sides_colors.blue[1] = sides_colors.orange[3];
+        sides_colors.blue[2] = sides_colors.orange[0];
+
+        sides_colors.orange[0] = sides_colors.green[6];
+        sides_colors.orange[3] = sides_colors.green[7];
+        sides_colors.orange[6] = sides_colors.green[8];
+
+        sides_colors.green[6] = right_red_memory[2];
+        sides_colors.green[7] = right_red_memory[1];
+        sides_colors.green[8] = right_red_memory[0];
+
+        rotateSideLeft(sides_colors.yellow);
+        //
+    } else if (col === "yellow") {
+        //
+        let right_yellow_memory = [sides_colors.yellow[2], sides_colors.yellow[5], sides_colors.yellow[8]]
+
+        sides_colors.yellow[2] = sides_colors.blue[6];
+        sides_colors.yellow[5] = sides_colors.blue[3];
+        sides_colors.yellow[8] = sides_colors.blue[0];
+
+        sides_colors.blue[0] = sides_colors.white[0];
+        sides_colors.blue[3] = sides_colors.white[3];
+        sides_colors.blue[6] = sides_colors.white[6];
+
+        sides_colors.white[0] = sides_colors.green[0];
+        sides_colors.white[3] = sides_colors.green[3];
+        sides_colors.white[6] = sides_colors.green[6];
+
+        sides_colors.green[0] = right_yellow_memory[2];
+        sides_colors.green[3] = right_yellow_memory[1];
+        sides_colors.green[6] = right_yellow_memory[0];
+
+        rotateSideLeft(sides_colors.orange);
+        //
+    } else if (col === "orange") {
+        //
+        let right_orange_memory = [sides_colors.orange[2], sides_colors.orange[5], sides_colors.orange[8]]
+
+        sides_colors.orange[2] = sides_colors.blue[8];
+        sides_colors.orange[5] = sides_colors.blue[7];
+        sides_colors.orange[8] = sides_colors.blue[6];
+
+        sides_colors.blue[6] = sides_colors.red[0];
+        sides_colors.blue[7] = sides_colors.red[3];
+        sides_colors.blue[8] = sides_colors.red[6];
+
+        sides_colors.red[0] = sides_colors.green[2];
+        sides_colors.red[3] = sides_colors.green[1];
+        sides_colors.red[6] = sides_colors.green[0];
+
+        sides_colors.green[0] = right_orange_memory[0];
+        sides_colors.green[1] = right_orange_memory[1];
+        sides_colors.green[2] = right_orange_memory[2];
+
+        rotateSideLeft(sides_colors.white);
+        //
+    } else if (col === "green") {
+        //
+        let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
+
+        sides_colors.blue[2] = sides_colors.yellow[6];
+        sides_colors.blue[5] = sides_colors.yellow[3];
+        sides_colors.blue[8] = sides_colors.yellow[0];
+
+        sides_colors.yellow[0] = sides_colors.green[8];
+        sides_colors.yellow[3] = sides_colors.green[5];
+        sides_colors.yellow[6] = sides_colors.green[2];
+
+        sides_colors.green[2] = sides_colors.white[2];
+        sides_colors.green[5] = sides_colors.white[5];
+        sides_colors.green[8] = sides_colors.white[8];
+
+        sides_colors.white[2] = right_blue_memory[0];
+        sides_colors.white[5] = right_blue_memory[1];
+        sides_colors.white[8] = right_blue_memory[2];
+
+        rotateSideLeft(sides_colors.red);
+        //
+    } else if (col === "blue") {
+        //
+        let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
+
+        sides_colors.blue[2] = sides_colors.yellow[6];
+        sides_colors.blue[5] = sides_colors.yellow[3];
+        sides_colors.blue[8] = sides_colors.yellow[0];
+
+        sides_colors.yellow[0] = sides_colors.green[8];
+        sides_colors.yellow[3] = sides_colors.green[5];
+        sides_colors.yellow[6] = sides_colors.green[2];
+
+        sides_colors.green[2] = sides_colors.white[2];
+        sides_colors.green[5] = sides_colors.white[5];
+        sides_colors.green[8] = sides_colors.white[8];
+
+        sides_colors.white[2] = right_blue_memory[0];
+        sides_colors.white[5] = right_blue_memory[1];
+        sides_colors.white[8] = right_blue_memory[2];
+
+        rotateSideLeft(sides_colors.red);
+        //
+    }
+}
+
+function bottomLeft(col) {
+    if (col === "white" || col === "red" || col === "yellow" || col === "orange") {
+        //
+        let bottom_white_memory = sides_colors.white.slice(6);
+
+        for (let k = 6; k < 9; k++) {
+            sides_colors.white[k] = sides_colors.red[k];
+        }
+        for (let k = 6; k < 9; k++) {
+            sides_colors.red[k] = sides_colors.yellow[k];
+        }
+        for (let k = 6; k < 9; k++) {
+            sides_colors.yellow[k] = sides_colors.orange[k];
+        }
+
+        sides_colors.orange[6] = bottom_white_memory[0];
+        sides_colors.orange[7] = bottom_white_memory[1];
+        sides_colors.orange[8] = bottom_white_memory[2];
+
+        rotateSideLeft(sides_colors.green);
+        //
+    } else if (col === "green") {
+        //
+        let bottom_green_memory = sides_colors.green.slice(6);
+
+        sides_colors.green[6] = sides_colors.red[8];
+        sides_colors.green[7] = sides_colors.red[5];
+        sides_colors.green[8] = sides_colors.red[2];
+
+        sides_colors.red[2] = sides_colors.blue[0];
+        sides_colors.red[5] = sides_colors.blue[1];
+        sides_colors.red[8] = sides_colors.blue[2];
+
+        sides_colors.blue[0] = sides_colors.orange[6];
+        sides_colors.blue[1] = sides_colors.orange[3];
+        sides_colors.blue[2] = sides_colors.orange[0];
+
+        sides_colors.orange[0] = bottom_green_memory[0];
+        sides_colors.orange[3] = bottom_green_memory[1];
+        sides_colors.orange[6] = bottom_green_memory[2];
+
+        rotateSideLeft(sides_colors.yellow);
+        //
+    } else if (col === "blue") {
+        //
+        let bottom_blue_memory = sides_colors.blue.slice(6);
+
+        sides_colors.blue[6] = sides_colors.red[0];
+        sides_colors.blue[7] = sides_colors.red[3];
+        sides_colors.blue[8] = sides_colors.red[6];
+
+        sides_colors.red[0] = sides_colors.green[2];
+        sides_colors.red[3] = sides_colors.green[1];
+        sides_colors.red[6] = sides_colors.green[0];
+
+        sides_colors.green[0] = sides_colors.orange[2];
+        sides_colors.green[1] = sides_colors.orange[5];
+        sides_colors.green[2] = sides_colors.orange[8];
+
+        sides_colors.orange[2] = bottom_blue_memory[2];
+        sides_colors.orange[5] = bottom_blue_memory[1];
+        sides_colors.orange[8] = bottom_blue_memory[0];
+
+        rotateSideLeft(sides_colors.white);
+        //
+    }
+}
+
+function bottomRight(col) {
+    if (col === "white" || col === "red" || col === "yellow" || col === "orange") {
+        //
+        let bottom_white_memory = sides_colors.white.slice(6);
+
+        for (let k = 6; k < 9; k++) {
+            sides_colors.white[k] = sides_colors.orange[k];
+        }
+        for (let k = 6; k < 9; k++) {
+            sides_colors.orange[k] = sides_colors.yellow[k];
+        }
+        for (let k = 6; k < 9; k++) {
+            sides_colors.yellow[k] = sides_colors.red[k];
+        }
+
+        sides_colors.red[6] = bottom_white_memory[0];
+        sides_colors.red[7] = bottom_white_memory[1];
+        sides_colors.red[8] = bottom_white_memory[2];
+
+        rotateSideRight(sides_colors.green);
+        //
+    } else if (col === "green") {
+        //
+        let bottom_green_memory = sides_colors.green.slice(6);
+
+        sides_colors.green[6] = sides_colors.orange[0];
+        sides_colors.green[7] = sides_colors.orange[3];
+        sides_colors.green[8] = sides_colors.orange[6];
+
+        sides_colors.orange[0] = sides_colors.blue[2];
+        sides_colors.orange[3] = sides_colors.blue[1];
+        sides_colors.orange[6] = sides_colors.blue[0];
+
+        sides_colors.blue[0] = sides_colors.red[2];
+        sides_colors.blue[1] = sides_colors.red[5];
+        sides_colors.blue[2] = sides_colors.red[8];
+
+        sides_colors.red[2] = bottom_green_memory[2];
+        sides_colors.red[5] = bottom_green_memory[1];
+        sides_colors.red[8] = bottom_green_memory[0];
+
+        rotateSideRight(sides_colors.yellow);
+        //
+    } else if (col === "blue") {
+        //
+        let bottom_blue_memory = sides_colors.blue.slice(6);
+
+        sides_colors.blue[6] = sides_colors.orange[8];
+        sides_colors.blue[7] = sides_colors.orange[5];
+        sides_colors.blue[8] = sides_colors.orange[2];
+
+        sides_colors.orange[2] = sides_colors.green[0];
+        sides_colors.orange[5] = sides_colors.green[1];
+        sides_colors.orange[8] = sides_colors.green[2];
+
+        sides_colors.green[0] = sides_colors.red[6];
+        sides_colors.green[1] = sides_colors.red[3];
+        sides_colors.green[2] = sides_colors.red[0];
+
+        sides_colors.red[0] = bottom_blue_memory[0];
+        sides_colors.red[3] = bottom_blue_memory[1];
+        sides_colors.red[6] = bottom_blue_memory[2];
+
+        rotateSideRight(sides_colors.white);
+        //
+    }
+}
+// #endregion
+
+
+// #region OBSLUHA TLAČÍTEK (FUNKCE POHYBU)
 top_left.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
-        if (selected_color === "white") {
-            //
-            let top_white_memory = sides_colors.white.slice(0, 3);
-
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = sides_colors.yellow[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = top_white_memory[k];
-            }
-
-            rotateSideRight(sides_colors.blue);
-            //
-        } else if (selected_color === "red") {
-            //
-            let top_white_memory = sides_colors.white.slice(0, 3);
-
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = sides_colors.yellow[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = top_white_memory[k];
-            }
-
-            rotateSideRight(sides_colors.blue);
-            //
-        } else if (selected_color === "yellow") {
-            //
-            let top_white_memory = sides_colors.white.slice(0, 3);
-
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = sides_colors.yellow[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = top_white_memory[k];
-            }
-
-            rotateSideRight(sides_colors.blue);
-            //
-        } else if (selected_color === "orange") {
-            //
-            let top_white_memory = sides_colors.white.slice(0, 3);
-
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = sides_colors.yellow[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = top_white_memory[k];
-            }
-
-            rotateSideRight(sides_colors.blue);
-            //
-        } else if (selected_color === "green") {
-            //
-            let top_green_memory = sides_colors.green.slice(0, 3);
-
-            sides_colors.green[0] = sides_colors.red[6];
-            sides_colors.green[1] = sides_colors.red[3];
-            sides_colors.green[2] = sides_colors.red[0];
-
-            sides_colors.red[0] = sides_colors.blue[6];
-            sides_colors.red[3] = sides_colors.blue[7];
-            sides_colors.red[6] = sides_colors.blue[8];
-
-            sides_colors.blue[6] = sides_colors.orange[8];
-            sides_colors.blue[7] = sides_colors.orange[5];
-            sides_colors.blue[8] = sides_colors.orange[2];
-
-            sides_colors.orange[2] = top_green_memory[0];
-            sides_colors.orange[5] = top_green_memory[1];
-            sides_colors.orange[8] = top_green_memory[2];
-
-            rotateSideRight(sides_colors.white);
-            //
-        } else if (selected_color === "blue") {
-            //
-            let top_blue_memory = sides_colors.blue.slice(0, 3);
-
-            sides_colors.blue[0] = sides_colors.red[2];
-            sides_colors.blue[1] = sides_colors.red[5];
-            sides_colors.blue[2] = sides_colors.red[8];
-
-            sides_colors.red[2] = sides_colors.green[8];
-            sides_colors.red[5] = sides_colors.green[7];
-            sides_colors.red[8] = sides_colors.green[6];
-
-            sides_colors.green[6] = sides_colors.orange[0];
-            sides_colors.green[7] = sides_colors.orange[3];
-            sides_colors.green[8] = sides_colors.orange[6];
-
-            sides_colors.orange[0] = top_blue_memory[2];
-            sides_colors.orange[3] = top_blue_memory[1];
-            sides_colors.orange[6] = top_blue_memory[0];
-
-            rotateSideRight(sides_colors.yellow);
-            //
-        }
+        topLeft(selected_color);
 
         changeColors();
         console.log(checkIfSolved());
@@ -404,127 +1101,7 @@ top_right.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
-        if (selected_color === "white") {
-            //
-            let top_white_memory = sides_colors.white.slice(0, 3);
-
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = sides_colors.yellow[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = top_white_memory[k];
-            }
-
-            rotateSideLeft(sides_colors.blue);
-            //
-        } else if (selected_color === "red") {
-            //
-            let top_white_memory = sides_colors.white.slice(0, 3);
-
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = sides_colors.yellow[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = top_white_memory[k];
-            }
-
-            rotateSideLeft(sides_colors.blue);
-            //
-        } else if (selected_color === "yellow") {
-            //
-            let top_white_memory = sides_colors.white.slice(0, 3);
-
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = sides_colors.yellow[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = top_white_memory[k];
-            }
-
-            rotateSideLeft(sides_colors.blue);
-            //
-        } else if (selected_color === "orange") {
-            //
-            let top_white_memory = sides_colors.white.slice(0, 3);
-
-            for (let k = 0; k < 3; k++) {
-                sides_colors.white[k] = sides_colors.orange[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.orange[k] = sides_colors.yellow[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-            for (let k = 0; k < 3; k++) {
-                sides_colors.red[k] = top_white_memory[k];
-            }
-
-            rotateSideLeft(sides_colors.blue);
-            //
-        } else if (selected_color === "green") {
-            //
-            let top_green_memory = sides_colors.green.slice(0, 3);
-
-            sides_colors.green[0] = sides_colors.orange[2];
-            sides_colors.green[1] = sides_colors.orange[5];
-            sides_colors.green[2] = sides_colors.orange[8];
-
-            sides_colors.orange[2] = sides_colors.blue[8];
-            sides_colors.orange[5] = sides_colors.blue[7];
-            sides_colors.orange[8] = sides_colors.blue[6];
-
-            sides_colors.blue[6] = sides_colors.red[0];
-            sides_colors.blue[7] = sides_colors.red[3];
-            sides_colors.blue[8] = sides_colors.red[6];
-
-            sides_colors.red[0] = top_green_memory[2];
-            sides_colors.red[3] = top_green_memory[1];
-            sides_colors.red[6] = top_green_memory[0];
-
-            rotateSideLeft(sides_colors.white);
-            //
-        } else if (selected_color === "blue") {
-            //
-            let top_blue_memory = sides_colors.blue.slice(0, 3);
-
-            sides_colors.blue[0] = sides_colors.orange[6];
-            sides_colors.blue[1] = sides_colors.orange[3];
-            sides_colors.blue[2] = sides_colors.orange[0];
-
-            sides_colors.orange[0] = sides_colors.green[6];
-            sides_colors.orange[3] = sides_colors.green[7];
-            sides_colors.orange[6] = sides_colors.green[8];
-
-            sides_colors.green[6] = sides_colors.red[8];
-            sides_colors.green[7] = sides_colors.red[5];
-            sides_colors.green[8] = sides_colors.red[2];
-
-            sides_colors.red[2] = top_blue_memory[0];
-            sides_colors.red[5] = top_blue_memory[1];
-            sides_colors.red[8] = top_blue_memory[2];
-
-            rotateSideLeft(sides_colors.yellow);
-            //
-        }
+        topRight(selected_color);
 
         changeColors();
         console.log(checkIfSolved());
@@ -535,139 +1112,7 @@ left_top.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
-        if (selected_color === "white") {
-            //
-            let left_white_memory = [sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]];
-
-            sides_colors.white[0] = sides_colors.green[0];
-            sides_colors.white[3] = sides_colors.green[3];
-            sides_colors.white[6] = sides_colors.green[6];
-
-            sides_colors.green[0] = sides_colors.yellow[8];
-            sides_colors.green[3] = sides_colors.yellow[5];
-            sides_colors.green[6] = sides_colors.yellow[2];
-
-            sides_colors.yellow[2] = sides_colors.blue[6];
-            sides_colors.yellow[5] = sides_colors.blue[3];
-            sides_colors.yellow[8] = sides_colors.blue[0];
-
-            sides_colors.blue[0] = left_white_memory[0];
-            sides_colors.blue[3] = left_white_memory[1];
-            sides_colors.blue[6] = left_white_memory[2];
-
-            rotateSideLeft(sides_colors.orange);
-            //
-        } else if (selected_color === "red") {
-            //
-            let left_red_memory = [sides_colors.red[0], sides_colors.red[3], sides_colors.red[6]]
-
-            sides_colors.red[0] = sides_colors.green[2];
-            sides_colors.red[3] = sides_colors.green[1];
-            sides_colors.red[6] = sides_colors.green[0];
-
-            sides_colors.green[0] = sides_colors.orange[2];
-            sides_colors.green[1] = sides_colors.orange[5];
-            sides_colors.green[2] = sides_colors.orange[8];
-
-            sides_colors.orange[2] = sides_colors.blue[8];
-            sides_colors.orange[5] = sides_colors.blue[7];
-            sides_colors.orange[8] = sides_colors.blue[6];
-
-            sides_colors.blue[6] = left_red_memory[0];
-            sides_colors.blue[7] = left_red_memory[1];
-            sides_colors.blue[8] = left_red_memory[2];
-
-            rotateSideLeft(sides_colors.white);
-            //
-        } else if (selected_color === "yellow") {
-            //
-            let left_yellow_memory = [sides_colors.yellow[0], sides_colors.yellow[3], sides_colors.yellow[6]]
-
-            sides_colors.yellow[0] = sides_colors.green[8];
-            sides_colors.yellow[3] = sides_colors.green[5];
-            sides_colors.yellow[6] = sides_colors.green[2];
-
-            sides_colors.green[2] = sides_colors.white[2];
-            sides_colors.green[5] = sides_colors.white[5];
-            sides_colors.green[8] = sides_colors.white[8];
-
-            sides_colors.white[2] = sides_colors.blue[2];
-            sides_colors.white[5] = sides_colors.blue[5];
-            sides_colors.white[8] = sides_colors.blue[8];
-
-            sides_colors.blue[2] = left_yellow_memory[2];
-            sides_colors.blue[5] = left_yellow_memory[1];
-            sides_colors.blue[8] = left_yellow_memory[0];
-
-            rotateSideLeft(sides_colors.red);
-            //
-        } else if (selected_color === "orange") {
-            //
-            let left_orange_memory = [sides_colors.orange[0], sides_colors.orange[3], sides_colors.orange[6]]
-
-            sides_colors.orange[0] = sides_colors.green[6];
-            sides_colors.orange[3] = sides_colors.green[7];
-            sides_colors.orange[6] = sides_colors.green[8];
-
-            sides_colors.green[6] = sides_colors.red[8];
-            sides_colors.green[7] = sides_colors.red[5];
-            sides_colors.green[8] = sides_colors.red[2];
-
-            sides_colors.red[2] = sides_colors.blue[0];
-            sides_colors.red[5] = sides_colors.blue[1];
-            sides_colors.red[8] = sides_colors.blue[2];
-
-            sides_colors.blue[0] = left_orange_memory[2];
-            sides_colors.blue[1] = left_orange_memory[1];
-            sides_colors.blue[2] = left_orange_memory[0];
-
-            rotateSideLeft(sides_colors.yellow);
-            //
-        } else if (selected_color === "green") {
-            //
-            let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
-
-            sides_colors.blue[0] = sides_colors.white[0];
-            sides_colors.blue[3] = sides_colors.white[3];
-            sides_colors.blue[6] = sides_colors.white[6];
-
-            sides_colors.white[0] = sides_colors.green[0];
-            sides_colors.white[3] = sides_colors.green[3];
-            sides_colors.white[6] = sides_colors.green[6];
-
-            sides_colors.green[0] = sides_colors.yellow[8];
-            sides_colors.green[3] = sides_colors.yellow[5];
-            sides_colors.green[6] = sides_colors.yellow[2];
-
-            sides_colors.yellow[2] = left_blue_memory[2];
-            sides_colors.yellow[5] = left_blue_memory[1];
-            sides_colors.yellow[8] = left_blue_memory[0];
-
-            rotateSideLeft(sides_colors.orange);
-            //
-        } else if (selected_color === "blue") {
-            //
-            let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
-
-            sides_colors.blue[0] = sides_colors.white[0];
-            sides_colors.blue[3] = sides_colors.white[3];
-            sides_colors.blue[6] = sides_colors.white[6];
-
-            sides_colors.white[0] = sides_colors.green[0];
-            sides_colors.white[3] = sides_colors.green[3];
-            sides_colors.white[6] = sides_colors.green[6];
-
-            sides_colors.green[0] = sides_colors.yellow[8];
-            sides_colors.green[3] = sides_colors.yellow[5];
-            sides_colors.green[6] = sides_colors.yellow[2];
-
-            sides_colors.yellow[2] = left_blue_memory[2];
-            sides_colors.yellow[5] = left_blue_memory[1];
-            sides_colors.yellow[8] = left_blue_memory[0];
-
-            rotateSideLeft(sides_colors.orange);
-            //
-        }
+        leftTop(selected_color);
 
         changeColors();
         console.log(checkIfSolved());
@@ -678,139 +1123,7 @@ left_down.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
-        if (selected_color === "white") {
-            //
-            let left_white_memory = [sides_colors.white[0], sides_colors.white[3], sides_colors.white[6]];
-
-            sides_colors.white[0] = sides_colors.blue[0];
-            sides_colors.white[3] = sides_colors.blue[3];
-            sides_colors.white[6] = sides_colors.blue[6];
-
-            sides_colors.blue[0] = sides_colors.yellow[8];
-            sides_colors.blue[3] = sides_colors.yellow[5];
-            sides_colors.blue[6] = sides_colors.yellow[2];
-
-            sides_colors.yellow[2] = sides_colors.green[6];
-            sides_colors.yellow[5] = sides_colors.green[3];
-            sides_colors.yellow[8] = sides_colors.green[0];
-
-            sides_colors.green[0] = left_white_memory[0];
-            sides_colors.green[3] = left_white_memory[1];
-            sides_colors.green[6] = left_white_memory[2];
-
-            rotateSideRight(sides_colors.orange);
-            //
-        } else if (selected_color === "red") {
-            //
-            let left_red_memory = [sides_colors.red[0], sides_colors.red[3], sides_colors.red[6]]
-
-            sides_colors.red[0] = sides_colors.blue[6];
-            sides_colors.red[3] = sides_colors.blue[7];
-            sides_colors.red[6] = sides_colors.blue[8];
-
-            sides_colors.blue[8] = sides_colors.orange[2];
-            sides_colors.blue[7] = sides_colors.orange[5];
-            sides_colors.blue[6] = sides_colors.orange[8];
-
-            sides_colors.orange[2] = sides_colors.green[0];
-            sides_colors.orange[5] = sides_colors.green[1];
-            sides_colors.orange[8] = sides_colors.green[2];
-
-            sides_colors.green[2] = left_red_memory[0];
-            sides_colors.green[1] = left_red_memory[1];
-            sides_colors.green[0] = left_red_memory[2];
-
-            rotateSideRight(sides_colors.white);
-            //
-        } else if (selected_color === "yellow") {
-            //
-            let left_yellow_memory = [sides_colors.yellow[0], sides_colors.yellow[3], sides_colors.yellow[6]]
-
-            sides_colors.yellow[0] = sides_colors.blue[8];
-            sides_colors.yellow[3] = sides_colors.blue[5];
-            sides_colors.yellow[6] = sides_colors.blue[2];
-
-            sides_colors.blue[2] = sides_colors.white[2];
-            sides_colors.blue[5] = sides_colors.white[5];
-            sides_colors.blue[8] = sides_colors.white[8];
-
-            sides_colors.white[2] = sides_colors.green[2];
-            sides_colors.white[5] = sides_colors.green[5];
-            sides_colors.white[8] = sides_colors.green[8];
-
-            sides_colors.green[2] = left_yellow_memory[2];
-            sides_colors.green[5] = left_yellow_memory[1];
-            sides_colors.green[8] = left_yellow_memory[0];
-
-            rotateSideRight(sides_colors.red);
-            //
-        } else if (selected_color === "orange") {
-            //
-            let left_orange_memory = [sides_colors.orange[0], sides_colors.orange[3], sides_colors.orange[6]]
-
-            sides_colors.orange[0] = sides_colors.blue[2];
-            sides_colors.orange[3] = sides_colors.blue[1];
-            sides_colors.orange[6] = sides_colors.blue[0];
-
-            sides_colors.blue[0] = sides_colors.red[2];
-            sides_colors.blue[1] = sides_colors.red[5];
-            sides_colors.blue[2] = sides_colors.red[8];
-
-            sides_colors.red[2] = sides_colors.green[8];
-            sides_colors.red[5] = sides_colors.green[7];
-            sides_colors.red[8] = sides_colors.green[6];
-
-            sides_colors.green[6] = left_orange_memory[0];
-            sides_colors.green[7] = left_orange_memory[1];
-            sides_colors.green[8] = left_orange_memory[2];
-
-            rotateSideRight(sides_colors.yellow);
-            //
-        } else if (selected_color === "green") {
-            //
-            let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
-
-            sides_colors.blue[0] = sides_colors.yellow[8];
-            sides_colors.blue[3] = sides_colors.yellow[5];
-            sides_colors.blue[6] = sides_colors.yellow[2];
-
-            sides_colors.yellow[2] = sides_colors.green[6];
-            sides_colors.yellow[5] = sides_colors.green[3];
-            sides_colors.yellow[8] = sides_colors.green[0];
-
-            sides_colors.green[0] = sides_colors.white[0];
-            sides_colors.green[3] = sides_colors.white[3];
-            sides_colors.green[6] = sides_colors.white[6];
-
-            sides_colors.white[0] = left_blue_memory[0];
-            sides_colors.white[3] = left_blue_memory[1];
-            sides_colors.white[6] = left_blue_memory[2];
-
-            rotateSideRight(sides_colors.orange);
-            //
-        } else if (selected_color === "blue") {
-            //
-            let left_blue_memory = [sides_colors.blue[0], sides_colors.blue[3], sides_colors.blue[6]]
-
-            sides_colors.blue[0] = sides_colors.yellow[8];
-            sides_colors.blue[3] = sides_colors.yellow[5];
-            sides_colors.blue[6] = sides_colors.yellow[2];
-
-            sides_colors.yellow[2] = sides_colors.green[6];
-            sides_colors.yellow[5] = sides_colors.green[3];
-            sides_colors.yellow[8] = sides_colors.green[0];
-
-            sides_colors.green[0] = sides_colors.white[0];
-            sides_colors.green[3] = sides_colors.white[3];
-            sides_colors.green[6] = sides_colors.white[6];
-
-            sides_colors.white[0] = left_blue_memory[0];
-            sides_colors.white[3] = left_blue_memory[1];
-            sides_colors.white[6] = left_blue_memory[2];
-
-            rotateSideRight(sides_colors.orange);
-            //
-        }
+        leftDown(selected_color);
 
         changeColors();
         console.log(checkIfSolved());
@@ -821,139 +1134,7 @@ right_top.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
-        if (selected_color === "white") {
-            //
-            let right_white_memory = [sides_colors.white[2], sides_colors.white[5], sides_colors.white[8]];
-
-            sides_colors.white[2] = sides_colors.green[2];
-            sides_colors.white[5] = sides_colors.green[5];
-            sides_colors.white[8] = sides_colors.green[8];
-
-            sides_colors.green[2] = sides_colors.yellow[6];
-            sides_colors.green[5] = sides_colors.yellow[3];
-            sides_colors.green[8] = sides_colors.yellow[0];
-
-            sides_colors.yellow[0] = sides_colors.blue[8];
-            sides_colors.yellow[3] = sides_colors.blue[5];
-            sides_colors.yellow[6] = sides_colors.blue[2];
-
-            sides_colors.blue[2] = right_white_memory[0];
-            sides_colors.blue[5] = right_white_memory[1];
-            sides_colors.blue[8] = right_white_memory[2];
-
-            rotateSideRight(sides_colors.red);
-            //
-        } else if (selected_color === "red") {
-            //
-            let right_red_memory = [sides_colors.red[2], sides_colors.red[5], sides_colors.red[8]]
-
-            sides_colors.red[2] = sides_colors.green[8];
-            sides_colors.red[5] = sides_colors.green[7];
-            sides_colors.red[8] = sides_colors.green[6];
-
-            sides_colors.green[8] = sides_colors.orange[6];
-            sides_colors.green[7] = sides_colors.orange[3];
-            sides_colors.green[6] = sides_colors.orange[0];
-
-            sides_colors.orange[0] = sides_colors.blue[2];
-            sides_colors.orange[3] = sides_colors.blue[1];
-            sides_colors.orange[6] = sides_colors.blue[0];
-
-            sides_colors.blue[0] = right_red_memory[0];
-            sides_colors.blue[1] = right_red_memory[1];
-            sides_colors.blue[2] = right_red_memory[2];
-
-            rotateSideRight(sides_colors.yellow);
-            //
-        } else if (selected_color === "yellow") {
-            //
-            let right_yellow_memory = [sides_colors.yellow[2], sides_colors.yellow[5], sides_colors.yellow[8]]
-
-            sides_colors.yellow[2] = sides_colors.green[6];
-            sides_colors.yellow[5] = sides_colors.green[3];
-            sides_colors.yellow[8] = sides_colors.green[0];
-
-            sides_colors.green[0] = sides_colors.white[0];
-            sides_colors.green[3] = sides_colors.white[3];
-            sides_colors.green[6] = sides_colors.white[6];
-
-            sides_colors.white[0] = sides_colors.blue[0];
-            sides_colors.white[3] = sides_colors.blue[3];
-            sides_colors.white[6] = sides_colors.blue[6];
-
-            sides_colors.blue[0] = right_yellow_memory[2];
-            sides_colors.blue[3] = right_yellow_memory[1];
-            sides_colors.blue[6] = right_yellow_memory[0];
-
-            rotateSideRight(sides_colors.orange);
-            //
-        } else if (selected_color === "orange") {
-            //
-            let right_orange_memory = [sides_colors.orange[2], sides_colors.orange[5], sides_colors.orange[8]]
-
-            sides_colors.orange[2] = sides_colors.green[0];
-            sides_colors.orange[5] = sides_colors.green[1];
-            sides_colors.orange[8] = sides_colors.green[2];
-
-            sides_colors.green[0] = sides_colors.red[6];
-            sides_colors.green[1] = sides_colors.red[3];
-            sides_colors.green[2] = sides_colors.red[0];
-
-            sides_colors.red[0] = sides_colors.blue[6];
-            sides_colors.red[3] = sides_colors.blue[7];
-            sides_colors.red[6] = sides_colors.blue[8];
-
-            sides_colors.blue[6] = right_orange_memory[2];
-            sides_colors.blue[7] = right_orange_memory[1];
-            sides_colors.blue[8] = right_orange_memory[0];
-
-            rotateSideRight(sides_colors.white);
-            //
-        } else if (selected_color === "green") {
-            //
-            let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
-
-            sides_colors.blue[2] = sides_colors.white[2];
-            sides_colors.blue[5] = sides_colors.white[5];
-            sides_colors.blue[8] = sides_colors.white[8];
-
-            sides_colors.white[2] = sides_colors.green[2];
-            sides_colors.white[5] = sides_colors.green[5];
-            sides_colors.white[8] = sides_colors.green[8];
-
-            sides_colors.green[2] = sides_colors.yellow[6];
-            sides_colors.green[5] = sides_colors.yellow[3];
-            sides_colors.green[8] = sides_colors.yellow[0];
-
-            sides_colors.yellow[0] = right_blue_memory[2];
-            sides_colors.yellow[3] = right_blue_memory[1];
-            sides_colors.yellow[6] = right_blue_memory[0];
-
-            rotateSideRight(sides_colors.red);
-            //
-        } else if (selected_color === "blue") {
-            //
-            let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
-
-            sides_colors.blue[2] = sides_colors.white[2];
-            sides_colors.blue[5] = sides_colors.white[5];
-            sides_colors.blue[8] = sides_colors.white[8];
-
-            sides_colors.white[2] = sides_colors.green[2];
-            sides_colors.white[5] = sides_colors.green[5];
-            sides_colors.white[8] = sides_colors.green[8];
-
-            sides_colors.green[2] = sides_colors.yellow[6];
-            sides_colors.green[5] = sides_colors.yellow[3];
-            sides_colors.green[8] = sides_colors.yellow[0];
-
-            sides_colors.yellow[0] = right_blue_memory[2];
-            sides_colors.yellow[3] = right_blue_memory[1];
-            sides_colors.yellow[6] = right_blue_memory[0];
-
-            rotateSideRight(sides_colors.red);
-            //
-        }
+        rightTop(selected_color);
 
         changeColors();
         console.log(checkIfSolved());
@@ -964,139 +1145,7 @@ right_down.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
-        if (selected_color === "white") {
-            //
-            let right_white_memory = [sides_colors.white[2], sides_colors.white[5], sides_colors.white[8]];
-
-            sides_colors.white[2] = sides_colors.blue[2];
-            sides_colors.white[5] = sides_colors.blue[5];
-            sides_colors.white[8] = sides_colors.blue[8];
-
-            sides_colors.blue[2] = sides_colors.yellow[6];
-            sides_colors.blue[5] = sides_colors.yellow[3];
-            sides_colors.blue[8] = sides_colors.yellow[0];
-
-            sides_colors.yellow[0] = sides_colors.green[8];
-            sides_colors.yellow[3] = sides_colors.green[5];
-            sides_colors.yellow[6] = sides_colors.green[2];
-
-            sides_colors.green[2] = right_white_memory[0];
-            sides_colors.green[5] = right_white_memory[1];
-            sides_colors.green[8] = right_white_memory[2];
-
-            rotateSideLeft(sides_colors.red);
-            //
-        } else if (selected_color === "red") {
-            //
-            let right_red_memory = [sides_colors.red[2], sides_colors.red[5], sides_colors.red[8]]
-
-            sides_colors.red[2] = sides_colors.blue[0];
-            sides_colors.red[5] = sides_colors.blue[1];
-            sides_colors.red[8] = sides_colors.blue[2];
-
-            sides_colors.blue[0] = sides_colors.orange[6];
-            sides_colors.blue[1] = sides_colors.orange[3];
-            sides_colors.blue[2] = sides_colors.orange[0];
-
-            sides_colors.orange[0] = sides_colors.green[6];
-            sides_colors.orange[3] = sides_colors.green[7];
-            sides_colors.orange[6] = sides_colors.green[8];
-
-            sides_colors.green[6] = right_red_memory[2];
-            sides_colors.green[7] = right_red_memory[1];
-            sides_colors.green[8] = right_red_memory[0];
-
-            rotateSideLeft(sides_colors.yellow);
-            //
-        } else if (selected_color === "yellow") {
-            //
-            let right_yellow_memory = [sides_colors.yellow[2], sides_colors.yellow[5], sides_colors.yellow[8]]
-
-            sides_colors.yellow[2] = sides_colors.blue[6];
-            sides_colors.yellow[5] = sides_colors.blue[3];
-            sides_colors.yellow[8] = sides_colors.blue[0];
-
-            sides_colors.blue[0] = sides_colors.white[0];
-            sides_colors.blue[3] = sides_colors.white[3];
-            sides_colors.blue[6] = sides_colors.white[6];
-
-            sides_colors.white[0] = sides_colors.green[0];
-            sides_colors.white[3] = sides_colors.green[3];
-            sides_colors.white[6] = sides_colors.green[6];
-
-            sides_colors.green[0] = right_yellow_memory[2];
-            sides_colors.green[3] = right_yellow_memory[1];
-            sides_colors.green[6] = right_yellow_memory[0];
-
-            rotateSideLeft(sides_colors.orange);
-            //
-        } else if (selected_color === "orange") {
-            //
-            let right_orange_memory = [sides_colors.orange[2], sides_colors.orange[5], sides_colors.orange[8]]
-
-            sides_colors.orange[2] = sides_colors.blue[8];
-            sides_colors.orange[5] = sides_colors.blue[7];
-            sides_colors.orange[8] = sides_colors.blue[6];
-
-            sides_colors.blue[6] = sides_colors.red[0];
-            sides_colors.blue[7] = sides_colors.red[3];
-            sides_colors.blue[8] = sides_colors.red[6];
-
-            sides_colors.red[0] = sides_colors.green[2];
-            sides_colors.red[3] = sides_colors.green[1];
-            sides_colors.red[6] = sides_colors.green[0];
-
-            sides_colors.green[0] = right_orange_memory[0];
-            sides_colors.green[1] = right_orange_memory[1];
-            sides_colors.green[2] = right_orange_memory[2];
-
-            rotateSideLeft(sides_colors.white);
-            //
-        } else if (selected_color === "green") {
-            //
-            let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
-
-            sides_colors.blue[2] = sides_colors.yellow[6];
-            sides_colors.blue[5] = sides_colors.yellow[3];
-            sides_colors.blue[8] = sides_colors.yellow[0];
-
-            sides_colors.yellow[0] = sides_colors.green[8];
-            sides_colors.yellow[3] = sides_colors.green[5];
-            sides_colors.yellow[6] = sides_colors.green[2];
-
-            sides_colors.green[2] = sides_colors.white[2];
-            sides_colors.green[5] = sides_colors.white[5];
-            sides_colors.green[8] = sides_colors.white[8];
-
-            sides_colors.white[2] = right_blue_memory[0];
-            sides_colors.white[5] = right_blue_memory[1];
-            sides_colors.white[8] = right_blue_memory[2];
-
-            rotateSideLeft(sides_colors.red);
-            //
-        } else if (selected_color === "blue") {
-            //
-            let right_blue_memory = [sides_colors.blue[2], sides_colors.blue[5], sides_colors.blue[8]]
-
-            sides_colors.blue[2] = sides_colors.yellow[6];
-            sides_colors.blue[5] = sides_colors.yellow[3];
-            sides_colors.blue[8] = sides_colors.yellow[0];
-
-            sides_colors.yellow[0] = sides_colors.green[8];
-            sides_colors.yellow[3] = sides_colors.green[5];
-            sides_colors.yellow[6] = sides_colors.green[2];
-
-            sides_colors.green[2] = sides_colors.white[2];
-            sides_colors.green[5] = sides_colors.white[5];
-            sides_colors.green[8] = sides_colors.white[8];
-
-            sides_colors.white[2] = right_blue_memory[0];
-            sides_colors.white[5] = right_blue_memory[1];
-            sides_colors.white[8] = right_blue_memory[2];
-
-            rotateSideLeft(sides_colors.red);
-            //
-        }
+        rightDown(selected_color);
 
         changeColors();
         console.log(checkIfSolved());
@@ -1107,128 +1156,7 @@ bottom_left.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
-        if (selected_color === "white") {
-            //
-            let bottom_white_memory = sides_colors.white.slice(6);
-
-            for (let k = 6; k < 9; k++) {
-                sides_colors.white[k] = sides_colors.red[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.red[k] = sides_colors.yellow[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-
-            sides_colors.orange[6] = bottom_white_memory[0];
-            sides_colors.orange[7] = bottom_white_memory[1];
-            sides_colors.orange[8] = bottom_white_memory[2];
-
-            rotateSideLeft(sides_colors.green);
-            //
-        } else if (selected_color === "red") {
-            //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
-
-            for (let k = 6; k < 9; k++) {
-                sides_colors.white[k] = sides_colors.red[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.red[k] = sides_colors.yellow[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.orange[k] = bottom_white_memory[k];
-            }
-
-            rotateSideLeft(sides_colors.green);
-            //
-        } else if (selected_color === "yellow") {
-            //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
-
-            for (let k = 6; k < 9; k++) {
-                sides_colors.white[k] = sides_colors.red[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.red[k] = sides_colors.yellow[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.orange[k] = bottom_white_memory[k];
-            }
-
-            rotateSideLeft(sides_colors.green);
-            //
-        } else if (selected_color === "orange") {
-            //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
-
-            for (let k = 6; k < 9; k++) {
-                sides_colors.white[k] = sides_colors.red[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.red[k] = sides_colors.yellow[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.yellow[k] = sides_colors.orange[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.orange[k] = bottom_white_memory[k];
-            }
-
-            rotateSideLeft(sides_colors.green);
-            //
-        } else if (selected_color === "green") {
-            //
-            let bottom_green_memory = sides_colors.green.slice(6);
-
-            sides_colors.green[6] = sides_colors.red[8];
-            sides_colors.green[7] = sides_colors.red[5];
-            sides_colors.green[8] = sides_colors.red[2];
-
-            sides_colors.red[2] = sides_colors.blue[0];
-            sides_colors.red[5] = sides_colors.blue[1];
-            sides_colors.red[8] = sides_colors.blue[2];
-
-            sides_colors.blue[0] = sides_colors.orange[6];
-            sides_colors.blue[1] = sides_colors.orange[3];
-            sides_colors.blue[2] = sides_colors.orange[0];
-
-            sides_colors.orange[0] = bottom_green_memory[0];
-            sides_colors.orange[3] = bottom_green_memory[1];
-            sides_colors.orange[6] = bottom_green_memory[2];
-
-            rotateSideLeft(sides_colors.yellow);
-            //
-        } else if (selected_color === "blue") {
-            //
-            let bottom_blue_memory = sides_colors.blue.slice(6);
-
-            sides_colors.blue[6] = sides_colors.red[0];
-            sides_colors.blue[7] = sides_colors.red[3];
-            sides_colors.blue[8] = sides_colors.red[6];
-
-            sides_colors.red[0] = sides_colors.green[2];
-            sides_colors.red[3] = sides_colors.green[1];
-            sides_colors.red[6] = sides_colors.green[0];
-
-            sides_colors.green[0] = sides_colors.orange[2];
-            sides_colors.green[1] = sides_colors.orange[5];
-            sides_colors.green[2] = sides_colors.orange[8];
-
-            sides_colors.orange[2] = bottom_blue_memory[2];
-            sides_colors.orange[5] = bottom_blue_memory[1];
-            sides_colors.orange[8] = bottom_blue_memory[0];
-
-            rotateSideLeft(sides_colors.white);
-            //
-        }
+        bottomLeft(selected_color);
 
         changeColors();
         console.log(checkIfSolved());
@@ -1239,128 +1167,7 @@ bottom_right.addEventListener("click", () => {
     if (selected_bool === false) {
         alert("Nevybral jsi barvu pro pohyb!");
     } else {
-        if (selected_color === "white") {
-            //
-            let bottom_white_memory = sides_colors.white.slice(6);
-
-            for (let k = 6; k < 9; k++) {
-                sides_colors.white[k] = sides_colors.orange[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.orange[k] = sides_colors.yellow[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-
-            sides_colors.red[6] = bottom_white_memory[0];
-            sides_colors.red[7] = bottom_white_memory[1];
-            sides_colors.red[8] = bottom_white_memory[2];
-
-            rotateSideRight(sides_colors.green);
-            //
-        } else if (selected_color === "red") {
-            //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
-
-            for (let k = 6; k < 9; k++) {
-                sides_colors.white[k] = sides_colors.orange[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.orange[k] = sides_colors.yellow[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.red[k] = bottom_white_memory[k];
-            }
-
-            rotateSideRight(sides_colors.green);
-            //
-        } else if (selected_color === "yellow") {
-            //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
-
-            for (let k = 6; k < 9; k++) {
-                sides_colors.white[k] = sides_colors.orange[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.orange[k] = sides_colors.yellow[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.red[k] = bottom_white_memory[k];
-            }
-
-            rotateSideRight(sides_colors.green);
-            //
-        } else if (selected_color === "orange") {
-            //
-            let bottom_white_memory = ["", "", "", "", "", "", sides_colors.white[6], sides_colors.white[7], sides_colors.white[8]];
-
-            for (let k = 6; k < 9; k++) {
-                sides_colors.white[k] = sides_colors.orange[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.orange[k] = sides_colors.yellow[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.yellow[k] = sides_colors.red[k];
-            }
-            for (let k = 6; k < 9; k++) {
-                sides_colors.red[k] = bottom_white_memory[k];
-            }
-
-            rotateSideRight(sides_colors.green);
-            //
-        } else if (selected_color === "green") {
-            //
-            let bottom_green_memory = sides_colors.green.slice(6);
-
-            sides_colors.green[6] = sides_colors.orange[0];
-            sides_colors.green[7] = sides_colors.orange[3];
-            sides_colors.green[8] = sides_colors.orange[6];
-
-            sides_colors.orange[0] = sides_colors.blue[2];
-            sides_colors.orange[3] = sides_colors.blue[1];
-            sides_colors.orange[6] = sides_colors.blue[0];
-
-            sides_colors.blue[0] = sides_colors.red[2];
-            sides_colors.blue[1] = sides_colors.red[5];
-            sides_colors.blue[2] = sides_colors.red[8];
-
-            sides_colors.red[2] = bottom_green_memory[2];
-            sides_colors.red[5] = bottom_green_memory[1];
-            sides_colors.red[8] = bottom_green_memory[0];
-
-            rotateSideRight(sides_colors.yellow);
-            //
-        } else if (selected_color === "blue") {
-            //
-            let bottom_blue_memory = sides_colors.blue.slice(6);
-
-            sides_colors.blue[6] = sides_colors.orange[8];
-            sides_colors.blue[7] = sides_colors.orange[5];
-            sides_colors.blue[8] = sides_colors.orange[2];
-
-            sides_colors.orange[2] = sides_colors.green[0];
-            sides_colors.orange[5] = sides_colors.green[1];
-            sides_colors.orange[8] = sides_colors.green[2];
-
-            sides_colors.green[0] = sides_colors.red[6];
-            sides_colors.green[1] = sides_colors.red[3];
-            sides_colors.green[2] = sides_colors.red[0];
-
-            sides_colors.red[0] = bottom_blue_memory[0];
-            sides_colors.red[3] = bottom_blue_memory[1];
-            sides_colors.red[6] = bottom_blue_memory[2];
-
-            rotateSideRight(sides_colors.white);
-            //
-        }
+        bottomRight(selected_color);
 
         changeColors();
         console.log(checkIfSolved());
@@ -1371,80 +1178,59 @@ bottom_right.addEventListener("click", () => {
 
 // Zamíchání kostky
 mix_btn.addEventListener("click", () => {
-    console.log("Míchám");
     mix_btn.style.pointerEvents = "none";
     mix_btn.style.opacity = "0.75";
     mixCube();
 })
 
 function mixCube() {
-    let colors = ["white", "white", "white", "white", "white", "white", "white", "white", "red", "red", "red", "red", "red", "red", "red", "red", "green", "green", "green", "green", "green", "green", "green", "green", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered", "orangered"];
+    // nový nápad míchání, budu pohybovat stranami jako při skládání
+    let random_num = Math.floor(Math.random() * 11);
+    console.log(random_num);
 
-    console.log(colors.length);
+    // cyklus, který projde všechny strany (object properties)
+    for (let property in sides_colors) {
+        // console.log(`${property}: ${sides_colors[property]}`);
+        // console.log(typeof(property));
+        // console.log(property);
+        // sides_colors[property] = [];
 
-    for (let i = 0; i < 6; i++) { // cyklus pro random generaci barev
-        switch (i) {
-            case 0:
-                for (let j = 0; j < 9; j++) {
-                    if (j != 4) {
-                        let index_color = Math.floor(Math.random() * colors.length);
-                        sides_colors.white[j] = colors[index_color];
-                        colors.splice(index_color, 1);
-                    }
-                }
-                break;
-            case 1:
-                for (let j = 0; j < 9; j++) {
-                    if (j != 4) {
-                        let index_color = Math.floor(Math.random() * colors.length);
-                        sides_colors.red[j] = colors[index_color];
-                        colors.splice(index_color, 1);
-                    }
-                }
-                break;
-            case 2:
-                for (let j = 0; j < 9; j++) {
-                    if (j != 4) {
-                        let index_color = Math.floor(Math.random() * colors.length);
-                        sides_colors.yellow[j] = colors[index_color];
-                        colors.splice(index_color, 1);
-                    }
-                }
-                break;
-            case 3:
-                for (let j = 0; j < 9; j++) {
-                    if (j != 4) {
-                        let index_color = Math.floor(Math.random() * colors.length);
-                        sides_colors.orange[j] = colors[index_color];
-                        colors.splice(index_color, 1);
-                    }
-                }
-                break;
-            case 4:
-                for (let j = 0; j < 9; j++) {
-                    if (j != 4) {
-                        let index_color = Math.floor(Math.random() * colors.length);
-                        sides_colors.green[j] = colors[index_color];
-                        colors.splice(index_color, 1);
-                    }
-                }
-                break;
-            case 5:
-                for (let j = 0; j < 9; j++) {
-                    if (j != 4) {
-                        let index_color = Math.floor(Math.random() * colors.length);
-                        sides_colors.blue[j] = colors[index_color];
-                        colors.splice(index_color, 1);
-                    }
-                }
-                break;
+        for (let i = 0; i < random_num; i++) {
+            let random_controler = Math.floor(Math.random() * 8);
+            // tady budu chtít stranu otočit tolikrát, kolik bude random číslo, ale chci aby se neottáčela stále stejným směrem
+            // console.log("hasa");
+            // console.log(random_controler);
+
+            switch (random_controler) {
+                case 0:
+                    topLeft(property);
+                    break;
+                case 1:
+                    topRight(property);  
+                    break;
+                case 2:
+                    leftTop(property);
+                    break;
+                case 3:
+                    leftDown(property);
+                    break;
+                case 4:
+                    rightTop(property);
+                    break;
+                case 5:
+                    rightDown(property);
+                    break;
+                case 6:
+                    bottomLeft(property);
+                    break;
+                case 7:
+                    bottomRight(property);
+                    break;
+            }
+
+            changeColors();
         }
     }
-
-    console.log(colors.length);
-    console.log(sides_colors);
-
-    changeColors();
 }
 
 // Nastavení barev kostky po načtení stránky
