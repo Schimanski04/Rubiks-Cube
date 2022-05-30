@@ -1088,7 +1088,17 @@ function bottomRight(col) {
 // #region OBSLUHA TLAČÍTEK (FUNKCE POHYBU)
 top_left.addEventListener("click", () => {
     if (selected_bool === false) {
-        alert("Nevybral jsi barvu pro pohyb!");
+        // alert("Nevybral jsi barvu pro pohyb!");
+        // swal("Upozornění", "Nevybral jsi barvu kostky pro pohyb!", "warning");
+        swal({
+            title: "Upozornění",
+            text: "Nevybral jsi barvu kostky pro pohyb",
+            icon: "warning",
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            buttons: false,
+            timer: 2500
+        })
     } else {
         topLeft(selected_color);
 

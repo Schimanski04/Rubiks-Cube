@@ -428,3 +428,23 @@ footer > h3 {
     font-weight: 600;
     padding: 8px;
 }
+
+@media only screen and (max-width: 1300px) {
+    html {
+        font-size: 14px;
+    }
+
+    main > .info {
+        align-items: flex-start;
+    }
+
+    .info > img {
+        margin-top: 17.43px;
+    }
+}
+
+/* styly pro sweet alert (https://sweetalert.js.org/docs/) */
+/* .swal-modal {
+    background-color: rgb(63,255,106);
+    border: 3px solid white;
+} */
