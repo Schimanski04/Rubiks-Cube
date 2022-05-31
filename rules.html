@@ -101,6 +101,15 @@
 
         // console.log(getComputedStyle(list[0].children[5].children[0]).filter);
         // console.log(list[0].children[5].children[0].style.filter);
+
+        const yt_videos = document.getElementsByClassName("hint");
+        let video_width;
+
+        for (let video of yt_videos[0].children) {
+            video_width = parseFloat(getComputedStyle(video).width);
+            video.style.height = `${video_width / 1.777777777777778}px`;
+            console.log(video.style.height);
+        }
     </script>
 </body>
 </html>
