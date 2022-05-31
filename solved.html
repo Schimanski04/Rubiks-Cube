@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles/main.css">
     <!-- <script src="./scripts/layout_move.js" defer></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
     <title>Rubikova kostka | SLOŽENO</title>
 </head>
@@ -45,7 +46,37 @@
                 showConfirmButton: true,
                 allowEscapeKey : false,
                 allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var end = Date.now() + (15 * 1000);
+
+                // go Buckeyes!
+                var colors = ['#bb0000', '#ffffff'];
+
+                (function frame() {
+                    confetti({
+                        particleCount: 2,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: colors
+                    });
+                    confetti({
+                        particleCount: 2,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: colors
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
+            }
         })
+
+        // https://www.kirilv.com/canvas-confetti/
     </script>
 </body>
 </html>
