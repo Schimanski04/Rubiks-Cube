@@ -362,6 +362,24 @@ main > .hint {
     width: 30vw;
 }
 
+main > .celebration {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5vh 0;
+}
+
+.celebration > img {
+    height: 60vh;
+    animation: 2s infinite alternate linear rotateImage;
+}
+
+.celebration > h1 {
+    font-size: 3.5rem;
+    animation: 2s infinite alternate linear rotateHeading;
+}
+
 .back-to-top {
     position: fixed;
     bottom: 20px;
@@ -440,6 +458,34 @@ footer > h3 {
 
     .info > img {
         margin-top: 17.43px;
+    }
+}
+
+@keyframes rotateHeading {
+    0% {
+        transform: rotateZ(-20deg);
+    }
+
+    50% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(20deg);
+    }
+
+}
+@keyframes rotateImage {
+    0% {
+        transform: rotateZ(20deg);
+    }
+
+    50% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(-20deg);
     }
 }
 
