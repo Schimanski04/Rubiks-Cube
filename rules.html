@@ -68,47 +68,20 @@
         const list_li = list[0].children[5];
         const list_text = list[0].children[5].children[0];
 
-        // localStorage.setItem('blur', null);
-
         list[0].children[5].addEventListener("click", () => {
             list_text.style.filter = "blur(0px)";
             list_text.style.pointerEvents = "auto";
             list_text.style.transitionDuration = "2s";
-            // localStorage.setItem('blur', false);
-            // console.log(localStorage.getItem('blur'));
         })
 
-        console.log(list[0].children[5]);
-        console.log(list_li);
-        console.log(list[0].children[5].children[0]);
-        console.log(list_text);
 
-        // list_text.style.filter = "blur(2px)";
-
-        // if (JSON.parse(localStorage.getItem('blur')) === null) {
-        //     list_text.style.filter = "blur(2px)";
-        // } else {
-        //     list_text.style.filter = "blur(0px)";
-        // }
-
-        // console.log(JSON.parse(localStorage.getItem('blur')) == false)
-
-        // if (JSON.parse(localStorage.getItem('blur')) === false) {
-        //     list_text.style.filter = "blur(0px)";
-        // }
-
-        // console.log(JSON.parse(localStorage.getItem('blur')));
-
-        // console.log(getComputedStyle(list[0].children[5].children[0]).filter);
-        // console.log(list[0].children[5].children[0].style.filter);
-
+        // nastavení výšky videa podle jeho šířky
         const yt_videos = document.getElementsByClassName("hint");
         let video_width;
 
         for (let video of yt_videos[0].children) {
             video_width = parseFloat(getComputedStyle(video).width);
             video.style.height = `${video_width / 1.777777777777778}px`;
-            console.log(video.style.height);
         }
     </script>
 </body>
