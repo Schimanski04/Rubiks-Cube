@@ -409,6 +409,15 @@ footer > h3 {
         font-size: 14px;
     }
 
+    .rules > .rules-images {
+        max-width: 45vw;
+    }
+
+    .rules-images > img {
+        max-width: 21vw;
+        height: auto;
+    }
+
     main > .info {
         align-items: flex-start;
     }
