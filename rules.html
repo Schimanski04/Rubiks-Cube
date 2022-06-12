@@ -68,10 +68,16 @@
         const list_li = list[0].children[5];
         const list_text = list[0].children[5].children[0];
 
+        if (JSON.parse(sessionStorage.getItem("blur")) === false) {
+            list_text.style.filter = "blur(0px)";
+            list_text.style.pointerEvents = "auto";
+        }
+
         list[0].children[5].addEventListener("click", () => {
             list_text.style.filter = "blur(0px)";
             list_text.style.pointerEvents = "auto";
             list_text.style.transitionDuration = "2s";
+            sessionStorage.setItem("blur", false);
         })
 
 

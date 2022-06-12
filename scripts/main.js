@@ -149,6 +149,8 @@ function changeColors() {
         sides_2d[0].children[5].children[j].style.transition = "all 0.5s linear";
         top_3d.children[j].style.transition = "all 0.5s linear";
     }
+
+    sessionStorage.setItem("colors-template", JSON.stringify(sides_colors));
 }
 
 function mixCube() {
@@ -1345,13 +1347,38 @@ bottom_right_btn.addEventListener("click", () => {
 
 // Zamíchání kostky
 mix_btn.addEventListener("click", () => {
-    mix_btn.style.pointerEvents = "none";
-    mix_btn.style.opacity = "0.75";
-    mixCube();
-    was_cube_mixed = true;
+    if (was_cube_mixed === true) {
+        Swal.fire({
+            title: 'Kostku už jste jednou nechal rozházet, chcete to provést znovu?',
+            text: 'Příjdete tím o dosavadní pokrok.',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ano',
+            cancelButtonText: `Ne`,
+            }).then((result) => {
+            if (result.isConfirmed) {
+                mixCube();
+                Swal.fire({
+                    title: 'Kostka se úspěšně znovu rozházela',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    allowEscapeKey : false,
+                    allowOutsideClick: false,
+                    timer: 2500
+                })
+            }
+        })
+    } else {
+        mixCube();
+        was_cube_mixed = true;
+    }
 })
 
 // Nastavení barev kostky po načtení stránky
 window.addEventListener('DOMContentLoaded', () => {
+    if (sessionStorage.getItem("colors-template") != null) {
+        sides_colors = JSON.parse(sessionStorage.getItem("colors-template"));
+    }
+
     changeColors();
 });
